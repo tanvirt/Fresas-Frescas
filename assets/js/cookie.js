@@ -4,8 +4,8 @@ function Cookie(name) {
 
 Cookie.prototype.setValue = function(value, numDaysUntilExpired) {
 	var date = new Date();
-	var expirationDate = date.getTime() + (numDaysUntilExpired*24*60*60*1000);
-	date.setTime(expirationDate);
+	var expirationTime = date.getTime() + (numDaysUntilExpired*24*60*60*1000);
+	date.setTime(expirationTime);
 	var expires = "expires=" + date.toUTCString();
 	document.cookie = this._name + "=" + value + "; " + expires;
 }
