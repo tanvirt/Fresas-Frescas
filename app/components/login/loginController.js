@@ -1,3 +1,3 @@
-angular.module('main').controller('LoginController', function($scope, $firebaseAuth) {
+angular.module('main').controller('LoginController', function($scope, $firebaseAuth, $state) {
 	
 });

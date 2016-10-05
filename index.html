@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<base href="/">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -8,15 +9,14 @@
 	<title>Fresas Frescas!</title>
 </head>
 <body ng-app="main">
-	<div ui-view>
-		<div>Hello World!</div>
-	</div>
+	<div ui-view></div>
 
 	<!-- Libraries -->
 	<script src="assets/libs/jquery.min.js"></script>
 	<script src="assets/libs/bootstrap.min.js"></script>
 	<script src="assets/libs/angular.min.js"></script>
 	<script src="assets/libs/angular-route.min.js"></script>
+	<script src="assets/libs/angular-ui-router.min.js"></script>
 	<script src="assets/libs/firebase.min.js"></script>
 	<script src="assets/libs/angularfire.min.js"></script>
 
@@ -26,5 +26,18 @@
 	<!-- Angular Files -->
 	<script src="app/app.module.js"></script>
 	<script src="app/app.routes.js"></script>
+
+	<!-- Home Component -->
+	<script src="app/components/home/homeController.js"></script>
+	<script src="app/components/home/homeService.js"></script>
+
+	<!-- Login Component -->
+	<script src="app/components/login/loginController.js"></script>
+	<script src="app/components/login/loginService.js"></script>
+
+	<!-- Shared Directives -->
+	<script src="app/shared/navbar/navBarDirective.js"></script>
+	<script src="app/shared/sidebar/sideBarDirective.js"></script>
+
 </body>
 </html>

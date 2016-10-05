@@ -1,17 +1,17 @@
-angular.module('main').config(function($routeProvider) {
+angular.module('main').config(function($urlRouterProvider, $stateProvider, $locationProvider) {
 
-    $routeProvider.when("/login", {
-        templateUrl : "components/home/loginView.html",
-        controller : "LoginController"
+    $locationProvider.html5Mode(true);
+
+    $stateProvider.state('home', {
+        url: '/home',
+        templateUrl: 'app/components/home/homeView.html',
+        controller: 'HomeController'
     });
 
-    $routeProvider.when("/home", {
-        templateUrl : "components/home/homeView.html",
-        controller : "HomeController"
-    });
-
-    $routeProvider.otherwise({
-    	template : "<h1>Invalid URL</h1>"
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: 'app/components/login/loginView.html',
+        controller: 'LoginController'
     });
 
 });
