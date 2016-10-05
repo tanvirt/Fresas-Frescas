@@ -14,9 +14,11 @@ App Structure:
 	----- libs/     	// Third-party libraries such as jQuery, Moment, Underscore, etc.
 	index.html
 
+
 Command Line Installations:
 
 	npm install -g http-server
+
 
 To Run Locally:
 
