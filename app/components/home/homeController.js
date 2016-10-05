@@ -14,9 +14,24 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 	// add new items to the array
 	// the message is automatically added to our Firebase database!
 	$scope.addMessage = function() {
-		$scope.messages.$add({
-			text: $scope.newMessageText
-		});
+
+		if($scope.newMessageText === "i like da berry"){
+			$scope.loginImage = {
+				background: 'url(../../assets/img/strawberry.jpg)'
+			};
+		}
+		else if($scope.newMessageText === "i like da choco"){
+			$scope.loginImage = {
+				background: 'url(../../assets/img/choco.jpg)'
+			};
+		}
+		else {
+			$scope.messages.$add({
+				text: $scope.newMessageText
+			});			
+		}		
+
+
 	};
 
 });
