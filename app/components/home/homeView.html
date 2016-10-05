@@ -5,4 +5,25 @@
 	<div ng-repeat="item in inventory">
 		{{item}}
 	</div>
+
+	<div>
+		<ul>
+			<li ng-repeat="message in messages">
+				<!-- edit a message -->
+				<input ng-model="message.text" ng-change="messages.$save(message)" />
+
+				<!-- delete a message -->
+				<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
+
+				<!-- save a message -->
+				<button class="btn btn-primary" ng-click="messages.$save(message)">Save Message</button>
+			</li>
+		</ul>
+
+		<!-- push a new message onto the array -->
+		<form ng-submit="addMessage()">
+			<input ng-model="newMessageText" />
+			<button class="btn btn-success" type="submit">Add Message</button>
+		</form>
+	</div>
 </div>
