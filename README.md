@@ -1,5 +1,6 @@
 # Fresas-Frescas
 
+
 App Structure:
 
 	app/
@@ -26,3 +27,13 @@ To Run Locally:
 	2. Open Chrome and go to the URL: 127.0.0.1:8080
 	3. Right-click on the webpage and click "Inspect Element" to open Chome DevTools
 	4. Click "Network" in the toolbar and check the "Disable cache" checkbox
+
+
+The "Real" Docs for Firebase:
+
+	https://github.com/firebase/angularfire/blob/master/docs/reference.md
+
+
+Our Database URL:
+
+	https://console.firebase.google.com/project/fresas-frescas/database/data
