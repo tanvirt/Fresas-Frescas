@@ -9,7 +9,7 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
     });
 
     $stateProvider.state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'app/components/login/loginView.html',
         controller: 'LoginController'
     });
