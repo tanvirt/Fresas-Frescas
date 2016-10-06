@@ -8,4 +8,25 @@
 
 html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
+  overflow: hidden;
+}
+
+.chatbox {
+	margin-left:3rem; 
+	width:40rem; 
+	padding:1rem; 
+	background: rgba(0, 0, 0, .5); 
+	border-radius:2.5%; 
+	overflow-y:scroll;
+	height:40rem;
+}
+
+.chat-message {
+	text-align:left; 
+	margin-top:1rem; 
+	color:white;
+}
+
+.chat-button {
+	align:left;
 }

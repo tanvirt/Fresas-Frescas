@@ -17,6 +17,7 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 		$scope.messages.$add({
 			text: $scope.newMessageText
 		});
+		document.getElementById("message-text").value = "";
 	};
 
 });

@@ -1,29 +1,21 @@
-<head>
-<link rel="stylesheet" type="text/css" href="../../assets/css/main.css">
-</head>
-
-<div ng-controller="HomeController" ng-style="loginImage" style="height:100%">
+<div ng-controller="HomeController" ng-style="loginImage" style="height:100%;">
 	<navbar></navbar>
 	<sidebar></sidebar>
 
-	<div>
-		<ul>
-			<li ng-repeat="message in messages">
-				<!-- edit a message -->
-				<input ng-model="message.text" ng-change="messages.$save(message)" />
-
-				<!-- delete a message -->
-				<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
-
-				<!-- save a message -->
-				<button class="btn btn-primary" ng-click="messages.$save(message)">Save Message</button>
-			</li>
-		</ul>
+	<div class="chatbox">
+		<div ng-repeat="message in messages" style="height:5rem">
+			<div class="chat-message">
+				<button class="btn btn-danger chat-button" ng-click="messages.$remove(message)"><span class="glyphicon glyphicon-remove"></span></button>
+				{{message.text}}
+			</div>
+		</div>
 
 		<!-- push a new message onto the array -->
-		<form ng-submit="addMessage()">
-			<input ng-model="newMessageText" />
-			<button class="btn btn-success" type="submit">Add Message</button>
-		</form>
+		<div>
+			<div style="text-align:left; margin-top:1rem;">
+				<button class="btn btn-success chat-button" ng-click="addMessage()"><span class="glyphicon glyphicon-plus"></span></button>
+				<input id="message-text" ng-model="newMessageText"/>
+			</div>
+		</div>
 	</div>
 </div>
