@@ -21,6 +21,7 @@ angular.module('main').run(function($rootScope, $state, $stateParams, $timeout) 
 			$state.go('home');
 		}
 		else if(toState.name == "login") {
+			console.log("IN LOGIN BLAH")
 			$state.go('login');
 		}
 	});

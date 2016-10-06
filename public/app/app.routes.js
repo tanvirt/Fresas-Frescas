@@ -3,7 +3,7 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
     $locationProvider.html5Mode(true);
 
     $stateProvider.state('home', {
-        url: '/',
+        url: '/home',
         templateUrl: 'app/components/home/homeView.html',
         controller: 'HomeController'
     });
