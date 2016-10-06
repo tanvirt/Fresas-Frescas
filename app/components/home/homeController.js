@@ -18,6 +18,23 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 			text: $scope.newMessageText
 		});
 		document.getElementById("message-text").value = "";
+
+		if($scope.newMessageText === "i like da berry"){
+			$scope.loginImage = {
+				background: 'url(../../assets/img/strawberry.jpg)'
+			};
+		}
+		else if($scope.newMessageText === "i like da choco"){
+			$scope.loginImage = {
+				background: 'url(../../assets/img/choco.jpg)'
+			};
+		}
+		else {
+			$scope.messages.$add({
+				text: $scope.newMessageText
+			});			
+		}
+
 	};
 
 });

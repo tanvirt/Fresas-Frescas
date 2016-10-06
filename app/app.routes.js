@@ -14,4 +14,5 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         controller: 'LoginController'
     });
 
+    $urlRouterProvider.otherwise('home')
 });
