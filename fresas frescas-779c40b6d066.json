@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "fresas-frescas",
+  "private_key_id": "779c40b6d066eef7b80841cc087f60106526ddf6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCmL5g/YL74MPb5\nwPjjSNFGl4Pf8eA/a+FGad3TGImzfdNyjYMXqlFrRDXHEd1N9g/uByBx8KUDl0fM\nzJ4rSBcrkBBze9nBOzDrka/UUA9riU6r3WKNOYTDxk5vn/7pELDgBY5jtnaakxR0\ntAjMT2ou/C9fPl1AeYucNMtGx4vqdv1bh2KwCzGSnPbQSluuB5X4YW+pdcAgDRwh\nMjwQD5+nwGFztBbVCxfEmh/nmZCG0N3I9kThQNxayMPxatjmu9/uDBUMKd603fhw\nl28JB1hLAFR1/lsDbGpYZMwa8rpX6xa+mBVVM//hJbbQTkK4J3DuWPjw6EB+cTiW\ncahIH2lhAgMBAAECggEAdc0XJxX1SQmsiK35v2NGtbuBh6V1SH+4WKmCzLiAI/P1\nhyY43vWkcV0QoeRP84uRDzGOFjZ3QmxiQRJqrFOV2RNuFe6dFRRYQSQsd1upEplq\nYvmzelhjfEN+JjJMB/oE50gI/zXALSJFRdS4x9sjcdrh2anjgGioRjpGPg4FaFV7\ncKnwQdkXqF/KU8OCJwLT2Bt26teKeLfQyMZQ8hYoyMPSPJCSY2ZBB+QZSdqwx7eT\nkZzdU+ztwAbLLHXlJ9N7JEd+ua5Bez9G3XTwfHA6RyfsfvzhL/uN7JwDEK+G16+k\nM7lLCQpyPR9Qr/efsGe5g2/jgkqoIU886wKi61N+gQKBgQDdLKSwe54hpe7/Dbu6\nU+7H9TMieavSk3P+uKqMbQM5AmhqKie9pdVf6Z/xPD7zQoNo/96p/NCTii08fYKJ\nEyZ0SkON8hwLACXBfc16PQe8UmM8FWKeU9XVfFfJTL6StVd5HNZtzf67b9ZATtVc\ncfBENcLeOcUr9/kU7c5S8/D8dQKBgQDAWmler/zySqCNGXXHKaoXniR52pTdXmJ8\nUcmKB8l260fbxru+xx9MeadtxBBF4KtLYibohWxwmJhLFTUkgPcj07ujcRgJhm0r\nuYvDlzmhv+iXnKTn3LRwOWleyM+k7Z3/kc/EswrLsmo8Al/RM51w0IRBf3fXfXrA\nA87Ep2wLvQKBgEVn+w5+3HLGtadIUf7409ff9Hn/IJJmP2JR5QNIOlirjsSyEeKL\npdgBYnW7aC3CU6ahlOhXM8T4+ZUf9dS6M7kOjQCAV5iEJVUA+3g+qqzIVefG9jml\nKVdjO9EpyiwTyC1zhT7UA/oh8GQh2Qa3oqRlEo/WJS/VE08kCTky4A75AoGAT+yB\nQc3APXCSu24ryQBf44ZbQ6J2HnEcXOmi406PAHGMnx45XnDgaWdXET3ZQR+0LRNw\ndUcTIsnU5cW/GhbYGbPdkHDqevK3I+bp0vBgCvxxiaWVw52p/8NrK+4mkTIGZ23P\ntbxrLO5KQ/r8kzFuJrUNbyWmxwwlV+l9HasvMsUCgYEAxZmrDNqrkQofxRa96gac\nKqOFh8Zs0IW6con20u14KiGFfluONpUPNu7L51Iob5zZERG5csm6BPPYtI3afX8n\n3C7OGhO8Wk9cRVzIYl/PoTzKTwnitBKFB2ozgd5C8hhrOgf9ZDAju7MKgbkares1\nBgi9y3YzdLUM/zDuz+ik3GM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "fresas-frescas@fresas-frescas.iam.gserviceaccount.com",
+  "client_id": "100566492116481340379",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/fresas-frescas%40fresas-frescas.iam.gserviceaccount.com"
+}
