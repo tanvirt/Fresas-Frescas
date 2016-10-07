@@ -14,9 +14,6 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 	// add new items to the array
 	// the message is automatically added to our Firebase database!
 	$scope.addMessage = function() {
-		$scope.messages.$add({
-			text: $scope.newMessageText
-		});
 		document.getElementById("message-text").value = "";
 
 		if($scope.newMessageText === "i like da berry"){
@@ -34,7 +31,15 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 				text: $scope.newMessageText
 			});			
 		}
-
 	};
 
+	var ref2 = firebase.database().ref().child("chats");
+	$scope.chats = $firebaseArray(ref2);
+	$scope.addChatMessage = function(chatName, message){
+		$scope.chats.$add({
+			name: chatName,
+			text: [message]
+		});
+	}
+	$scope.addChatMessage("chat1", "bark");
 });
