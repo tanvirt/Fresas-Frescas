@@ -1,30 +1,28 @@
-function Cookie(name) {
-	this._name = name;
-}
+function Cookie() {}
 
-Cookie.prototype.setValue = function(value, numDaysUntilExpired) {
+Cookie.setValue = function(name, value, numDaysUntilExpired) {
 	var date = new Date();
 	var expirationTime = date.getTime() + (numDaysUntilExpired*24*60*60*1000);
 	date.setTime(expirationTime);
 	var expires = "expires=" + date.toUTCString();
-	document.cookie = this._name + "=" + value + "; " + expires;
+	document.cookie = name + "=" + value + "; " + expires;
 }
 
-Cookie.prototype.getValue = function() {
-	var name = this._name + "=";
+Cookie.getValue = function(name) {
+	var cookie_name = name + "=";
 	var cookies = document.cookie.split(';');
 	for(var i = 0; i < cookies.length; i++) {
     	var cookie = cookies[i];
         while(cookie.charAt(0) == ' ') {
         	cookie = cookie.substring(1);
         }
-        if(cookie.indexOf(name) == 0) {
-            return cookie.substring(name.length, cookie.length);
+        if(cookie.indexOf(cookie_name) == 0) {
+            return cookie.substring(cookie_name.length, cookie.length);
         }
     }
     return "";
 }
 
-Cookie.prototype.isSet = function() {
-	return this.getValue() != "";
+Cookie.isSet = function(name) {
+	return this.getValue(name) != "";
 }
