@@ -1,10 +1,13 @@
-<div id="login">
-	We have the freshest berries!! <br>
-	<div id="loginOpacityBackground">
-		<div id="loginElements">
-			<label>Username:</label><input type="text" ng-model="username"><br>
-			<label>Password:</label><input type="text" ng-model="password"><br>
-			<button ng-click="login()">Login</button>
+<div class="container" id="login">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<div id="loginOpacityBackground" class="jumbotron vertical-center">
+				<div id="loginElements">
+					<label>Username:</label><input class="form-control input-lg" type="text" ng-model="username"><br>
+					<label>Password:</label><input class="form-control input-lg" type="text" ng-model="password"><br>
+					<button class="btn" ng-click="login()">Login</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
