@@ -1,25 +1,36 @@
-<div ng-controller="HomeController" ng-style="loginImage" style="height:100%">
+<div ng-controller="HomeController">
 	<navbar></navbar>
-	<sidebar></sidebar>
+	<appheader heading="heading" subheading="subheading"></appheader>
 
-	<div>
-		<ul>
-			<li ng-repeat="message in messages">
-				<!-- edit a message -->
-				<input ng-model="message.text" ng-change="messages.$save(message)" />
+	<!-- Main content in each page should be wrapped by the following 3 div elements -->
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-				<!-- delete a message -->
-				<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
+            	<!-- Main content starts-->
+				<ul>
+					<li ng-repeat="message in messages">
+						<!-- edit a message -->
+						<input ng-model="message.text" ng-change="messages.$save(message)" />
 
-				<!-- save a message -->
-				<button class="btn btn-primary" ng-click="messages.$save(message)">Save Message</button>
-			</li>
-		</ul>
+						<!-- delete a message -->
+						<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
 
-		<!-- push a new message onto the array -->
-		<form ng-submit="addMessage()">
-			<input ng-model="newMessageText" />
-			<button class="btn btn-success" type="submit">Add Message</button>
-		</form>
+						<!-- save a message -->
+						<button class="btn btn-primary" ng-click="messages.$save(message)">Save Message</button>
+					</li>
+				</ul>
+
+				<!-- push a new message onto the array -->
+				<form ng-submit="addMessage()">
+					<input ng-model="newMessageText" />
+					<button class="btn btn-success" type="submit">Add Message</button>
+				</form>
+				<!-- Main content ends -->
+				
+			</div>
+		</div>
 	</div>
+
+	<appfooter></appfooter>
 </div>
