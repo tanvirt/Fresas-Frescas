@@ -13,9 +13,7 @@ angular.module('main').run(function($rootScope, $state, $stateParams, $timeout) 
 	};
 	firebase.initializeApp(config);
 
-	$rootScope.loggedIn = false;
-
-	//$state.go('login');
+	$state.go('login');
 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams) {
 		if(toState.name == "home" && $rootScope.loggedIn == true) {
