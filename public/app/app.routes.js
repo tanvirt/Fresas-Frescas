@@ -14,6 +14,12 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         controller: 'HomeController'
     });
 
+    $stateProvider.state('settings', {
+        url: '/settings',
+        templateUrl: 'app/components/settings/settingsView.html',
+        controller: 'SettingsController'
+    });
+
     $stateProvider.state('404', {
         url: '/404',
         templateUrl: 'app/components/errorPage/errorView.html',
