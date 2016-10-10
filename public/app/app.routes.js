@@ -2,16 +2,16 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
 
     $locationProvider.html5Mode(true);
 
+    $stateProvider.state('login', {
+        url: '/login',
+        templateUrl: 'app/components/login/loginView.html',
+        controller: 'LoginController'
+    });
+
     $stateProvider.state('home', {
         url: '/home',
         templateUrl: 'app/components/home/homeView.html',
         controller: 'HomeController'
-    });
-
-    $stateProvider.state('login', {
-        url: '/',
-        templateUrl: 'app/components/login/loginView.html',
-        controller: 'LoginController'
     });
 
     $stateProvider.state('404', {
