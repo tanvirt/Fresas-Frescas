@@ -10,13 +10,23 @@ angular.module('main').controller('LoginController', function($scope, $firebaseA
 	// });
 
 	$scope.username
-	var email = "bobtony@firebase.com"
-	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+	$scope.password
+	var email = "bob@bob.com"
+	var password = "bob"
+	$scope.login = function() {
+		firebase.auth().signInWithEmailAndPassword($scope.username, $scope.password).catch(function(error) {
 
 
 		var errorCode = error.code;
 		var errorMessage = error.message;
 
-	});
-	console.log("LOGGGED IN BIIIITCH")
+		});
+		console.log($scope.username)
+		console.log($scope.password)
+		var user = firebase.auth().currentUser
+		console.log(user)
+
+		$state.go('home');
+	};
+
 });
