@@ -14,14 +14,19 @@ angular.module('main').run(function($rootScope, $state, $stateParams, $timeout) 
 	};
 	firebase.initializeApp(config);
 
-	$state.go('login');
+	$rootScope.loggedIn = false;
+
+	//$state.go('login');
 
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams) {
-		if(toState.name == "home") {
+		if(toState.name == "home" && $rootScope.loggedIn == true) {
+			console.log("logged in successfully");
+			event.preventDefault();
 			$state.go('home');
 		}
 		else if(toState.name == "login") {
-			console.log("IN LOGIN BLAH")
+			console.log("IN LOGIN BLAH");
+			event.preventDefault();
 			$state.go('login');
 		}
 	});

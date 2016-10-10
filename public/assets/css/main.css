@@ -9,3 +9,11 @@
 html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
 }
+
+#errorTitle {
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	font-size: 40rem;
+	font-family: Helvetica;
+}

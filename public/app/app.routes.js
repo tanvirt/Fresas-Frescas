@@ -14,5 +14,11 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         controller: 'LoginController'
     });
 
-    $urlRouterProvider.otherwise('home')
+    $stateProvider.state('404', {
+        url: '/404',
+        templateUrl: 'app/components/errorPage/errorView.html',
+        controller: 'ErrorController'
+    });
+
+    $urlRouterProvider.otherwise('404');
 });
