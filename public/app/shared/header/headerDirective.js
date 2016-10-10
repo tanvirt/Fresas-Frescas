@@ -6,7 +6,8 @@ angular.module('main').directive('appheader', function() {
 
     directive.scope = {
         heading : "=heading",
-        subheading : "=subheading"
+        subheading : "=subheading",
+        homeImage: "=homeImage"
     }
 
     return directive;
