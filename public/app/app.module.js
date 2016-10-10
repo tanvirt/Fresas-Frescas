@@ -1,6 +1,5 @@
 angular.module('main', [
-	"firebase", 
-	"ngRoute",
+	"firebase",
 	'ui.router'
 ]);
 
