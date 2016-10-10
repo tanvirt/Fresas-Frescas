@@ -1,5 +1,9 @@
-angular.module('main').controller('SettingsController', function($scope, $firebaseArray, $state) {
+angular.module('main').controller('SettingsController', function($scope) {
+	// App header variables
 	$scope.heading = "Settings";
 	$scope.subheading = "Our berries will change your life.";
-	$scope.homeImage = "../../assets/img/tinted_settings.jpg";
+	$scope.headingImage = "../../assets/img/tinted_settings.jpg";
+
+	// Main content starts
+	
 });
