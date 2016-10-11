@@ -11,7 +11,9 @@
 	width: 33%;
 	height: 33%;
 	margin: 0 auto;
-	position: relative;
+    vertical-align:middle;
+	color: white;
+	text-align: center;
 	background: rgba(0,0,0,.75);
 }
 
@@ -19,6 +21,15 @@
 	width: 100%;
 	margin: 0 auto;
 }
+
 html, body, .ng-scope, .container-fluid, .row {
   height: 100%;
+}
+
+#errorTitle {
+	font-weight: bold;
+	text-align: center;
+	width: 100%;
+	font-size: 40rem;
+	font-family: Helvetica;
 }
