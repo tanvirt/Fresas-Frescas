@@ -3,7 +3,9 @@ angular.module('main', [
 	'ui.router'
 ]);
 
-angular.module('main').run(function($rootScope, $state, $stateParams, $timeout) {
+var LOGGED_IN = false;
+
+angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', function($rootScope, $http, $state, $firebaseAuth, $stateParams, $timeout) {
 	// Initialize the Firebase SDK
 	var config = {
 		apiKey: 'AIzaSyDj-RpgjMaBjMIFGWnptH23LGjlQ_Wpizg ',
@@ -13,15 +15,15 @@ angular.module('main').run(function($rootScope, $state, $stateParams, $timeout) 
 	};
 	firebase.initializeApp(config);
 
-	$state.go('login');
-
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams) {
-		if(toState.name == "home") {
+		if (toState.name == "home") {
 			$state.go('home');
 		}
 		else if(toState.name == "login") {
-			console.log("IN LOGIN BLAH")
+			$state.go('login');
+		}
+		else {
 			$state.go('login');
 		}
 	});
-});
+}]);

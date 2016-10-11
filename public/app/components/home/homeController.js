@@ -1,4 +1,6 @@
-angular.module('main').controller('HomeController', function($scope, $firebaseArray, $state) {
+angular.module('main').controller('HomeController', function($rootScope, $scope, $firebaseArray, $firebaseAuth, $state) {
+
+
 	$scope.heading = "Fresas Frescas";
 	$scope.subheading = "We have the freshest berries.";
 
@@ -27,5 +29,10 @@ angular.module('main').controller('HomeController', function($scope, $firebaseAr
 
 
 	};
+
+	$scope.signOut = function() {
+		$scope.authObj.$signOut();
+		$state.go('login');
+	}
 
 });
