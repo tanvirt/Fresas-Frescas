@@ -27,9 +27,17 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 #errorTitle {
-	font-weight: bold;
-	text-align: center;
-	width: 100%;
-	font-size: 40rem;
-	font-family: Helvetica;
+	background-image: url("../img/tinted_lost_berries.jpg");
+	background-size: 100%;
+	background-repeat:no-repeat;
+	display: block;
+}
+
+.resize {
+	display: block;
+	margin: auto;
+	margin-top: ;
+	width: 60rem;
+	height: auto;
+
 }
