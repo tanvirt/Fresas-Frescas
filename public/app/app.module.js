@@ -15,6 +15,23 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
 	};
 	firebase.initializeApp(config);
 
+	$rootScope.authObj = $firebaseAuth();
+
+    $rootScope.authObj.$onAuthStateChanged(function(user) {
+        console.log(user);
+        if (user) {
+        	if ($state.current.name == 'login') {
+            	$state.go('home');
+        	}
+        }
+        else {
+        	if ($state.current.name != 'login') {
+        		$state.go('login');
+        	}
+        }
+    })
+
+
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams) {
 		if (toState.name == "home") {
 			$state.go('home');
@@ -22,8 +39,10 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
 		else if(toState.name == "login") {
 			$state.go('login');
 		}
-		else {
-			$state.go('login');
+		else if(toState.name == 'settings') {
+			$state.go('settings');
+		} else {
+			$state.go('404');
 		}
 	});
 }]);
