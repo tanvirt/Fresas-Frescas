@@ -17,6 +17,10 @@
 	background: rgba(0,0,0,.75);
 }
 
+#loginError{
+	color: red;
+}
+
 #loginElements{
 	width: 100%;
 	margin: 0 auto;

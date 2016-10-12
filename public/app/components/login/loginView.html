@@ -2,10 +2,11 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 			<div id="loginOpacityBackground" class="jumbotron vertical-center">
+				<span id="loginError" ng-show="getError()">Please enter a valid username and password</span>
 				<div id="loginElements">
-					<label>Username:</label><input class="form-control input-lg" type="text" ng-model="username"><br>
-					<label>Password:</label><input class="form-control input-lg" type="text" ng-model="password"><br>
-					<button class="btn" ng-click="login()">Login</button>
+					<label>Username:</label><input class="form-control input-lg" type="text" ng-model="username" id="username"><br>
+					<label>Password:</label><input class="form-control input-lg" type="password" ng-model="password" id="password"><br>
+					<button class="btn" ng-click="login()" id="loginButton">Login</button>
 				</div>
 			</div>
 		</div>
