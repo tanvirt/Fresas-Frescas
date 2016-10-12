@@ -1,4 +1,4 @@
-angular.module('main').controller('LoginController', function($rootScope, $scope, $firebaseAuth, $state) {
+angular.module('main').controller('SignUpController', function($rootScope, $scope, $firebaseAuth, $state) {
 
 	$scope.authObj = $firebaseAuth();
 
@@ -11,9 +11,5 @@ angular.module('main').controller('LoginController', function($rootScope, $scope
 		}).catch(function(error) {
 		  console.error("Authentication failed:", error);
 		});
-	}
-
-	$scope.signUp = function() {
-		$state.go('signUp');
 	}
 });

@@ -7,6 +7,13 @@
 	background-image: url("../img/strawberry.jpg");
 }
 
+.logo {
+	display: block;
+	margin: auto;
+	width: 25%;
+	height: 25%;
+}
+
 #loginOpacityBackground{
 	width: 33%;
 	height: 33%;
@@ -14,7 +21,7 @@
     vertical-align:middle;
 	color: white;
 	text-align: center;
-	background: rgba(0,0,0,.75);
+	background: rgba(0,0,0,.6);
 }
 
 #loginElements{
@@ -39,4 +46,25 @@ html, body, .ng-scope, .container-fluid, .row {
 	width: 60rem;
 	height: auto;
 
+}
+
+.clearForm {
+	background: transparent;
+	color: white;
+	border: 0;
+	border-bottom: .1rem solid white;
+	outline: 0;
+
+}
+
+#loginButton {
+	margin-top: 4rem;
+	color: black;
+	width: 100%;
+}
+
+#signUpButton {
+	margin-top: 2rem;
+	width: 100%;
+	color: black;	
 }

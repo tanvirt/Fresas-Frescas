@@ -25,7 +25,10 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
         	}
         }
         else {
-        	if ($state.current.name != 'login') {
+        	if ($state.current.name == 'signUp') {
+        		return;
+        	}
+        	else if ($state.current.name != 'login') {
         		$state.go('login');
         	}
         }
@@ -41,7 +44,11 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
 		}
 		else if(toState.name == 'settings') {
 			$state.go('settings');
-		} else {
+		}
+		else if (toState.name == 'signUp') {
+			$state.go('signUp');
+		}
+		else {
 			$state.go('404');
 		}
 	});

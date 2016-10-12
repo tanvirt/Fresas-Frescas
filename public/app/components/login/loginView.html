@@ -1,11 +1,13 @@
 <div class="container" id="login">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        	<img class="logo" src="../../assets/img/logo.png">
 			<div id="loginOpacityBackground" class="jumbotron vertical-center">
 				<div id="loginElements">
-					<label>Username:</label><input class="form-control input-lg" type="text" ng-model="username"><br>
-					<label>Password:</label><input class="form-control input-lg" type="text" ng-model="password"><br>
-					<button class="btn" ng-click="login()">Login</button>
+					<label>Username:</label><input class="form-control input-lg clearForm" type="text" ng-model="username"><br>
+					<label>Password:</label><input class="form-control input-lg clearForm" type="text" ng-model="password"><br>
+					<button id="loginButton" class="btn btn-success" ng-click="login()">Login</button>
+					<button id="signUpButton" class="btn btn-primary" ng-click="signUp()">Sign Up</button>
 				</div>
 			</div>
 		</div>

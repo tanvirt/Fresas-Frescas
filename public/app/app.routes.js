@@ -25,6 +25,12 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             url: '/404',
             templateUrl: 'app/components/errorPage/errorView.html',
             controller: 'ErrorController' 
+        })
+
+        .state('signUp', {
+            url: '/signUp',
+            templateUrl: 'app/components/signUp/signUpView.html',
+            controller: 'SignUpController' 
         });
     $urlRouterProvider.otherwise('404');
 });
