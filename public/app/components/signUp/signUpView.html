@@ -5,12 +5,12 @@
 			<div id="loginOpacityBackground" class="jumbotron vertical-center">
 				<span id="loginError" ng-hide="isValid">You're an idiot!! <br> Fill out the form correctly</span>
 				<div id="loginElements">
-					<form id="inputBoxes">
-						<label>First Name:</label><input class="form-control input-lg clearForm" type="text" id="firstName" ng-model="firstName" required><br>
-						<label>Last Name:</label><input class="form-control input-lg clearForm" type="text" id="lastName" ng-model="lastName" required><br>
-						<label>Username:</label><input class="form-control input-lg clearForm" type="email" id="username" ng-model="username" placeholder="username@domain.com" required><br>
-						<label>Password:</label><input class="form-control input-lg clearForm" type="password" id="password" ng-model="password" required><br>
-						<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="password" id="confirmPassword" ng-model="confirmPassword" required><br>
+					<form name="inputBoxes">
+						<label>First Name:</label><input class="form-control input-lg clearForm" type="text" name="firstName" ng-model="firstName" required><br>
+						<label>Last Name:</label><input class="form-control input-lg clearForm" type="text" name="lastName" ng-model="lastName" required><br>
+						<label>Username:</label><input class="form-control input-lg clearForm" type="email" name="username" ng-model="username" placeholder="username@domain.com" required><br>
+						<label>Password:</label><input class="form-control input-lg clearForm" type="password" name="password" ng-model="password" required><br>
+						<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="password" name="confirmPassword" ng-model="confirmPassword" required><br>
 					</form>
 					<button id="signUpButton" class="btn btn-primary" ng-click="signUp()">Sign Up</button>
 				</div>

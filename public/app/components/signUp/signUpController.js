@@ -10,8 +10,20 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 
 	$scope.isValid = true;
 
-	$scope.areFieldsValid = function(){
-		return(inputBoxes.firstName.$valid && inputBoxes.lastName.$valid && inputBoxes.username.$valid && inputBoxes.password.$valid);
+	areFieldsValid = function(){
+		valid = true;
+		fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
+		if($scope.password != $scope.confirmPassword){
+			console.log("bad pass");
+			return false;
+		}
+		fields.forEach(function(name){
+			if(!$scope.inputBoxes[name].$valid){
+				console.log(name);
+				valid = false;
+			}
+		});
+		return valid;
 	}
 
 	$scope.login = function() {
@@ -26,8 +38,8 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	}
 
 	$scope.signUp = function(){
-		if($scope.password === $scope.confirmPassword && $scope.areFieldsValid()){
-
+		if(areFieldsValid()){
+			$scope.isValid = true;
 			console.log('good');
 
 		$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password) 
@@ -39,6 +51,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
   		}
   		else{
   			$scope.isValid = false;
+  			console.log("bad");
   		}
 	}
 });
