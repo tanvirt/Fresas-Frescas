@@ -8,17 +8,17 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.password;
 	$scope.confirmPassword;
 
-	$scope.isValid = true;
+	$scope.error = "";
 
-	areFieldsValid = function(){
-		valid = true;
-		fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
+	fieldsAreValid = function() {
+		var valid = true;
+		var fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
 		if($scope.password != $scope.confirmPassword){
 			console.log("bad pass");
 			return false;
 		}
-		fields.forEach(function(name){
-			if(!$scope.inputBoxes[name].$valid){
+		fields.forEach(function(name) {
+			if(!$scope.inputBoxes[name].$valid) {
 				console.log(name);
 				valid = false;
 			}
@@ -28,29 +28,30 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 
 	$scope.login = function() {
 		$scope.authObj.$signInWithEmailAndPassword($scope.username, $scope.password).then(function(firebaseUser) {
-		  console.log("Signed in as:", firebaseUser.uid);
-		  $rootScope.user = firebaseUser;
-		  console.log($rootScope.user)
-		  $state.go('home');
+			console.log("Signed in as:", firebaseUser.uid);
+			$rootScope.user = firebaseUser;
+			console.log($rootScope.user)
+			$state.go('home');
 		}).catch(function(error) {
-		  console.error("Authentication failed:", error);
+			console.error("Authentication failed:", error);
 		});
 	}
 
 	$scope.signUp = function(){
-		if(areFieldsValid()){
-			$scope.isValid = true;
+		if(fieldsAreValid()) {
 			console.log('good');
 
-		$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password) 
-  			.then(function(firebaseUser) { 
-    				console.log("User " + firebaseUser.uid + " created successfully!"); 
-  				}).catch(function(error) { 
-   					 console.error("Error: ", error); 
- 					});
+			$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password) 
+			.then(function(firebaseUser) { 
+				console.log("User " + firebaseUser.uid + " created successfully!"); 
+				$scope.login();
+			}).catch(function(error) { 
+				$scope.error = error.message;
+				console.error("Error: ", error); 
+			});
   		}
-  		else{
-  			$scope.isValid = false;
+  		else {
+  			$scope.error = "You're an idiot!! Fill out the form correctly";
   			console.log("bad");
   		}
 	}
