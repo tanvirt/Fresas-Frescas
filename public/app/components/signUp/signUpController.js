@@ -26,6 +26,10 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 		return valid;
 	}
 
+	$scope.back = function() {
+		$state.go('login');
+	}
+
 	$scope.login = function() {
 		$scope.authObj.$signInWithEmailAndPassword($scope.username, $scope.password).then(function(firebaseUser) {
 			console.log("Signed in as:", firebaseUser.uid);
