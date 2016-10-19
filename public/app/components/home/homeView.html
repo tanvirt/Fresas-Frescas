@@ -8,13 +8,10 @@
 				<ul>
 					<li ng-repeat="message in messages">
 						<!-- edit a message -->
-						<input ng-model="message.text" ng-change="messages.$save(message)" />
+						<input ng-model="message.text" ng-change="messages.$save(message)" style="width:40rem;"/>
 
 						<!-- delete a message -->
 						<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
-
-						<!-- save a message -->
-						<button class="btn btn-primary" ng-click="messages.$save(message)">Save Message</button>
 					</li>
 				</ul>
 
