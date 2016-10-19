@@ -3,13 +3,17 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         	<img class="logo" src="../../assets/img/logo.png">
 			<div id="loginOpacityBackground" class="jumbotron vertical-center">
+				<span id="loginError" ng-model="error">{{error}}</span>
 				<div id="loginElements">
-					<label>First Name:</label><input class="form-control input-lg clearForm" type="text" ng-model="firstName"><br>
-					<label>Last Name:</label><input class="form-control input-lg clearForm" type="text" ng-model="lastName"><br>
-					<label>Username:</label><input class="form-control input-lg clearForm" type="text" ng-model="username" placeholder="username@domain.com"><br>
-					<label>Password:</label><input class="form-control input-lg clearForm" type="text" ng-model="password"><br>
-					<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="text" ng-model="password"><br>
-					<button id="signUpButton" class="btn btn-primary" ng-click="signUp()">Sign Up</button>
+					<form name="inputBoxes">
+						<label>First Name:</label><input class="form-control input-lg clearForm" type="text" name="firstName" ng-model="firstName" required><br>
+						<label>Last Name:</label><input class="form-control input-lg clearForm" type="text" name="lastName" ng-model="lastName" required><br>
+						<label>Username:</label><input class="form-control input-lg clearForm" type="email" name="username" ng-model="username" placeholder="username@domain.com" required><br>
+						<label>Password:</label><input class="form-control input-lg clearForm" type="password" name="password" ng-model="password" required><br>
+						<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="password" name="confirmPassword" ng-model="confirmPassword" required><br>
+					</form>
+					<button id="loginButton" class="btn btn-success" ng-click="signUp()">Sign Up</button>
+					<button id="signUpButton" class="btn btn-primary" ng-click="back()">Back to Log In</button>
 				</div>
 			</div>
 		</div>
