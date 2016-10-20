@@ -1,4 +1,4 @@
-angular.module('main').controller('SignUpController', function($rootScope, $scope, $firebaseAuth, $state) {
+angular.module('main').controller('SignUpController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
 
 	$scope.authObj = $firebaseAuth();
 
@@ -45,13 +45,22 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 		if(fieldsAreValid()) {
 			console.log('good');
 
-			$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password) 
-			.then(function(firebaseUser) { 
-				console.log("User " + firebaseUser.uid + " created successfully!"); 
+			//add new user to database
+			var ref = firebase.database().ref().child("users");
+			$scope.users = $firebaseArray(ref);
+			$scope.users.$add({
+				firstName: $scope.firstName,
+				lastName: $scope.lastName,
+				username: $scope.username
+			});
+
+			$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password)
+			.then(function(firebaseUser) {
+				console.log("User " + firebaseUser.uid + " created successfully!");
 				$scope.login();
-			}).catch(function(error) { 
+			}).catch(function(error) {
 				$scope.error = error.message;
-				console.error("Error: ", error); 
+				console.error("Error: ", error);
 			});
   		}
   		else {
