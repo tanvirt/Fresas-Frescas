@@ -5,23 +5,28 @@
 	<div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-				<ul>
-					<li ng-repeat="message in messages">
-						<!-- edit a message -->
-						<input ng-model="message.text" ng-change="messages.$save(message)" style="width:40rem;"/>
 
-						<!-- delete a message -->
-						<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
-					</li>
-				</ul>
+            	<!-- Main content starts -->
+            	<div>
+					<ul>
+						<li ng-repeat="message in messages">
+							<!-- edit a message -->
+							<input ng-model="message.text" ng-change="messages.$save(message)" style="width:40rem;"/>
 
-				<!-- push a new message onto the array -->
-				<form ng-submit="addMessage()">
-					<input ng-model="newMessageText" />
-					<button class="btn btn-success" type="submit">Add Message</button>
-				</form>
-				<button ng-click="signOut()" class="btn btn-success" type="submit">Sign Out</button>
+							<!-- delete a message -->
+							<button class="btn btn-danger" ng-click="messages.$remove(message)">Delete Message</button>
+						</li>
+					</ul>
+
+					<!-- push a new message onto the array -->
+					<form ng-submit="addMessage()">
+						<input ng-model="newMessageText" />
+						<button class="btn btn-success" type="submit">Add Message</button>
+					</form>
+					<button ng-click="signOut()" class="btn btn-success" type="submit">Sign Out</button>
+				</div>
 				<!-- Main content ends -->
+
 			</div>
 		</div>
 	</div>

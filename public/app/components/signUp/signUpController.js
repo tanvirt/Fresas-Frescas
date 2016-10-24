@@ -10,62 +10,70 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 
 	$scope.error = "";
 
-	fieldsAreValid = function() {
-		var valid = true;
-		var fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
-		if($scope.password != $scope.confirmPassword){
-			console.log("bad pass");
-			return false;
-		}
-		fields.forEach(function(name) {
-			if(!$scope.inputBoxes[name].$valid) {
-				console.log(name);
-				valid = false;
-			}
-		});
-		return valid;
-	}
-
 	$scope.back = function() {
 		$state.go('login');
 	}
 
 	$scope.login = function() {
-		$scope.authObj.$signInWithEmailAndPassword($scope.username, $scope.password).then(function(firebaseUser) {
+		$scope.authObj.$signInWithEmailAndPassword($scope.username, $scope.password)
+		.then(function(firebaseUser) {
 			console.log("Signed in as:", firebaseUser.uid);
 			$rootScope.user = firebaseUser;
 			console.log($rootScope.user)
 			$state.go('home');
-		}).catch(function(error) {
+		})
+		.catch(function(error) {
 			console.error("Authentication failed:", error);
 		});
 	}
 
 	$scope.signUp = function(){
 		if(fieldsAreValid()) {
-			console.log('good');
-
-			//add new user to database
-			var ref = firebase.database().ref().child("users");
-			$scope.users = $firebaseArray(ref);
-			$scope.users.$add({
-				firstName: $scope.firstName,
-				lastName: $scope.lastName,
-				username: $scope.username
-			});
-
-			$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password)
-			.then(function(firebaseUser) {
-				console.log("User " + firebaseUser.uid + " created successfully!");
-				$scope.login();
-			}).catch(function(error) {
-				$scope.error = error.message;
-				console.error("Error: ", error);
-			});
+			console.log('sign up fields are valid');
+			addUserToDatabase();
+			createUserWithEmailAndPassword();
   		}
   		else {
   			$scope.error = "You're an idiot!! Fill out the form correctly";
-  			console.log("bad");
+  			console.log($scope.error);
   		}
 	}
+
+	fieldsAreValid = function() {
+		var fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
+		fields.forEach(function(name) {
+			if(!$scope.inputBoxes[name].$valid) {
+				console.log("invalid: " + name);
+				return false;
+			}
+		});
+		if($scope.password != $scope.confirmPassword) {
+			console.log("password mismatch");
+			return false;
+		}
+		return true;
+	}
+
+	addUserToDatabase = function() {
+		var ref = firebase.database().ref().child("users");
+		$scope.users = $firebaseArray(ref);
+		$scope.users.$add({
+			firstName: $scope.firstName,
+			lastName: $scope.lastName,
+			username: $scope.username
+		});
+	}
+
+	createUserWithEmailAndPassword = function() {
+		$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password)
+		.then(function(firebaseUser) {
+			console.log("User " + firebaseUser.uid + " created successfully!");
+			$scope.login();
+		})
+		.catch(function(error) {
+			$scope.error = error.message;
+			console.error("Error: ", error);
+		});
+	}
+
 });

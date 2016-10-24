@@ -32,5 +32,7 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             templateUrl: 'app/components/signUp/signUpView.html',
             controller: 'SignUpController' 
         });
+
     $urlRouterProvider.otherwise('404');
+
 });

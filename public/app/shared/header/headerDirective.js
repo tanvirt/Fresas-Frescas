@@ -1,4 +1,5 @@
 angular.module('main').directive('appheader', function() {
+
     var directive = {};
 
     directive.restrict = 'E'; /* restrict this directive to elements */
@@ -11,4 +12,5 @@ angular.module('main').directive('appheader', function() {
     }
 
     return directive;
+    
 });

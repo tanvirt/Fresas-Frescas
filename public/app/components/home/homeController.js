@@ -1,4 +1,5 @@
 angular.module('main').controller('HomeController', function($rootScope, $scope, $firebaseArray, $firebaseAuth, $state) {
+	
 	// App header variables
 	$scope.heading = "Fresas Frescas";
 	$scope.subheading = "We have the freshest berries.";

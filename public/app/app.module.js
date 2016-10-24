@@ -3,9 +3,8 @@ angular.module('main', [
 	'ui.router'
 ]);
 
-var LOGGED_IN = false;
+angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 
-angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', function($rootScope, $http, $state, $firebaseAuth, $stateParams, $timeout) {
 	// Initialize the Firebase SDK
 	var config = {
 		apiKey: 'AIzaSyDj-RpgjMaBjMIFGWnptH23LGjlQ_Wpizg ',
@@ -19,24 +18,23 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
 
     $rootScope.authObj.$onAuthStateChanged(function(user) {
         console.log(user);
-        if (user) {
-        	if ($state.current.name == 'login') {
+        if(user) {
+        	if($state.current.name == 'login') {
             	$state.go('home');
         	}
         }
         else {
-        	if ($state.current.name == 'signUp') {
+        	if($state.current.name == 'signUp') {
         		return;
         	}
-        	else if ($state.current.name != 'login') {
+        	else if($state.current.name != 'login') {
         		$state.go('login');
         	}
         }
     })
 
-
 	$rootScope.$on('$stateChangeSuccess', function(event, toState, toParams) {
-		if (toState.name == "home") {
+		if(toState.name == "home") {
 			$state.go('home');
 		}
 		else if(toState.name == "login") {
@@ -52,4 +50,5 @@ angular.module('main').run(['$rootScope', '$http', '$state', '$firebaseAuth', fu
 			$state.go('404');
 		}
 	});
-}]);
+
+});
