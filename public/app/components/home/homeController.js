@@ -34,4 +34,8 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		$state.go('login');
 	}
 
+	$scope.goToProjectsPage = function() {
+		$state.go('projects');
+	}
+
 });
