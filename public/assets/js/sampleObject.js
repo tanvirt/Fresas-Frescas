@@ -1,10 +1,12 @@
 function SimpleObject() {
-	this._property = "";
+	this._property1 = "";
+	this._property2 = "";
 }
 
 SimpleObject.prototype.toJSON = function() {
 	return {
-		property: this._property
+		property1: this._property1,
+		property2: this._property2
 	};
 }
 
