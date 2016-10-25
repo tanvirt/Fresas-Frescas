@@ -13,10 +13,10 @@ SimpleObject.prototype.toJSON = function() {
 function ComplexObject() {
 	this._arrayOfStrings = [];
 	this._simpleObject = null; // unlikey to have objects as properties
-	this._arrayOfObjects = []; // very unlikely to have an array of objects
+	this._arrayOfObjects = []; // very unlikely to have an array of objects as properties
 }
 
-SampleObject.prototype.toJSON = function() {
+ComplexObject.prototype.toJSON = function() {
 	var arrayOfObjectsInJSON = []; // once again, very unlikely to be needed
 	for(object in arrayOfObjects) {
 		arrayOfObjects.push(object.toJSON());
@@ -24,7 +24,7 @@ SampleObject.prototype.toJSON = function() {
 
 	return {
 		property: this._property,
-		anotherObject: this._simpleObject.toJSON(), // one again, unlikely to be needed
+		simpleObject: this._simpleObject.toJSON(), // once again, unlikely to be needed
 		arrayOfObjects: arrayOfObjectsInJSON
 	};
 }
