@@ -2,8 +2,55 @@
 	<navbar></navbar>
 	<appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader>
 
-	<div class = "container">
-		<button class="btn" ng-click="addProjectToDatabase()"> Create Project </button>
+	<!-- Main content in each page should be wrapped by the following 3 div elements -->
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            	<!-- Main content starts-->
+            	<div class="project-component">
+            		<!-- <label class="control-label">Project Photo</label>
+					<input id="project-photo-upload" type="file" accept="image/*" class="file-loading center"> -->
+					<img class="img-responsive center" src="../../assets/img/modern_workplace.jpg">
+					<button class="btn btn-success center"><span class="glyphicon glyphicon-upload bs-glyph"></span> Upload Photo </button>
+            	</div>
+            	<div class="project-component form-group">
+					<textarea class="form-control" rows="5" id="description" placeholder="Enter your project description" required autofocus></textarea>
+				</div>
+            	<div class="project-component">
+            		<div> Owners </div>
+            		<div class="btn-group">
+	            		<button class="btn-info pill">Tanvir Talukder</button>
+	            		<button class="btn-info pill">Julia Kieserman</button>
+	            		<button class="btn-info pill">+</button>
+	            	</div>
+            	</div>
+            	<div class="project-component">
+            		<div> Members </div>
+            		<div class="btn-group">
+	            		<button class="btn-info pill"><span class="glyphicon glyphicon-remove bs-glyph" ng-click></span>Kyle Wahl</button>
+	            		<button class="btn-info pill">Christopher Martin</button>
+	            		<button class="btn-info pill">Jason Ngo</button>
+	            		<button class="btn-info pill">Samuel Wildman</button>
+	            		<button class="btn-info pill">+</button>
+	            	</div>
+            	</div>
+            	<div class="project-component">
+            		<div> Tags </div>
+            		<div class="btn-group">
+	            		<button class="btn-info pill">AngularJS</button>
+	            		<button class="btn-info pill">Firebase</button>
+	            		<button class="btn-info pill">+</button>
+	            	</div>
+            	</div>
+            	<div class="btn-group project-component center">
+            		<button class="btn btn-success" id="project-save"> Save </button>
+            		<button class="btn btn-danger" id="project-cancel-save"> Cancel </button>
+            	</div>
+				<!-- Main content ends -->
+
+			</div>
+		</div>
 	</div>
 
 	<appfooter></appfooter>

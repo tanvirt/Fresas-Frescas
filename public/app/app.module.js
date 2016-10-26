@@ -16,6 +16,8 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 
 	$rootScope.authObj = $firebaseAuth();
 
+	Theme.init();
+
     $rootScope.authObj.$onAuthStateChanged(function(user) {
         console.log(user);
         if(user) {
@@ -43,10 +45,10 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'settings') {
 			$state.go('settings');
 		}
-		else if (toState.name == 'signUp') {
+		else if(toState.name == 'signUp') {
 			$state.go('signUp');
 		}
-		else if (toState.name == 'createProject') {
+		else if(toState.name == 'createProject') {
 			$state.go('createProject');
 		}
 		else {
