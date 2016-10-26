@@ -1,4 +1,4 @@
-angular.module('main').controller('SignUpController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
+angular.module('main').controller('SignUpController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject, $state) {
 
 	$scope.authObj = $firebaseAuth();
 
@@ -30,7 +30,6 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.signUp = function(){
 		if(fieldsAreValid()) {
 			console.log('sign up fields are valid');
-			addUserToDatabase();
 			createUserWithEmailAndPassword();
   		}
   		else {
@@ -54,26 +53,31 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 		return true;
 	}
 
-	addUserToDatabase = function() {
-		var ref = firebase.database().ref().child("users");
-		$scope.users = $firebaseArray(ref);
-		$scope.users.$add({
-			firstName: $scope.firstName,
-			lastName: $scope.lastName,
-			username: $scope.username
-		});
-	}
 
 	createUserWithEmailAndPassword = function() {
 		$scope.authObj.$createUserWithEmailAndPassword($scope.username, $scope.password)
 		.then(function(firebaseUser) {
 			console.log("User " + firebaseUser.uid + " created successfully!");
+			addUserToDatabase(firebaseUser);
 			$scope.login();
 		})
 		.catch(function(error) {
 			$scope.error = error.message;
 			console.error("Error: ", error);
 		});
+	}
+
+	addUserToDatabase = function(user) {
+		var ref = firebase.database().ref().child("users");
+		var profileRef = ref.child(user.uid);
+
+		var profileObject  = $firebaseObject(profileRef);
+
+		profileObject.$bindTo($scope, "data").then(function() {
+			$scope.data.firstName = $scope.firstName;
+			$scope.data.lastName = $scope.lastName;
+			$scope.data.username = $scope.username;
+		})
 	}
 
 });

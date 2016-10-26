@@ -15,12 +15,23 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 	firebase.initializeApp(config);
 
 	$rootScope.authObj = $firebaseAuth();
+	$rootScope.user = $rootScope.authObj.$getAuth();
+
+	$rootScope.listeners = [];
+
+	$rootScope.addListener = function(listener) {
+		$rootScope.listeners.push(listener);
+	}
 
     $rootScope.authObj.$onAuthStateChanged(function(user) {
-        console.log(user);
         if(user) {
+        	$rootScope.user = user;
+        	console.log($rootScope.user);
         	if($state.current.name == 'login') {
             	$state.go('home');
+        	}
+        	for(i in $rootScope.listeners) {
+        		$rootScope.listeners[i].onUserAuth(user);
         	}
         }
         else {
