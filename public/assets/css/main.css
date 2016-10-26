@@ -11,10 +11,6 @@ body {
 	background-image: url("../img/strawberry.jpg");
 }
 
-.half-width {
-	width: 40%;
-}
-
 #project-save {
 	width: 42.5%;
 	margin-right: 5%;

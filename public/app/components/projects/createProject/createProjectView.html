@@ -15,36 +15,31 @@
 					<button class="btn btn-success center"><span class="glyphicon glyphicon-upload bs-glyph"></span> Upload Photo </button>
             	</div>
             	<div class="project-component form-group">
-					<textarea class="form-control" rows="5" id="description" placeholder="Enter your project description" required autofocus></textarea>
+					<textarea ng-model="project.description" class="form-control" rows="5" id="description" required autofocus></textarea>
 				</div>
             	<div class="project-component">
             		<div> Owners </div>
             		<div class="btn-group">
-	            		<button class="btn-info pill">Tanvir Talukder</button>
-	            		<button class="btn-info pill">Julia Kieserman</button>
+            			<button class="btn-info pill" ng-repeat="owner in project.owners"> {{owner}} </button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="project-component">
             		<div> Members </div>
             		<div class="btn-group">
-	            		<button class="btn-info pill"><span class="glyphicon glyphicon-remove bs-glyph" ng-click></span>Kyle Wahl</button>
-	            		<button class="btn-info pill">Christopher Martin</button>
-	            		<button class="btn-info pill">Jason Ngo</button>
-	            		<button class="btn-info pill">Samuel Wildman</button>
+            			<button class="btn-info pill" ng-repeat="member in project.members"> {{member}}</button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="project-component">
             		<div> Tags </div>
             		<div class="btn-group">
-	            		<button class="btn-info pill">AngularJS</button>
-	            		<button class="btn-info pill">Firebase</button>
+            			<button class="btn-info pill" ng-repeat="tag in project.tags"> {{tag}} </button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="btn-group project-component center">
-            		<button class="btn btn-success" id="project-save"> Save </button>
+            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()"> Save </button>
             		<button class="btn btn-danger" id="project-cancel-save"> Cancel </button>
             	</div>
 				<!-- Main content ends -->
