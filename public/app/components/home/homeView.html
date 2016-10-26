@@ -17,11 +17,38 @@
             			<div class="card-icons">
             				<span class="glyphicon glyphicon-triangle-top"> {{featured.likes}} </span>
             					&nbsp;	&nbsp;	&nbsp;	&nbsp;
-            				<span class="glyphicon glyphicon-camera"> {{featured.views}} </span>
+            				<span class="glyphicon glyphicon-eye-open"> {{featured.views}} </span>
             			</div>
             			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in featured.owners">{{owner}}</button>
             			<div class="card-description">{{featured.description}}</div>
             		</div>
+            	</div>
+
+            	<h2>Recommended Projects</h2>
+            	<div id="recommended-card" class="col-xs-12 col-sm-4" ng-repeat="recommended in recommendedProjects">
+	            	<div class="flip-container">
+	            		<div class="flipper">
+	            			<div class="front">
+			            		<div class="col-xs-12">
+			            			<img class="card-img" src="{{recommended.imgSrc}}">            		
+			            		</div>
+			            		<div class="col-xs-12 right-card">
+			            			<h3>{{recommended.title}}</h3>
+			            			<div class="card-icons">
+			            				<span class="glyphicon glyphicon-triangle-top"> {{recommended.likes}} </span>
+			            					&nbsp;	&nbsp;	&nbsp;	&nbsp;
+			            				<span class="glyphicon glyphicon-eye-open"> {{recommended.views}} </span>
+			            			</div>
+			            			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in recommended.owners">{{owner}}</button>
+			            			<div class="card-description">{{recommended.description}}</div>
+			            		</div>
+	            			</div>
+		            		<div class="back">
+		            			<div class="upvote-btn"><span class="glyphicon glyphicon-triangle-top"></span></div>
+		            			<img class="recommended-img" src="http://l.yimg.com/dh/ap/att/portal/common/i/att_open-graph_icon_1.png">	
+		            		</div>
+	            		</div>
+	            	</div>
             	</div>
 
             	<div>
