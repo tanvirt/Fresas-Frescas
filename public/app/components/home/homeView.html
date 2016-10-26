@@ -24,6 +24,32 @@
             		</div>
             	</div>
 
+            	<h2>Recommended Projects</h2>
+            	<div id="recommended-card" class="col-xs-12 col-sm-4" ng-repeat="recommended in recommendedProjects">
+	            	<div class="flip-container">
+	            		<div class="flipper">
+	            			<div class="front">
+			            		<div class="col-xs-12">
+			            			<img class="card-img" src="{{recommended.imgSrc}}">            		
+			            		</div>
+			            		<div class="col-xs-12 right-card">
+			            			<h3>{{recommended.title}}</h3>
+			            			<div class="card-icons">
+			            				<span class="glyphicon glyphicon-triangle-top"> {{recommended.likes}} </span>
+			            					&nbsp;	&nbsp;	&nbsp;	&nbsp;
+			            				<span class="glyphicon glyphicon-camera"> {{recommended.views}} </span>
+			            			</div>
+			            			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in recommended.owners">{{owner}}</button>
+			            			<div class="card-description">{{recommended.description}}</div>
+			            		</div>
+	            			</div>
+		            		<div class="back">
+		            			something cool goes here	
+		            		</div>
+	            		</div>
+	            	</div>
+            	</div>
+
             	<div>
             	<!-- just for testing purposes...remove later -->
             	<button class="btn" ng-click="goToCreateProjectPage()">Projects Page </button>
