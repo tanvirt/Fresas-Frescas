@@ -89,6 +89,7 @@ html, body, .ng-scope, .container-fluid, .row {
     transition: 0.3s;
     overflow: auto;
     text-align: center;
+    padding: 0;
 }
 
 #featured-card:hover {
@@ -169,4 +170,10 @@ html, body, .ng-scope, .container-fluid, .row {
 /* back, initially hidden pane */
 .back {
 	transform: rotateY(180deg);
+	background-color: rgba(0, 0, 0, 0.6) ;
+	width: 100%;
+}
+
+.recommended-img {
+	opacity: .3;
 }

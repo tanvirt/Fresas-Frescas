@@ -17,7 +17,7 @@
             			<div class="card-icons">
             				<span class="glyphicon glyphicon-triangle-top"> {{featured.likes}} </span>
             					&nbsp;	&nbsp;	&nbsp;	&nbsp;
-            				<span class="glyphicon glyphicon-camera"> {{featured.views}} </span>
+            				<span class="glyphicon glyphicon-eye-open"> {{featured.views}} </span>
             			</div>
             			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in featured.owners">{{owner}}</button>
             			<div class="card-description">{{featured.description}}</div>
@@ -37,14 +37,15 @@
 			            			<div class="card-icons">
 			            				<span class="glyphicon glyphicon-triangle-top"> {{recommended.likes}} </span>
 			            					&nbsp;	&nbsp;	&nbsp;	&nbsp;
-			            				<span class="glyphicon glyphicon-camera"> {{recommended.views}} </span>
+			            				<span class="glyphicon glyphicon-eye-open"> {{recommended.views}} </span>
 			            			</div>
 			            			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in recommended.owners">{{owner}}</button>
 			            			<div class="card-description">{{recommended.description}}</div>
 			            		</div>
 	            			</div>
 		            		<div class="back">
-		            			something cool goes here	
+		            			<div class="upvote-btn"><span class="glyphicon glyphicon-triangle-top"></span></div>
+		            			<img class="recommended-img" src="http://l.yimg.com/dh/ap/att/portal/common/i/att_open-graph_icon_1.png">	
 		            		</div>
 	            		</div>
 	            	</div>
