@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../../assets/css/profile.css">
+
 <div>
 	<navbar></navbar>
 	<appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader>
@@ -9,7 +11,50 @@
 
             	<!-- Main content starts-->
 				<div>
-            		<button ng-click="delete()" class="btn btn-success" type="submit">Delete User</button>
+            		<div class="row" id="profileHeading">
+            			<h1 class="col-md-8">{{currentUser.name}}</h1>
+            			<h3 class="col-md-8">{{currentUser.position}}</h3>
+            			<img class="col-md-4 pull-right" ng-show="currentUser.image != null" src={{currentUser.image}}>
+            		</div>
+
+            		<div class="content" id="summaryContent">
+            			<div class="row">
+            				<h5 class="col-xs-11 pull-left">Summary</h5>
+            				<img class="col-xs-1 pull-right img-center" src="../../assets/img/edit_icon.png">
+            			</div>
+            			<div id="featured-card">
+            				<div class="col-xs-12 col-sm-9 right-card">
+            					<div class="card-description">{{currentUser.summary}}</div>
+            				</div>
+            			</div>
+            		</div>
+
+            		<div class="content" id="currentProjectsContent">
+            			<h5>Crrent Projects</h5>
+            			<div id="featured-card" ng-repeat="project in currentUser.projects">
+            				<div class="col-xs-12 col-sm-9 right-card">
+            					<div class="card-description">{{project}}</div>
+            				</div>
+            			</div>
+            		</div>
+
+            		<div class="content" id="experienceContent">
+            			<h5>Experience</h5>
+            			<div id="featured-card" ng-repeat="experience in currentUser.experience">
+            				<div class="col-xs-12 col-sm-9 right-card">
+            					<div class="card-description">{{experience}}</div>
+            				</div>
+            			</div>
+            		</div>
+
+            		<div class="content" id="experienceContent">
+            			<h5>Skills</h5>
+            			<div id="featured-card" ng-repeat="skills in currentUser.skills">
+            				<div class="col-xs-12 col-sm-9 right-card">
+            					<div class="card-description">{{skills}}</div>
+            				</div>
+            			</div>
+            		</div>
             	</div>
 				<!-- Main content ends -->
 

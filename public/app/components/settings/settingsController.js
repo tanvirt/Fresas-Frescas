@@ -51,4 +51,15 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		});
 	};
 
+
+	$scope.currentUser = {
+		name: "Sam Wildman",
+		position: "Associate - Applications Developer",
+		summary: "All berries matter",
+		projects: ["Business Center", "Creating the freshest strawberries"],
+		experience: ["loves berries"],
+		skills: ["awesome"],
+		image: "../../assets/img/choco.jpg"
+	}
+
 });
