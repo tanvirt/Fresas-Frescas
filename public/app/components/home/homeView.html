@@ -7,6 +7,23 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
             	<!-- Main content starts -->
+            	<h2>Featured Project</h2>
+            	<div id="featured-card">
+            		<div class="col-xs-12 col-sm-3">
+            			<img class="card-img" src="{{featured.imgSrc}}">            		
+            		</div>
+            		<div class="col-xs-12 col-sm-9 right-card">
+            			<h3>{{featured.title}}</h3>
+            			<div class="card-icons">
+            				<span class="glyphicon glyphicon-triangle-top"> {{featured.likes}} </span>
+            					&nbsp;	&nbsp;	&nbsp;	&nbsp;
+            				<span class="glyphicon glyphicon-camera"> {{featured.views}} </span>
+            			</div>
+            			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in featured.owners">{{owner}}</button>
+            			<div class="card-description">{{featured.description}}</div>
+            		</div>
+            	</div>
+
             	<div>
             	<!-- just for testing purposes...remove later -->
             	<button class="btn" ng-click="goToCreateProjectPage()">Projects Page </button>
@@ -25,7 +42,10 @@
 						<input ng-model="newMessageText" />
 						<button class="btn btn-success" type="submit">Add Message</button>
 					</form>
-					<button ng-click="signOut()" class="btn btn-success" type="submit">Sign Out</button>
+
+				<div class="col-lg col-sm-6" ng-repeat="project in recommendedProjects"></div>
+
+				<button ng-click="signOut()" class="btn btn-success" type="submit">Sign Out</button>
 				</div>
 				<!-- Main content ends -->
 
