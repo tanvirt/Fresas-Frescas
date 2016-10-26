@@ -2,27 +2,6 @@ function Theme() {}
 
 Theme.init = function () {
 
-    // Project Photo Upload
-    $(function() {
-        $("#project-photo-upload").fileinput({
-            initialPreview: [
-                "../../assets/img/ideal_workplace.jpg"
-            ],
-            initialPreviewAsData: true,
-            previewFileType: "image",
-            browseClass: "btn btn-success",
-            browseLabel: "Pick Image",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-            removeClass: "btn btn-danger",
-            removeLabel: "Delete",
-            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-            uploadClass: "btn btn-info",
-            uploadLabel: "Upload",
-            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
-            showCaption: false,
-        });
-    });
-
     // Navigation Scripts to Show Header on Scroll-Up
     jQuery(document).ready(function($) {
         var MQL = 1170;
