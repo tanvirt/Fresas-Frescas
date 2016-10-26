@@ -17,20 +17,20 @@
             	</div>
 				<div class="project-component">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Project Title" autofocus>
+						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus>
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
+						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
+						<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 					</div>
 				</div>
 
             	<div class="project-component">
             		<div>Owners</div>
             		<div class="btn-group">
-            			<button ng-repeat="owner in owners" class="btn-info pill">
+            			<button ng-repeat="owner in project.owners" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{owner}}
             			</button>
@@ -40,7 +40,7 @@
             	<div class="project-component">
             		<div>Members</div>
             		<div class="btn-group">
-	            		<button ng-repeat="member in members" class="btn-info pill">
+	            		<button ng-repeat="member in project.members" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{member}}
             			</button>
@@ -50,7 +50,7 @@
             	<div class="project-component">
             		<div>Tags</div>
             		<div class="btn-group">
-	            		<button ng-repeat="tag in tags" class="btn-info pill">
+	            		<button ng-repeat="tag in project.tags" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{tag}}
             			</button>
@@ -58,7 +58,7 @@
 	            	</div>
             	</div>
             	<div class="btn-group project-component center">
-            		<button class="btn btn-success" id="project-save">
+            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
             			<span class="glyphicon glyphicon-floppy-disk icon"></span>
             			Save
             		</button>
