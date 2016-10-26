@@ -6,6 +6,24 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.headingImage = "../../assets/img/ideal_workplace.jpg";
 
 	// Main content starts
+	$scope.owners = [
+		"Tanvir Talukder",
+		"Julia Kieserman"
+	];
+
+	$scope.members = [
+		"Kyle Wahl",
+		"Christopher Martin",
+		"Jason Ngo",
+		"Samuel Wildman"
+	];
+
+	$scope.tags = [
+		"AngularJS",
+		"Firebase"
+	];
+
+
 
 	$scope.addProjectToDatabase = function() {
 		var ref = firebase.database().ref().child("projects");
