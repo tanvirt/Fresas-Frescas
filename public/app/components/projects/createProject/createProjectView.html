@@ -28,7 +28,7 @@
             		<div> Members </div>
             		<div class="btn-group">
             			<button class="btn-info pill" ng-repeat="member in project.members"> {{member}}</button>
-	            		<button class="btn-info pill">+</button>
+	            		<button class="btn-info pill" ng-click="editing()">+</button>
 	            	</div>
             	</div>
             	<div class="project-component">
@@ -40,7 +40,7 @@
             	</div>
             	<div class="btn-group project-component center">
             		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()"> Save </button>
-            		<button class="btn btn-danger" id="project-cancel-save"> Cancel </button>
+            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()"> Cancel </button>
             	</div>
 				<!-- Main content ends -->
 
