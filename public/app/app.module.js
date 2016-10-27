@@ -23,6 +23,8 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		$rootScope.listeners.push(listener);
 	}
 
+	Theme.init();
+
     $rootScope.authObj.$onAuthStateChanged(function(user) {
         if(user) {
         	$rootScope.user = user;
@@ -54,11 +56,14 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'settings') {
 			$state.go('settings');
 		}
-		else if (toState.name == 'signUp') {
+		else if(toState.name == 'signUp') {
 			$state.go('signUp');
 		}
-		else if (toState.name == 'createProject') {
+		else if(toState.name == 'createProject') {
 			$state.go('createProject');
+		}
+		else if(toState.name == 'myProjects') {
+			$state.go('myProjects');
 		}
 		else {
 			$state.go('404');

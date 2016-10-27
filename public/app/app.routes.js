@@ -36,7 +36,13 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         .state('createProject', {
             url: '/createProject',
             templateUrl: 'app/components/projects/createProject/createProjectView.html',
-            controller: 'createProjectController'
+            controller: 'CreateProjectController'
+        })
+
+        .state('myProjects', {
+            url: '/myProjects',
+            templateUrl: 'app/components/projects/myProjects/myProjectsView.html',
+            controller: 'MyProjectsController'
         });
 
     $urlRouterProvider.otherwise('404');
