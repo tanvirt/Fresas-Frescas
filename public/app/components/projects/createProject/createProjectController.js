@@ -1,4 +1,20 @@
 angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
+	var ref = firebase.database().ref();
+
+	$scope.editingOwners = false;
+	$scope.editingMembers = false;
+	$scope.editingTags = false;
+	//load all users
+	$scope.allMembers = $firebaseArray(ref.child("users"));
+
+	//wait for data to load
+	$scope.allMembers.$loaded()
+		.then(function() {
+			console.log($scope.allMembers);
+		})
+		.catch(function(err) {
+			console.error(err);
+		});
 
 	// App header variables
 	$scope.heading = "Create A Project";
@@ -11,7 +27,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
-	$scope.project.owners = ['Tanvir Talukder', 'Julia Kieserman'];
+	$scope.project.owners = ['Bob the Builder', 'Julia Kieserman'];
 	$scope.project.members = ['Kyle Wahl', 'Christopher Martin', 'Jason Ngo', 'Samuel Wildman'];
 	$scope.project.subscribers = [];
 	$scope.project.tags = ['AngularJS', 'Firebase'];
@@ -20,11 +36,9 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.views = 0;
 	$scope.project.creationDate = "";
 
-	var ref = firebase.database().ref().child("projects");
-
 	$scope.addProjectToDatabase = function() {
 		try {
-			ref.child($scope.project.title).set({
+			ref.child("projects").child($scope.project.title).set({
 				summary: $scope.project.summary,
 				details: $scope.project.details,
 				members: $scope.project.members,
@@ -41,5 +55,19 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 			console.log('Error adding project to DB: ', error);
 		}
 	};
+
+	$scope.removeOwner = function(owner) {
+		$scope.project.owners.splice($scope.project.owners.indexOf(owner), 1);
+		$scope.allMembers.push(owner);
+	}
+
+	$scope.removeMember = function(member) {
+		$scope.project.members.splice($scope.project.members.indexOf(member), 1);
+		$scope.allMembers.push(owner);
+	}
+
+	$scope.cancel = function() {
+		//go to some other page...idk which one
+	}
 
 });
