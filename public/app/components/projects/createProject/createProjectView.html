@@ -9,38 +9,63 @@
 
             	<!-- Main content starts-->
             	<div class="project-component">
-            		<!-- <label class="control-label">Project Photo</label>
-					<input id="project-photo-upload" type="file" accept="image/*" class="file-loading center"> -->
 					<img class="img-responsive center" src="../../assets/img/modern_workplace.jpg">
-					<button class="btn btn-success center"><span class="glyphicon glyphicon-upload bs-glyph"></span> Upload Photo </button>
+					<button class="btn btn-success center">
+						<span class="fa fa-arrow-circle-o-up icon"></span>
+						Upload Photo
+					</button>
             	</div>
-            	<div class="project-component form-group">
-					<textarea ng-model="project.description" class="form-control" rows="5" id="description" required autofocus></textarea>
+				<div class="project-component">
+					<div class="form-group">
+						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus>
+					</div>
+					<div class="form-group">
+						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
+					</div>
+					<div class="form-group">
+						<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
+					</div>
 				</div>
+
             	<div class="project-component">
-            		<div> Owners </div>
+            		<div>Owners</div>
             		<div class="btn-group">
-            			<button class="btn-info pill" ng-repeat="owner in project.owners"> {{owner}} </button>
+            			<button ng-repeat="owner in project.owners" class="btn-info pill">
+            				<span class="glyphicon glyphicon-remove icon"></span>
+            				{{owner}}
+            			</button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="project-component">
-            		<div> Members </div>
+            		<div>Members</div>
             		<div class="btn-group">
-            			<button class="btn-info pill" ng-repeat="member in project.members"> {{member}}</button>
-	            		<button class="btn-info pill" ng-click="editing()">+</button>
+	            		<button ng-repeat="member in project.members" class="btn-info pill">
+            				<span class="glyphicon glyphicon-remove icon"></span>
+            				{{member}}
+            			</button>
+	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="project-component">
-            		<div> Tags </div>
+            		<div>Tags</div>
             		<div class="btn-group">
-            			<button class="btn-info pill" ng-repeat="tag in project.tags"> {{tag}} </button>
+	            		<button ng-repeat="tag in project.tags" class="btn-info pill">
+            				<span class="glyphicon glyphicon-remove icon"></span>
+            				{{tag}}
+            			</button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
             	</div>
             	<div class="btn-group project-component center">
-            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()"> Save </button>
-            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()"> Cancel </button>
+            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
+            			<span class="glyphicon glyphicon-floppy-disk icon"></span>
+            			Save
+            		</button>
+            		<button class="btn btn-danger" id="project-cancel-save">
+            			<span class="fa fa-ban icon"></span>
+            			Cancel
+            		</button>
             	</div>
 				<!-- Main content ends -->
 

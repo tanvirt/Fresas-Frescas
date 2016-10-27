@@ -1,5 +1,4 @@
 angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
-
 	var ref = firebase.database().ref();
 
 	$scope.editingOwners = false;
@@ -16,7 +15,6 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		.catch(function(err) {
 			console.error(err);
 		});
-
 
 	// App header variables
 	$scope.heading = "Create A Project";
