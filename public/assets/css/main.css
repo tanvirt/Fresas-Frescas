@@ -37,7 +37,8 @@ textarea {
 }
 
 .project-component {
-	margin: 5%;
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 .center {
