@@ -5,6 +5,13 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 	$scope.subheading = "Our berries will change your life.";
 	$scope.headingImage = "../../assets/img/tinted_settings.jpg";
 
+	//temp variables for editing profile info
+	$scope.editPositon;
+	$scope.editSummary;
+	$scope.editProjects;
+	$scope.editExperience;
+	$scope.editSkills;
+
 	$scope.authObj = $firebaseAuth();
 	$scope.user = null;
 	$scope.profileObject = null;
@@ -51,6 +58,13 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		});
 	};
 
+	$scope.saveInfo = function(position, summary, projects, experience, skills){
+		$scope.currentUser.position = position;
+		$scope.currentUser.summary = summary;
+		$scope.currentUser.projects = projects;
+		$scope.currentUser.experience = experience;
+		$scope.currentUser.skills = skills;
+	}
 
 	$scope.currentUser = {
 		name: "Sam Wildman",

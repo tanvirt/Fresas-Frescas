@@ -12,18 +12,19 @@
             	<!-- Main content starts-->
 				<div>
             		<div class="row" id="profileHeading">
-            			<h1 class="col-md-8">{{currentUser.name}}</h1>
-            			<h3 class="col-md-8">{{currentUser.position}}</h3>
-            			<img class="col-md-4 pull-right" ng-show="currentUser.image != null" src={{currentUser.image}}>
+            			<div class="col-md-8">
+            				<h1>{{currentUser.name}}</h1>
+            				<h3>{{currentUser.position}}</h3>
+            			</div>
+            			<img class="col-md-4 pull-right img-responsive" ng-show="currentUser.image != null" src={{currentUser.image}}>
             		</div>
 
             		<div class="content" id="summaryContent">
             			<div class="row">
             				<h5 class="col-xs-11 pull-left">Summary</h5>
-            				<img class="col-xs-1 pull-right img-center" src="../../assets/img/edit_icon.png">
             			</div>
             			<div id="featured-card">
-            				<div class="col-xs-12 col-sm-9 right-card">
+            				<div class="right-card">
             					<div class="card-description">{{currentUser.summary}}</div>
             				</div>
             			</div>
@@ -32,7 +33,7 @@
             		<div class="content" id="currentProjectsContent">
             			<h5>Crrent Projects</h5>
             			<div id="featured-card" ng-repeat="project in currentUser.projects">
-            				<div class="col-xs-12 col-sm-9 right-card">
+            				<div class="right-card">
             					<div class="card-description">{{project}}</div>
             				</div>
             			</div>
@@ -41,7 +42,7 @@
             		<div class="content" id="experienceContent">
             			<h5>Experience</h5>
             			<div id="featured-card" ng-repeat="experience in currentUser.experience">
-            				<div class="col-xs-12 col-sm-9 right-card">
+            				<div class="right-card">
             					<div class="card-description">{{experience}}</div>
             				</div>
             			</div>
@@ -50,11 +51,46 @@
             		<div class="content" id="experienceContent">
             			<h5>Skills</h5>
             			<div id="featured-card" ng-repeat="skills in currentUser.skills">
-            				<div class="col-xs-12 col-sm-9 right-card">
+            				<div class="right-card">
             					<div class="card-description">{{skills}}</div>
             				</div>
             			</div>
             		</div>
+
+            		<div class="offset4 span4 text-center" id="editButton">
+            			<button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Edit Profile</button>
+            		</div>
+
+            		<!-- Modal -->
+					<div id="myModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="close" data-dismiss="modal">&times;</button>
+					        <h4 class="modal-title">Edit Profile</h4>
+					      </div>
+					      <div class="modal-body">
+					     	<h5>position</h5>
+					        <input type="text" class="form-control" ng-model="editPosition" ng-init="editPosition=currentUser.position">
+					      	<h5>Summary</h5>
+					        <input type="text" class="form-control" ng-model="editSummary" ng-init="editSummary=currentUser.summary">
+					        <h5>Projects</h5>
+					        <input type="text" class="form-control" ng-model="editProjects" ng-init="editProjects=currentUser.projects">
+					        <h5>Experience</h5>
+					        <input type="text" class="form-control" ng-model="editExperience" ng-init="editExperience=currentUser.experience">
+					        <h5>Skills</h5>
+					        <input type="text" class="form-control" ng-model="editSkills" ng-init="editSkills=currentUser.skills">
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveInfo(editPosition, editSummary, editProjects, editExperience, editSkills)">Save</button>
+					      </div>
+					    </div>
+
+					  </div>
+					</div>
+
             	</div>
 				<!-- Main content ends -->
 

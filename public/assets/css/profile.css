@@ -1,7 +1,8 @@
 #profileHeading{
 	text-align: center;
+	margin-bottom: 25px;
 }
 
-.content{
-	
+#editButton{
+	margin-top: 25px;
 }
