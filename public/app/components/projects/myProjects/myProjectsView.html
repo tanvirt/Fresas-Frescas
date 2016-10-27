@@ -12,22 +12,43 @@
             		<div class="project-component">
 	            		<div>Owner</div>
 	            		<div ng-repeat="project in projectsOwning">
-            				{{project.title}}
-            				{{project.summary}}
+	            			<div class="project-component">
+		            			<img class="img-responsive" ng-src="{{project.photo}}">
+	            				<div>
+	            					{{project.title}}
+	            				</div>
+	            				<div>
+	            					{{project.summary}}
+	            				</div>
+            				</div>
             			</div>
 	            	</div>
 	            	<div class="project-component">
 	            		<div>Member</div>
 	            		<div ng-repeat="project in projectsWorking">
-            				{{project.title}}
-            				{{project.summary}}
+	            			<div class="project-component">
+		            			<img class="img-responsive" ng-src="{{project.photo}}">
+	            				<div>
+	            					{{project.title}}
+	            				</div>
+	            				<div>
+	            					{{project.summary}}
+	            				</div>
+            				</div>
             			</div>
 	            	</div>
 	            	<div class="project-component">
 	            		<div>Following</div>
 	            		<div ng-repeat="project in projectsFollowing">
-            				{{project.title}}
-            				{{project.summary}}
+	            			<div class="project-component">
+		            			<img class="img-responsive" ng-src="{{project.photo}}">
+	            				<div>
+	            					{{project.title}}
+	            				</div>
+	            				<div>
+	            					{{project.summary}}
+	            				</div>
+            				</div>
             			</div>
 	            	</div>
             	</div>
