@@ -27,7 +27,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
-	$scope.project.owners = ['Tanvir Talukder', 'Julia Kieserman'];
+	$scope.project.owners = ['Bob the Builder', 'Julia Kieserman'];
 	$scope.project.members = ['Kyle Wahl', 'Christopher Martin', 'Jason Ngo', 'Samuel Wildman'];
 	$scope.project.subscribers = [];
 	$scope.project.tags = ['AngularJS', 'Firebase'];
@@ -56,9 +56,14 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	};
 
-	$scope.editing = function() {
-		console.log("step 1");
+	$scope.removeOwner = function(owner) {
+		$scope.project.owners.splice($scope.project.owners.indexOf(owner), 1);
+		$scope.allMembers.push(owner);
+	}
 
+	$scope.removeMember = function(member) {
+		$scope.project.members.splice($scope.project.members.indexOf(member), 1);
+		$scope.allMembers.push(owner);
 	}
 
 	$scope.cancel = function() {
