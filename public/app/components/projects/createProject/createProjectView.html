@@ -5,7 +5,7 @@
 	<!-- Main content in each page should be wrapped by the following 3 div elements -->
 	<div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 
             	<!-- Main content starts-->
             	<div class="project-component">
@@ -30,18 +30,23 @@
             	<div class="project-component">
             		<div>Owners</div>
             		<div class="btn-group">
+            			<!--<button class="btn check-bullet-base btn-success" ng-click="connectBuddyPair(addedNewHire, 'Manual'); success ? addedNewHire = '' : '';"><span class="glyphicon glyphicon-ok"></span></button>
+                <div class="btn btn-primary btn-sm button-tag"><input class="blue no-outline" id="pill-input" type="text" ng-model="addedNewHire" typeahead="newHire as newHire.firstName + ' ' + newHire.lastName for newHire in unpairedNewHires | filter:$viewValue | limitTo:8">
+                </div>-->
+
             			<button ng-repeat="owner in project.owners" class="btn-info pill">
-            				<span class="glyphicon glyphicon-remove icon"></span>
+            				<span class="glyphicon glyphicon-remove icon" ng-click="removeOwner(owner)"></span>
             				{{owner}}
             			</button>
-	            		<button class="btn-info pill">+</button>
+	            		<button class="btn-info pill" ng-click="addOwner=(owner)" type="text" ng-model="newOwner">+</button>
+	            		<button class="btn-info pill">
 	            	</div>
             	</div>
             	<div class="project-component">
             		<div>Members</div>
             		<div class="btn-group">
 	            		<button ng-repeat="member in project.members" class="btn-info pill">
-            				<span class="glyphicon glyphicon-remove icon"></span>
+            				<span class="glyphicon glyphicon-remove icon" ng-click="removeMember(member)"></span>
             				{{member}}
             			</button>
 	            		<button class="btn-info pill">+</button>

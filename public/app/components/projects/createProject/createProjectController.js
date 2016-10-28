@@ -1,4 +1,20 @@
 angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
+	var ref = firebase.database().ref();
+
+	$scope.editingOwners = false;
+	$scope.editingMembers = false;
+	$scope.editingTags = false;
+	//load all users
+	$scope.allMembers = $firebaseArray(ref.child("users"));
+
+	//wait for data to load
+	$scope.allMembers.$loaded()
+		.then(function() {
+			console.log($scope.allMembers);
+		})
+		.catch(function(err) {
+			console.error(err);
+		});
 
 	// App header variables
 	$scope.heading = "Create A Project";
@@ -14,8 +30,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
-	$scope.project.owners = [];
-	$scope.project.members = [];
+	$scope.project.owners = ['Bob the Builder', 'Julia Kieserman'];
+	$scope.project.members = ['Kyle Wahl', 'Christopher Martin', 'Jason Ngo', 'Samuel Wildman'];
 	$scope.project.subscribers = [];
 	$scope.project.tags = ['AngularJS', 'Firebase'];
 	$scope.project.assets = ['ayo', 'random shit', 'dunno how this works'];
@@ -92,6 +108,20 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		if (!added) {
 			$scope.project.tags.push(newTag);
 		}
+	}
+
+	$scope.removeOwner = function(owner) {
+		$scope.project.owners.splice($scope.project.owners.indexOf(owner), 1);
+		$scope.allMembers.push(owner);
+	}
+
+	$scope.removeMember = function(member) {
+		$scope.project.members.splice($scope.project.members.indexOf(member), 1);
+		$scope.allMembers.push(owner);
+	}
+
+	$scope.cancel = function() {
+		//go to some other page...idk which one
 	}
 
 });

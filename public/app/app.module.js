@@ -65,6 +65,9 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'myProjects') {
 			$state.go('myProjects');
 		}
+		else if(toState.name == 'search') {
+			$state.go('search');
+		}
 		else {
 			$state.go('404');
 		}

@@ -16,12 +16,12 @@ textarea {
 }
 
 #project-save {
-	width: 42.5%;
+	width: 47.5%;
 	margin-right: 5%;
 }
 
 #project-cancel-save {
-	width: 42.5%;
+	width: 47.5%;
 }
 
 .pill {
@@ -37,7 +37,8 @@ textarea {
 }
 
 .project-component {
-	margin: 5%;
+	margin-top: 5%;
+	margin-bottom: 5%;
 }
 
 .center {
