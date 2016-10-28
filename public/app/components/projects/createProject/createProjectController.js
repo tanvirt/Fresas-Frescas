@@ -42,7 +42,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
-	$scope.project.owners = ['Tanvir Talukder', 'Julia Kieserman'];
+	$scope.project.owners = ['SZquHvgX4eUEDaZpcHECJriH0RH3', 'L01h753IV4Q1GY6KXuHbJExEHC32'];
 	$scope.project.members = ['Kyle Wahl', 'Christopher Martin', 'Jason Ngo', 'Samuel Wildman'];
 	$scope.project.subscribers = [];
 	$scope.project.tags = ['AngularJS', 'Firebase'];
@@ -63,7 +63,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		$scope.validateInput();
 		try {
 			var firebaseUser = $scope.authObj.$getAuth();
-			checkOwners(firebaseUser.uid);
+			// checkOwners(firebaseUser.uid);
 
 			ref.child("projects").child(uniqueId).set({
 				summary: $scope.project.summary,
@@ -82,6 +82,16 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 					project: $scope.project.title
 				});
 			}
+			for(var i=0; i < $scope.project.owners.length; i++) {
+				ref.child("users").child($scope.project.owners[i]).child("ownedProjects").set({
+					project: $scope.project.title
+				})
+			}
+			for(var i=0; i < $scope.project.members.length; i++) {
+				ref.child("users").child($scope.project.members[i]).child("memberProjects").set({
+					project: $scope.project.title
+				})
+			}
 			$state.go("myProjects");
 		}
 		catch(error) {
@@ -90,6 +100,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	};
 
+	//Call this function when an owner is added to check if already
+	//an owner of this project.
 	checkOwners = function(user) {
 		var added = false;
 		angular.forEach($scope.project.owners, function(owner) {
@@ -102,6 +114,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	}
 
+	//Call this function when a member is added to check if already
+	//an member of this project.
 	checkMembers = function(user) {
 		var added = false;
 		angular.forEach($scope.project.members, function(member) {
@@ -114,6 +128,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	}
 
+	//Call this function when a tag is added to check if already
+	//a tag of this project.
 	checkTags = function(newTag) {
 		var added = false;
 		angular.forEach($scope.project.tags, function(tag) {
@@ -131,7 +147,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	}
 
 	$scope.removeMember = function(member) {
-		$scope.project.members.splice($scope.project.members.indexOf(member), 1);			$scope.allMembers.push(owner);
+		$scope.project.members.splice($scope.project.members.indexOf(member), 1);
 	}
 
 	$scope.validateInput = function() {
