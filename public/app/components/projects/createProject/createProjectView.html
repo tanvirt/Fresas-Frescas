@@ -17,7 +17,7 @@
             	</div>
 				<div class="project-component">
 					<div class="form-group">
-						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus>
+						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator">
 					</div>
 					<div class="form-group">
 						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
@@ -29,11 +29,7 @@
 
             	<div class="project-component">
             		<div>Owners</div>
-            		<div class="btn-group">
-            			<!--<button class="btn check-bullet-base btn-success" ng-click="connectBuddyPair(addedNewHire, 'Manual'); success ? addedNewHire = '' : '';"><span class="glyphicon glyphicon-ok"></span></button>
-                <div class="btn btn-primary btn-sm button-tag"><input class="blue no-outline" id="pill-input" type="text" ng-model="addedNewHire" typeahead="newHire as newHire.firstName + ' ' + newHire.lastName for newHire in unpairedNewHires | filter:$viewValue | limitTo:8">
-                </div>-->
-
+								<div class="btn-group">
             			<button ng-repeat="owner in project.owners" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeOwner(owner)"></span>
             				{{owner}}
@@ -68,7 +64,7 @@
             			Save
             		</button>
             		<button class="btn btn-danger" id="project-cancel-save">
-            			<span class="fa fa-ban icon"></span>
+            			<span class="fa fa-ban icon" ng-click="cancel()"></span>
             			Cancel
             		</button>
             	</div>
