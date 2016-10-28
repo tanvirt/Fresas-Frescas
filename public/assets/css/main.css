@@ -15,6 +15,10 @@ textarea {
 	background-image: url("../img/strawberry.jpg");
 }
 
+.text-input {
+	height: 5.15rem;
+}
+
 #project-save {
 	width: 47.5%;
 	margin-right: 5%;
