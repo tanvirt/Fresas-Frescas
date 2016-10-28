@@ -1,4 +1,4 @@
-angular.module('main').controller('MyProjectsController', function($scope) {
+angular.module('main').controller('MyProjectsController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
 	$scope.heading = "My Projects";
@@ -9,5 +9,15 @@ angular.module('main').controller('MyProjectsController', function($scope) {
 	$scope.projectsOwning = [];
 	$scope.projectsWorking = [];
 	$scope.projectsFollowing = [];
+
+	var ref = firebase.database().ref().child("projects");
+	var projectList = $firebaseArray(ref);
+
+	projectList.$loaded().then(function() {
+		angular.forEach(projectList, function(project) {
+			console.log(project);
+			console.log(project.views);
+		})
+	});
 
 });
