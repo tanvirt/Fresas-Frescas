@@ -1,0 +1,27 @@
+<div>
+	<div id="recommended-card" class="col-xs-12 col-sm-4">
+		<div class="flip-container">
+			<div class="flipper">
+				<div class="front">
+	        		<div class="col-xs-12">
+	        			<img class="card-img" src="{{image}}">            		
+	        		</div>
+	        		<div class="col-xs-12 right-card">
+	        			<h3>{{title}}</h3>
+	        			<div class="card-icons">
+	        				<span class="glyphicon glyphicon-triangle-top"> {{likes}} </span>
+	        					&nbsp;	&nbsp;	&nbsp;	&nbsp;
+	        				<span class="glyphicon glyphicon-eye-open"> {{views}} </span>
+	        			</div>
+	        			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in owners">{{owner}}</button>
+	        			<div class="card-summary">{{summary}}</div>
+	        		</div>
+				</div>
+	    		<div class="back">
+	    			<div class="upvote-btn"><span class="glyphicon glyphicon-triangle-top"></span></div>
+	    			<img class="recommended-img" src="http://l.yimg.com/dh/ap/att/portal/common/i/att_open-graph_icon_1.png">	
+	    		</div>
+			</div>
+		</div>
+	</div>
+</div>
