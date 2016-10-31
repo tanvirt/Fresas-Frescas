@@ -28,7 +28,18 @@
 
             		<div class="content" id="currentProjectsContent">
             			<h5>Crrent Projects</h5>
-            			<input type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.projects">
+            			<div class="btn-group">
+	                      	<button ng-repeat="project in currentUser.projects" class="btn-info pill">
+	                      		<span class="glyphicon glyphicon-remove icon" ng-show="!editingProjects && editing" ng-click="removeProject(project)"></span>
+	                      		{{project}}
+	                      	</button>
+	                      	<button class="btn-info pill" ng-show="!editingProjects && editing" ng-click="editingProjects=true">+</button>
+	                      	<button class="btn-info pill" ng-show="editingProjects">
+	                      		<!-- need to add typeahead functionality -->
+	                      		<input type="text" name="skills" placeholder="enter a project" ng-model="selectedProject">
+	                      		<span class="glyphicon glyphicon-ok" ng-click="editingProjects=false; addProjects()"></span>
+	                      	</button>
+	                      </div>
             		</div>
 
             		<div class="content" id="experienceContent">
@@ -37,15 +48,29 @@
 
             		</div>
 
-            		<div class="content" id="experienceContent">
-                              <h5>Skills</h5>
-                              <input type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.skills">
+            		<div class="content" id="skillsContent">
+                        <h5>Skills</h5>
+	                      <div class="btn-group">
+	                      	<button ng-repeat="skill in currentUser.skills" class="btn-info pill">
+	                      		<span class="glyphicon glyphicon-remove icon" ng-show="!editingSkills && editing" ng-click="removeSkill(skill)"></span>
+	                      		{{skill}}
+	                      	</button>
+	                      	<button class="btn-info pill" ng-show="!editingSkills && editing" ng-click="editingSkills=true">+</button>
+	                      	<button class="btn-info pill" ng-show="editingSkills">
+	                      		<!-- need to add typeahead functionality -->
+	                      		<input type="text" name="skills" placeholder="enter a skill" ng-model="selectedSkill">
+	                      		<span class="glyphicon glyphicon-ok" ng-click="editingSkills=false; addSkill()"></span>
+	                      	</button>
+	                      </div>
             		</div>
 
             		<div class="offset4 span4 text-center" id="editButton">
             			<!-- <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Edit Profile</button> -->
                               <button type="button" class="btn btn-info btn-md" ng-click="editPressed()">{{editMessage}}</button>
             		</div>
+
+
+
 
             		<!-- Modal
 					<div id="myModal" class="modal fade" role="dialog">
