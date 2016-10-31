@@ -1,25 +1,25 @@
-angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
+angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseObject, $firebaseArray, $state) {
 //TODO:
 //1. form/field validation, required fields
-//2. how to insert tag data into database
+//2. upload photo stuff
+//3. change to use auto-generated firebase
 
-		var ref = firebase.database().ref();
+	var ref = firebase.database().ref();
 
-		//load all users
-		$scope.allUsers = $firebaseArray(ref.child("users"));
-		$scope.allTags = $firebaseArray(ref.child("tags"));
-		//WE SHOULD HAVE A FACTORY FOR TAGS!!
-		console.log("ova here");
-		console.log($scope.allTags);
+	//load all users
+	$scope.allUsers = $firebaseArray(ref.child("users"));
+	$scope.allTags = $firebaseArray(ref.child("tags"));
+	$scope.authObj = $firebaseAuth();
+	//WE SHOULD HAVE A FACTORY FOR TAGS!!
 
-		//wait for data to load
-		$scope.allUsers.$loaded()
-			.then(function() {
-				//PROBLEM::::::how does a user switch someone from member to owner or vice versa?
-			})
-			.catch(function(err) {
-				console.error(err);
-			});
+	//wait for data to load
+	$scope.allUsers.$loaded()
+		.then(function() {
+			//all users is loaded
+		})
+		.catch(function(err) {
+			console.error(err);
+		});
 
 	// App header variables
 	$scope.heading = "Create A Project";
@@ -32,8 +32,6 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	userList.$loaded().then(function() {
 		angular.forEach(userList, function(aUser) {
-			console.log(aUser);
-			console.log(aUser.$id);
 		})
 	});
 
@@ -42,10 +40,10 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	// Create new project
 	$scope.project = {};
-	$scope.project.title = "";
+	$scope.project.title = "Test for Chris";
 	$scope.project.summary = "";
 	$scope.project.details = "";
-	$scope.project.photo = "";
+	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
 	$scope.project.owners = [];
 	$scope.project.members = [];
 	$scope.project.subscribers = [];
@@ -53,43 +51,52 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.assets = [];
 	$scope.project.likes = 0;
 	$scope.project.views = 0;
-	$scope.project.creationDate = "";
-	var uniqueId = $scope.project.title + ';' + $scope.project.owners[0];
 
 	$scope.addProjectToDatabase = function() {
-		try {
-			//var firebaseUser = $scope.authObj.$getAuth();
-			//checkOwners(firebaseUser.uid);
+		var creationDate = new Date();
+		var firebaseUser = $scope.authObj.$getAuth();
+		var uniqueId = firebaseUser.uid + ';' + creationDate;
 
+		var ownersList = objectsToIds($scope.project.owners);
+		ownersList.push(firebaseUser.uid);
+
+		try {
 			ref.child("projects").child(uniqueId).set({
 				title: $scope.project.title,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
 				members: objectsToIds($scope.project.members),
-				owners: objectsToIds($scope.project.owners),
+				owners: ownersList,
 				subscribers: $scope.project.subscribers,
 				assets: $scope.project.assets,
 				likes: $scope.project.likes,
 				views: $scope.project.views,
-				creationDate: new Date()
+				tags: $scope.project.tags,
+				creationDate: creationDate
 			});
 
-			for(var i=0; i < $scope.project.tags.length; i++) {
-				ref.child("tags").child($scope.project.tags[i]).add({
-					uniqueId: $scope.project.title
-				});
+			for (var i=0; i < $scope.project.tags.length; i++) {
+				var tagsRef = ref.child("tags").child($scope.project.tags[i]).child(uniqueId);
+				tagsRef.set({title: $scope.project.title});
 			}
+
 			for(var i=0; i < $scope.project.owners.length; i++) {
-				ref.child("users").child($scope.project.owners[i]).child("ownedProjects").set({
-					project: $scope.project.title
-				})
+				var projectOwnersRef = ref.child("users").child($scope.project.owners[i].$id).child("ownedProjects");
+				projectOwnersRef.$add({project: $scope.project.title});
 			}
+		
 			for(var i=0; i < $scope.project.members.length; i++) {
-				ref.child("users").child($scope.project.members[i]).child("memberProjects").set({
-					project: $scope.project.title
-				})
+				var projectMembersRef = ref.child("users").child($scope.project.members[i].$id).child("memberProjects");
+				projectMembersRef.$add({project: $scope.project.title});
 			}
-			$state.go("myProjects");
+
+			for(var i=0; i < $scope.project.subscribers.length; i++) {
+				var projectSubscribersRef = ref.child("users").child($scope.project.members[i].$id).child("subscriberProjects");
+				projectSubscribersRef.child(uniqueId).set({project: $scope.project.title});
+			}
+
+			//this will go to the view for that project once it exists
+			//$state.go("myProjects");
 		}
 		catch(error) {
 			console.log('Error adding project to DB: ', error);
@@ -102,52 +109,19 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		for (var i=0; i < objArray.length; i++) {
 			idArray.push(objArray[i].$id);
 		}
+
 		return idArray;
 	}
-	/*checkOwners = function(user) {
-=======
-	//Call this function when an owner is added to check if already
-	//an owner of this project.
-	checkOwners = function(user) {
->>>>>>> 7c3350eb426a7273254459763cdf5552b4311d88
-		var added = false;
-		angular.forEach($scope.project.owners, function(owner) {
-			if (user == owner) {
-				added = true;
-			}
-		})
-		if (!added) {
-			$scope.project.owners.push(user);
-		}
-	}
 
-	//Call this function when a member is added to check if already
-	//an member of this project.
-	checkMembers = function(user) {
-		var added = false;
-		angular.forEach($scope.project.members, function(member) {
-			if (user == member) {
-				added = true;
-			}
-		})
-		if (!added) {
-			$scope.project.members.push(user);
-		}
-	}
+	$scope.uploadPhoto = function() {
+		var f = document.getElementById('file').files[0],
+      	r = new FileReader();
+  		r.onloadend = function(e){
+    		var data = e.target.result;
+  		}
+  		r.readAsBinaryString(f);
 
-	//Call this function when a tag is added to check if already
-	//a tag of this project.
-	checkTags = function(newTag) {
-		var added = false;
-		angular.forEach($scope.project.tags, function(tag) {
-			if (newTag == tag) {
-				added = true;
-			}
-		})
-		if (!added) {
-			$scope.project.tags.push(newTag);
-		}
-	}*/
+	}
 
 	$scope.removeOwner = function(owner) {
 		//remove from project owners array
@@ -161,35 +135,69 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		$scope.allUsers.push(member);
 	}
 
+	$scope.removeSubscriber = function(subscriber) {
+		$scope.project.subscribers.splice($scope.project.subscribers.indexOf(subscriber), 1);
+		$scope.allUsers.push(subscriber);
+	}
+
 	$scope.addOwner = function() {
-		//add owner ID to the database
-		$scope.project.owners.push($scope.selectedOwner);
-		//remove from available owners for project
-		$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedOwner), 1);
-		$scope.selectedOwner = "";
+		//check that owner is valid
+		if($scope.allUsers.indexOf($scope.selectedOwner) >= 0) {
+			//add owner ID to the database
+			$scope.project.owners.push($scope.selectedOwner);
+			//remove from available owners for project
+			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedOwner), 1);
+			$scope.selectedOwner = "";
+		} else {
+			console.log("error, not a real user");
+		}
+		
 	}
 
 	$scope.addMember = function() {
-		$scope.project.members.push($scope.selectedMember);
-		$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedMember));
-		$scope.selectedMember = "";
+		if ($scope.allUsers.indexOf($scope.selectedMember) >= 0) {
+			$scope.project.members.push($scope.selectedMember);
+			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedMember), 1);
+			$scope.selectedMember = "";
+		} else {
+			console.log("error, not a real user");
+		}
+		
+	}
+
+	$scope.addSubscriber = function() {
+		if ($scope.allUsers.indexOf($scope.selectedSubscriber) >= 0) {
+			$scope.project.subscribers.push($scope.selectedSubscriber);
+			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedSubscriber), 1);
+			$scope.selectedSubscriber = "";
+		} else {
+			console.log("error, not a real user");
+		}
 	}
 
 	$scope.addTag = function() {
+		if ($scope.allTags.indexOf($scope.selectedTag) < 0) {
+			try {
+				var tagsRef = ref.child("tags");
+				tagsRef.child($scope.selectedTag).set({});
+			} catch(error) {
+				console.log("Error adding to db", error);
+			}
+		}
+
 		$scope.project.tags.push($scope.selectedTag);
 	}
 
 	$scope.uploadAsset = function() {
 		var f = document.getElementById('file').files[0],
-      r = new FileReader();
+      	r = new FileReader();
   		r.onloadend = function(e){
-    var data = e.target.result;
-    //send your binary data via $http or $resource or do anything else with it
-  }
-  r.readAsBinaryString(f);
+    		var data = e.target.result;
+  		}
+  		r.readAsBinaryString(f);
 	}
 
-	$scope.cancel = function(source) {
+	$scope.cancel = function() {
 		$state.go("myProjects");
 	}
 
