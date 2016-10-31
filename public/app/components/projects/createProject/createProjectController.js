@@ -177,6 +177,9 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	$scope.addTag = function() {
 		if ($scope.allTags.indexOf($scope.selectedTag) < 0) {
+			console.log($scope.selectedTag);
+			console.log($scope.allTags);
+			console.log("TROUBLEEEEEE");
 			try {
 				var tagsRef = ref.child("tags");
 				tagsRef.child($scope.selectedTag).set({});

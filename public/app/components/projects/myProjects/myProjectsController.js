@@ -10,13 +10,9 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
 	$scope.projectsWorking = [];
 	$scope.projectsFollowing = [];
 
-	$scope.projectsOwningTitle = [];
-	$scope.projectsWorkingTitle = [];
-	$scope.projectsFollowingTitle = [];
-
 	var projectRef = firebase.database().ref().child("projects");
 	var projectList = $firebaseArray(projectRef);
-	// var firebaseUser = "";
+
 	$rootScope.authObj.$onAuthStateChanged(function(user) {
         if(user) {
         	var userRef = firebase.database().ref().child("users").child(user.uid)
@@ -25,51 +21,23 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
         	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
         	ownedList.$loaded().then(function() {
         		angular.forEach(ownedList, function(project) {
-        			$scope.projectsOwningTitle.push(project);
-        			console.log(project.$value);
         			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$value)));
         		})
-        		console.log($scope.projectsOwningTitle);
         	})
         	memberList.$loaded().then(function() {
         		angular.forEach(memberList, function(project) {
-        			$scope.projectsWorkingTitle.push(project);
+        			$scope.projectsWorking.push($firebaseObject(projectRef.child(project.$value)));
         		})
-        		console.log($scope.projectsWorkingTitle);
         	})
         	subscriberList.$loaded().then(function() {
         		angular.forEach(subscriberList, function(project) {
-        			$scope.projectsFollowingTitle.push(project);
+        			$scope.projectsFollowing.push($firebaseObject(projectRef.child(project.$value)));
         		})
-        		console.log($scope.projectsFollowingTitle);
         	})
-       		// angular.forEach($scope.projectsOwningTitle, function(project) {
-       		// 	var projectObj = $firebaseObject(projectRef.child(project.$value));
-       		// 	console.log(projectObj);
-       		// 	projectObj.$loaded().then(function() {
-       		// 		$scope.projectsOwning.push(projectObj);
-       		// 	})
-       		// })
-       		console.log($scope.projectsOwning);
         }
         else {
-        	console.log("HASD;LFHALSDKJGHA");
+        	console.log("No user logged in, weird error");
         }
     })
-
-	var firebaseUser = $scope.authObj.$getAuth();
-	// if ($scope.firebaseUser.uid) {
-	// 	console.log("logged in as: ", $scope.firebaseUser.uid);
-	// }
-	// else {
-	// 	console.log("logged out");
-	// }
-	// projectList.$loaded().then(function() {
-	// 	angular.forEach(projectList, function(project) {
-	// 		angular.forEach(project, function(owners) {
-				
-	// 		})
-	// 	})
-	// });
 
 });
