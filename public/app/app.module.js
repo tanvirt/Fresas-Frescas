@@ -1,6 +1,7 @@
 angular.module('main', [
 	"firebase",
-	'ui.router'
+	'ui.router',
+	'ui.bootstrap'
 ]);
 
 angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
