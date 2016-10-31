@@ -49,6 +49,12 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             url: '/search',
             templateUrl: 'app/components/search/searchView.html',
             controller: 'SearchController'
+        })
+
+        .state('viewProject', {
+            url: '/viewProject',
+            templateUrl: 'app/components/projects/viewProject/viewProjectView.html',
+            controller: 'ViewProjectController'
         });
 
     $urlRouterProvider.otherwise('404');
