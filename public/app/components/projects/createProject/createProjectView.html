@@ -8,13 +8,13 @@
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
 
             	<!-- Main content starts-->
-            	<div class="project-component">
+          <div class="project-component">
 					<img class="img-responsive center" ng-src="{{project.photo}}">
 					<button class="btn btn-success center">
 						<span class="fa fa-arrow-circle-o-up icon"></span>
 						Upload Photo
 					</button>
-            	</div>
+          </div>
 				<div class="project-component">
 					<div class="form-group">
 						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator">
@@ -32,10 +32,14 @@
 								<div class="btn-group">
             			<button ng-repeat="owner in project.owners" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeOwner(owner)"></span>
-            				{{owner}}
+            				{{owner.firstName}} {{owner.lastName}}
             			</button>
-	            		<button class="btn-info pill" ng-click="addOwner=(owner)" type="text" ng-model="newOwner">+</button>
-	            		<button class="btn-info pill">
+	            		<button class="btn-info pill" ng-hide="editingOwners" ng-click="editingOwners=true">+</button>
+									<button class="btn-info pill" ng-show="editingOwners">
+												<input name="owners" type="text" placeholder="enter an owner" ng-model="selectedOwner"
+											typeahead="owner as owner.firstName + owner.lastName for owner in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+												<span class="glyphicon glyphicon-ok" ng-click="editingOwners=false; addOwner()"></span>
+									</button>
 	            	</div>
             	</div>
             	<div class="project-component">
@@ -43,10 +47,15 @@
             		<div class="btn-group">
 	            		<button ng-repeat="member in project.members" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeMember(member)"></span>
-            				{{member}}
+            				{{member.firstName}} {{member.lastName}}
             			</button>
-	            		<button class="btn-info pill">+</button>
-	            	</div>
+	            		<button class="btn-info pill" ng-hide="editingMembers" ng-click="editingMembers=true">+</button>
+									<button class="btn-info pill" ng-show="editingMembers">
+												<input name="members" type="text" placeholder="enter a member" ng-model="selectedMember"
+											typeahead="member as member.firstName + member.lastName for member in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+												<span class="glyphicon glyphicon-ok" ng-click="editingMembers=false; addMember()"></span>
+									</button>
+								</div>
             	</div>
             	<div class="project-component">
             		<div>Tags</div>
@@ -55,9 +64,24 @@
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{tag}}
             			</button>
-	            		<button class="btn-info pill">+</button>
+	            		<button class="btn-info pill" ng-hide="editingTags" ng-click="editingTags=true">+</button>
+									<button class="btn-info pill" ng-show="editingTags">
+												<input name="tags" type="text" placeholder="enter a tag" ng-model="selectedTag"
+											typeahead="tag.$id for tag in allTags | filter:$viewValue | limitTo:8" class="form-control">
+												<span class="glyphicon glyphicon-ok" ng-click="editingTags=false; addTag()"></span>
+									</button>
+									</button>
 	            	</div>
             	</div>
+							<div class="project-component">
+									<div>Assets</div>
+									<div class="form-group">
+										<textarea ng-model="project.assets" class="form-control" rows="5" id="description" placeholder="Any relevant links/files/other project assets"></textarea>
+									</div>
+									<div class="form-group">
+										<input type="file" id="file" name="file"/><button class="btn-info pill" ng-click="uploadAsset()">Upload</button>
+									</div>
+							</div>
             	<div class="btn-group project-component center">
             		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
             			<span class="glyphicon glyphicon-floppy-disk icon"></span>
