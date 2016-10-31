@@ -1,17 +1,21 @@
 angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $state) {
-
 		var ref = firebase.database().ref();
 
 		$scope.editingOwners = false;
 		$scope.editingMembers = false;
 		$scope.editingTags = false;
 		//load all users
-		$scope.allMembers = $firebaseArray(ref.child("users"));
-
+		var allMembers = $firebaseArray(ref.child("users"));
+		$scope.allUsers = [];
+		$scope.freeUsers = [];
 		//wait for data to load
-		$scope.allMembers.$loaded()
+		allMembers.$loaded()
 			.then(function() {
-				console.log($scope.allMembers);
+				for(var i=0; i < allMembers.length; i++) {
+					$scope.allUsers.push(allMembers[i]);
+				}
+				console.log("ova here");
+				console.log($scope.allUsers);
 			})
 			.catch(function(err) {
 				console.error(err);
@@ -38,7 +42,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	// Create new project and set defaults
 	$scope.project = {};
-	$scope.project.title = "Testing Owner";
+	$scope.project.title = "";
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
@@ -54,12 +58,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.owner = {};
 	var uniqueId = $scope.project.title + ';' + $scope.project.owners[0];
 
-
-
-
-
 	$scope.addProjectToDatabase = function() {
-
 		$scope.validateInput();
 		try {
 			var firebaseUser = $scope.authObj.$getAuth();
@@ -136,7 +135,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	$scope.validateInput = function() {
 		if ($scope.project.title === "") {
-
+			
 		}
 	}
 

@@ -17,7 +17,7 @@
             	</div>
 				<div class="project-component">
 					<div class="form-group">
-						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator">
+						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
 					</div>
 					<div class="form-group">
 						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
@@ -26,13 +26,13 @@
 						<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 					</div>
 				</div>
-
             	<div class="project-component">
             		<div>Owners</div>
-								<div class="btn-group">
-            			<button ng-repeat="owner in project.owners" class="btn-info pill">
+            			<div class="btn-group">
+            				<!--<input class="blue no-outline" type="text" ng-model="addedOwner" typeahead="owner as owner.firstName + ' ' + owner.lastName for user in allUsers | filter:$viewValue | limitTo:8">-->
+            			<button ng-repeat="owner in allUsers" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeOwner(owner)"></span>
-            				{{owner}}
+            				{{owner.firstName}} {{owner.lastName}}
             			</button>
 	            		<button class="btn-info pill" ng-click="addOwner=(owner)" type="text" ng-model="newOwner">+</button>
 	            		<button class="btn-info pill">
@@ -41,9 +41,9 @@
             	<div class="project-component">
             		<div>Members</div>
             		<div class="btn-group">
-	            		<button ng-repeat="member in project.members" class="btn-info pill">
+	            		<button ng-repeat="member in allUsers" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeMember(member)"></span>
-            				{{member}}
+            				{{member.firstName}} {{member.lastName}}
             			</button>
 	            		<button class="btn-info pill">+</button>
 	            	</div>
