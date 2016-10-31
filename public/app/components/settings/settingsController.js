@@ -6,11 +6,14 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 	$scope.headingImage = "../../assets/img/tinted_settings.jpg";
 
 	//temp variables for editing profile info
-	$scope.editPositon;
-	$scope.editSummary;
-	$scope.editProjects;
-	$scope.editExperience;
-	$scope.editSkills;
+	// $scope.editPositon;
+	// $scope.editSummary;
+	// $scope.editProjects;
+	// $scope.editExperience;
+	// $scope.editSkills;
+
+	$scope.editing = false;
+	$scope.editMessage = "Edit Profile";
 
 	$scope.authObj = $firebaseAuth();
 	$scope.user = null;
@@ -58,12 +61,25 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		});
 	};
 
-	$scope.saveInfo = function(position, summary, projects, experience, skills){
-		$scope.currentUser.position = position;
-		$scope.currentUser.summary = summary;
-		$scope.currentUser.projects = projects;
-		$scope.currentUser.experience = experience;
-		$scope.currentUser.skills = skills;
+	// $scope.saveInfo = function(position, summary, projects, experience, skills){
+	// 	$scope.currentUser.position = position;
+	// 	$scope.currentUser.summary = summary;
+	// 	$scope.currentUser.projects = projects;
+	// 	$scope.currentUser.experience = experience;
+	// 	$scope.currentUser.skills = skills;
+	// }
+
+	$scope.editPressed = function(){
+
+		if($scope.editing){
+			$scope.editMessage = "Edit Profile";
+		}
+		else{
+			$scope.editMessage = "Done Editing";
+		}
+
+		$scope.editing = !($scope.editing);
+
 	}
 
 	$scope.currentUser = {

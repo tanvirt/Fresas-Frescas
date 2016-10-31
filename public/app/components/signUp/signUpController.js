@@ -7,6 +7,10 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.username;
 	$scope.password;
 	$scope.confirmPassword;
+	$scope.position;
+	$scope.skills;
+	$scope.summary = "";
+	$scope.experience = "";
 
 	$scope.error = "";
 
@@ -39,7 +43,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	}
 
 	fieldsAreValid = function() {
-		var fields = ["firstName", "lastName", "username", "password", "confirmPassword"];
+		var fields = ["firstName", "lastName", "username", "password", "confirmPassword", "position", "skills"];
 		fields.forEach(function(name) {
 			if(!$scope.inputBoxes[name].$valid) {
 				console.log("invalid: " + name);
@@ -77,6 +81,10 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 			$scope.data.firstName = $scope.firstName;
 			$scope.data.lastName = $scope.lastName;
 			$scope.data.username = $scope.username;
+			$scope.data.position = $scope.position;
+			$scope.data.skills = $scope.skills;
+			$scope.data.experience = $scope.experience;
+			$scope.data.summary = $scope.summary;
 		})
 	}
 

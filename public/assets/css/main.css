@@ -5,6 +5,7 @@
 	z-index: 0;
 	background-position: center center;
 	background-image: url("../img/strawberry.jpg");
+	overflow-y:auto;
 }
 
 #signupPage {
