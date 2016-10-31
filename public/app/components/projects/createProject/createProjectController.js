@@ -2,7 +2,6 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 //TODO:
 //1. form/field validation, required fields
 //2. how to insert tag data into database
-//3. upload link for assets
 
 		var ref = firebase.database().ref();
 
@@ -62,6 +61,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 			//var firebaseUser = $scope.authObj.$getAuth();
 			//checkOwners(firebaseUser.uid);
 
+
 			ref.child("projects").child(uniqueId).set({
 				summary: $scope.project.summary,
 				details: $scope.project.details,
@@ -79,6 +79,16 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 					uniqueId: $scope.project.title
 				});
 			}
+			for(var i=0; i < $scope.project.owners.length; i++) {
+				ref.child("users").child($scope.project.owners[i]).child("ownedProjects").set({
+					project: $scope.project.title
+				})
+			}
+			for(var i=0; i < $scope.project.members.length; i++) {
+				ref.child("users").child($scope.project.members[i]).child("memberProjects").set({
+					project: $scope.project.title
+				})
+			}
 			$state.go("myProjects");
 		}
 		catch(error) {
@@ -95,6 +105,11 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		return idArray;
 	}
 	/*checkOwners = function(user) {
+=======
+	//Call this function when an owner is added to check if already
+	//an owner of this project.
+	checkOwners = function(user) {
+>>>>>>> 7c3350eb426a7273254459763cdf5552b4311d88
 		var added = false;
 		angular.forEach($scope.project.owners, function(owner) {
 			if (user == owner) {
@@ -106,6 +121,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	}
 
+	//Call this function when a member is added to check if already
+	//an member of this project.
 	checkMembers = function(user) {
 		var added = false;
 		angular.forEach($scope.project.members, function(member) {
@@ -118,6 +135,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 	}
 
+	//Call this function when a tag is added to check if already
+	//a tag of this project.
 	checkTags = function(newTag) {
 		var added = false;
 		angular.forEach($scope.project.tags, function(tag) {
