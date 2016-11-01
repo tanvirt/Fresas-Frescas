@@ -1,4 +1,4 @@
-angular.module('main').controller('MyProjectsController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
+angular.module('main').controller('MyProjectsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
 	$scope.heading = "My Projects";
@@ -10,15 +10,35 @@ angular.module('main').controller('MyProjectsController', function($scope, $fire
 	$scope.projectsWorking = [];
 	$scope.projectsFollowing = [];
 
-	var ref = firebase.database().ref().child("projects");
-	var projectList = $firebaseArray(ref);
+	var projectRef = firebase.database().ref().child("projects");
+	var projectList = $firebaseArray(projectRef);
 
-	projectList.$loaded().then(function() {
-		angular.forEach(projectList, function(project) {
-			console.log(project);
-			console.log(project.views);
-		})
-	});
+	$rootScope.authObj.$onAuthStateChanged(function(user) {
+        if(user) {
+        	var userRef = firebase.database().ref().child("users").child(user.uid)
+        	var ownedList = $firebaseArray(userRef.child("ownedProjects"));
+        	var memberList = $firebaseArray(userRef.child("memberProjects"));
+        	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
+        	ownedList.$loaded().then(function() {
+        		angular.forEach(ownedList, function(project) {
+        			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$id)));
+        		})
+        	})
+        	memberList.$loaded().then(function() {
+        		angular.forEach(memberList, function(project) {
+        			$scope.projectsWorking.push($firebaseObject(projectRef.child(project.$id)));
+        		})
+        	})
+        	subscriberList.$loaded().then(function() {
+        		angular.forEach(subscriberList, function(project) {
+        			$scope.projectsFollowing.push($firebaseObject(projectRef.child(project.$id)));
+        		})
+        	})
+        }
+        else {
+        	console.log("No user logged in, weird error");
+        }
+    })
 
 	var tempProject = {
 		title: "Welcome Buddy Application",

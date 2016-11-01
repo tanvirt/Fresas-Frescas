@@ -121,7 +121,7 @@ html, body, .ng-scope, .container-fluid, .row {
 #signUpButton {
 	margin-top: 2rem;
 	width: 100%;
-	color: black;	
+	color: black;
 }
 
 #featured-card {
@@ -140,11 +140,11 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 #featured-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);	
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 #recommended-card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);	
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .right-card {
@@ -223,4 +223,9 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .recommended-img {
 	opacity: .3;
+}
+
+.error-message {
+	color: red;
+	font-size: 15px;
 }

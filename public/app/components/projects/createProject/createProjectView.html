@@ -10,14 +10,16 @@
             	<!-- Main content starts-->
             	<div class="project-component">
 					<img class="img-responsive full-width" ng-src="{{project.photo}}">
-					<button class="btn btn-success full-width">
-						<span class="fa fa-arrow-circle-o-up icon"></span>
-						Upload Photo
+					<input type="file" id="file-photo" name="file-photo"/>
+					<button class="btn btn-success full-width" ng-click="uploadPhoto()">
+						<span class="fa fa-arrow-circle-o-up icon"></span>Upload Photo
 					</button>
+					</div>
           </div>
 				<div class="project-component">
 					<div class="form-group">
 						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
+						<p class="error-message" ng-show="invalidTitle"> * Error, title is required </p>
 					</div>
 					<div class="form-group">
 						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
@@ -29,6 +31,7 @@
             	<div class="project-component">
             		<div>Owners</div>
             			<div class="btn-group">
+            			<button class="btn-info pill"> Me </button>
             			<button ng-repeat="owner in project.owners" class="btn-info pill">
             				<span class="glyphicon glyphicon-remove icon" ng-click="removeOwner(owner)"></span>
             				{{owner.firstName}} {{owner.lastName}}
@@ -52,6 +55,22 @@
 							<button class="btn-info pill" ng-show="editingMembers">
 								<input name="members" type="text" placeholder="enter a member" ng-model="selectedMember" typeahead="member as member.firstName + ' ' + member.lastName for member in allUsers | filter:$viewValue | limitTo:8" class="form-control">
 								<span class="glyphicon glyphicon-ok" ng-click="editingMembers=false; addMember()"></span>
+								<span class="glyphicon glyphicon-remove icon" ng-click="editingMembers=false"></span>
+							</button>
+					</div>
+            	</div>
+            	<div class="project-component">
+            		<div>Subscribers</div>
+            		<div class="btn-group">
+	            		<button ng-repeat="subscriber in project.subscribers" class="btn-info pill">
+            				<span class="glyphicon glyphicon-remove icon" ng-click="removeSubscriber(subscriber)"></span>
+            				{{subscriber.firstName}} {{subscriber.lastName}}
+            			</button>
+	            		<button class="btn-info pill" ng-hide="editingSubscribers" ng-click="editingSubscribers=true">+</button>
+							<button class="btn-info pill" ng-show="editingSubscribers">
+								<input name="members" type="text" placeholder="enter a subscriber" ng-model="selectedSubscriber" typeahead="subscriber as subscriber.firstName + ' ' + subscriber.lastName for subscriber in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+								<span class="glyphicon glyphicon-ok" ng-click="editingSubscribers=false; addSubscriber()"></span>
+								<span class="glyphicon glyphicon-remove icon" ng-click="editingSubscribers=false"></span>
 							</button>
 					</div>
             	</div>
@@ -62,11 +81,13 @@
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{tag}}
             			</button>
+									<p class="error-message" ng-show="invalidTags"> * Error, at least one tag is required </p>
 	            		<button class="btn-info pill" ng-hide="editingTags" ng-click="editingTags=true">+</button>
 									<button class="btn-info pill" ng-show="editingTags">
 												<input name="tags" type="text" placeholder="enter a tag" ng-model="selectedTag"
 											typeahead="tag.$id for tag in allTags | filter:$viewValue | limitTo:8" class="form-control">
 												<span class="glyphicon glyphicon-ok" ng-click="editingTags=false; addTag()"></span>
+												<span class="glyphicon glyphicon-remove icon" ng-click="editingTags=false"></span>
 									</button>
 									</button>
 	            	</div>
@@ -85,8 +106,8 @@
             			<span class="glyphicon glyphicon-floppy-disk icon"></span>
             			Save
             		</button>
-            		<button class="btn btn-danger" id="project-cancel-save">
-            			<span class="fa fa-ban icon" ng-click="cancel()"></span>
+            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()">
+            			<span class="fa fa-ban icon"></span>
             			Cancel
             		</button>
             	</div>
@@ -95,6 +116,4 @@
 			</div>
 		</div>
 	</div>
-
-	<appfooter></appfooter>
 </div>
