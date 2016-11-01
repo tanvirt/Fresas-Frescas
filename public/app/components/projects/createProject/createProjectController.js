@@ -67,8 +67,21 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		ownersList.push(firebaseUser.uid);
 
 		try {
-			var projects = $firebaseArray(ref.child("projects"));
-			projects.$add({
+			// var projects = $firebaseArray(ref.child("projects"));
+			// projects.$add({
+			// 	title: $scope.project.title,
+			// 	summary: $scope.project.summary,
+			// 	details: $scope.project.details,
+			// 	members: objectsToIds($scope.project.members),
+			// 	owners: ownersList,
+			// 	subscribers: $scope.project.subscribers,
+			// 	assets: $scope.project.assets,
+			// 	likes: $scope.project.likes,
+			// 	views: $scope.project.views,
+			// 	tags: $scope.project.tags,
+			// 	creationDate: creationDate
+			// });
+			var projectAddRef = ref.child("projects").push({
 				title: $scope.project.title,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
@@ -81,20 +94,27 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				tags: $scope.project.tags,
 				creationDate: creationDate
 			});
+			var projectAddObj = $firebaseObject(projectAddRef);
+			var addedID = projectAddObj.$id;
 
 			for (var i=0; i < $scope.project.tags.length; i++) {
-				var tagsData = $firebaseArray(ref.child("tags").child($scope.project.tags[i]));
-				tagsData.$add({title: $scope.project.title});
+				// var tagsData = $firebaseArray(ref.child("tags").child($scope.project.tags[i]));
+				// tagsData.child("projects").$add({project: addedID});
+				ref.child("tags").child($scope.project.tags[i]).child("projects").child(addedID).set({
+					project: $scope.project.title
+				});
 			}
 
 			for(var i=0; i < ownersList.length; i++) {
-				var projectOwnersRef = ref.child("users").child(ownersList[i]).child("ownedProjects");
-				projectOwnersRef.child(uniqueId).set({project: $scope.project.title});
+				ref.child("users").child(ownersList[i]).child("ownedProjects").child(addedID).set({
+					project: $scope.project.title
+				});
 			}
 
 			for(var i=0; i < $scope.project.members.length; i++) {
-				var projectMembersRef = ref.child("users").child($scope.project.members[i].$id).child("memberProjects");
-				projectMembersRef.child(uniqueId).set({project: $scope.project.title});
+				ref.child("users").child($scope.project.members[i]).child("memberProjects").child(addedID).set({
+					project: $scope.project.title
+				});
 			}
 		}
 		catch(error) {

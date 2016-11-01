@@ -21,6 +21,8 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
         	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
         	ownedList.$loaded().then(function() {
         		angular.forEach(ownedList, function(project) {
+        			var blah = $firebaseObject(projectRef.child(project.$value));
+        			console.log(blah);
         			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$value)));
         		})
         	})
