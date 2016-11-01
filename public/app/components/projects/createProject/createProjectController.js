@@ -80,23 +80,15 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				tagsRef.set({title: $scope.project.title});
 			}
 
-			for(var i=0; i < $scope.project.owners.length; i++) {
-				var projectOwnersRef = ref.child("users").child($scope.project.owners[i].$id).child("ownedProjects");
-				projectOwnersRef.$add({project: $scope.project.title});
+			for(var i=0; i < ownersList.length; i++) {
+				var projectOwnersRef = ref.child("users").child(ownersList[i]).child("ownedProjects");
+				projectOwnersRef.child(uniqueId).set({project: $scope.project.title});
 			}
 		
 			for(var i=0; i < $scope.project.members.length; i++) {
 				var projectMembersRef = ref.child("users").child($scope.project.members[i].$id).child("memberProjects");
-				projectMembersRef.$add({project: $scope.project.title});
+				projectMembersRef.child(uniqueId).set({project: $scope.project.title});
 			}
-
-			for(var i=0; i < $scope.project.subscribers.length; i++) {
-				var projectSubscribersRef = ref.child("users").child($scope.project.members[i].$id).child("subscriberProjects");
-				projectSubscribersRef.child(uniqueId).set({project: $scope.project.title});
-			}
-
-			//this will go to the view for that project once it exists
-			//$state.go("myProjects");
 		}
 		catch(error) {
 			console.log('Error adding project to DB: ', error);
