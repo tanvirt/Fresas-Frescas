@@ -1,12 +1,13 @@
-<div>
+<div class="video-section">
+    <a ng-show="!headingImage || headingImage == ''" id="video-player" class="player"></a>
     <header class="intro-header" ng-style="{'background-image': 'url(' + headingImage + ')'}">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="col-lg-12">
                     <div class="page-heading">
-                        <h1>{{heading}}</h1>
-                        <hr class="small">
                         <span class="subheading">{{subheading}}</span>
+                        <br>
+                        <h1>{{heading}}</h1>
                     </div>
                 </div>
             </div>

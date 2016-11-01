@@ -1,9 +1,16 @@
 angular.module('main').controller('HomeController', function($rootScope, $scope, $firebaseArray, $firebaseAuth, $state, $firebaseObject) {
 	
+	var video = new Video('https://www.youtube.com/watch?v=WVPRkcczXCY', 132, 160);
+	VideoPlayer.play([video], function(event) {
+		var currentTime = event.time;
+		$scope.headingImage = "";
+		console.log("video started");
+	});
+
 	// App header variables
-	$scope.heading = "Fresas Frescas";
-	$scope.subheading = "We have the freshest berries.";
-	$scope.headingImage = "../../assets/img/tinted_strawberry.jpg";
+	$scope.heading = "BUILD SOMETHING AMAZING";
+	$scope.subheading = "Create meaningful and lasting relationships.";
+	$scope.headingImage = "";
 
 	var ref = firebase.database().ref();
 
@@ -131,6 +138,37 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 	}
 
 	$scope.recommendedProjects = [{
+		title: "Test Title",
+		summary: "I am typing a summary here. This is a fantastic project. Good for this person",
+		description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
+		owners: ["Kyle Wahl", "Tanvir Talukder", "Jason Ngo"],
+		imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
+		likes: 77,
+		views: 234,
+		link: "https://www.youtube.com/watch?v=3ECwzCUw3a4"
+	},
+	{
+		title: "Test Title",
+		summary: "I am typing a summary here. This is a fantastic project. Good for this person",
+		description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
+		owners: ["Kyle Wahl", "Tanvir Talukder", "Jason Ngo"],
+		imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
+		likes: 77,
+		views: 234,
+		link: "https://www.youtube.com/watch?v=3ECwzCUw3a4"
+	},
+	{
+		title: "Test Title",
+		summary: "I am typing a summary here. This is a fantastic project. Good for this person",
+		description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
+		owners: ["Kyle Wahl", "Tanvir Talukder", "Jason Ngo"],
+		imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
+		likes: 77,
+		views: 234,
+		link: "https://www.youtube.com/watch?v=3ECwzCUw3a4"
+	}];
+
+	$scope.newProjects = [{
 		title: "Test Title",
 		summary: "I am typing a summary here. This is a fantastic project. Good for this person",
 		description: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
