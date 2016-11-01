@@ -4,13 +4,14 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 	VideoPlayer.play([video], function(event) {
 		var currentTime = event.time;
 		$scope.headingImage = "";
+		$scope.$digest();
 		console.log("video started");
 	});
 
 	// App header variables
 	$scope.heading = "BUILD SOMETHING AMAZING";
 	$scope.subheading = "Create meaningful and lasting relationships.";
-	$scope.headingImage = "";
+	$scope.headingImage = "../../assets/img/video_start.png";
 
 	var ref = firebase.database().ref();
 
