@@ -13,13 +13,7 @@
 	            		<div>Owner</div>
 	            		<div ng-repeat="project in projectsOwning">
 	            			<div class="project-component">
-		            			<img class="img-responsive" ng-src="{{project.photo}}">
-	            				<div>
-	            					{{project.title}}
-	            				</div>
-	            				<div>
-	            					{{project.summary}}
-	            				</div>
+	            				<project-card image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
             				</div>
             			</div>
 	            	</div>
@@ -27,13 +21,7 @@
 	            		<div>Member</div>
 	            		<div ng-repeat="project in projectsWorking">
 	            			<div class="project-component">
-		            			<img class="img-responsive" ng-src="{{project.photo}}">
-	            				<div>
-	            					{{project.title}}
-	            				</div>
-	            				<div>
-	            					{{project.summary}}
-	            				</div>
+		            			<project-card image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
             				</div>
             			</div>
 	            	</div>
@@ -41,13 +29,7 @@
 	            		<div>Following</div>
 	            		<div ng-repeat="project in projectsFollowing">
 	            			<div class="project-component">
-		            			<img class="img-responsive" ng-src="{{project.photo}}">
-	            				<div>
-	            					{{project.title}}
-	            				</div>
-	            				<div>
-	            					{{project.summary}}
-	            				</div>
+		            			<project-card image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
             				</div>
             			</div>
 	            	</div>

@@ -20,4 +20,18 @@ angular.module('main').controller('MyProjectsController', function($scope, $fire
 		})
 	});
 
+	var tempProject = {
+		title: "Welcome Buddy Application",
+		photo: "../../assets/img/splash.jpg",
+		summary: "Connect new hires with experienced employees.",
+		details: "Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase.",
+		likes: "123",
+		views: "456",
+		comments: "7"
+	};
+
+	$scope.projectsOwning.push(tempProject);
+	$scope.projectsWorking.push(tempProject);
+	$scope.projectsFollowing.push(tempProject);
+
 });
