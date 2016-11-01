@@ -24,6 +24,7 @@ angular.module('main').controller('LoginController', function($rootScope, $scope
 	}
 
 	$scope.signUp = function() {
+		document.getElementById('login').style.overflow = 'auto';
 		$state.go('signUp');
 	}
 
