@@ -21,19 +21,17 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
         	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
         	ownedList.$loaded().then(function() {
         		angular.forEach(ownedList, function(project) {
-        			var blah = $firebaseObject(projectRef.child(project.$value));
-        			console.log(blah);
-        			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$value)));
+        			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$id)));
         		})
         	})
         	memberList.$loaded().then(function() {
         		angular.forEach(memberList, function(project) {
-        			$scope.projectsWorking.push($firebaseObject(projectRef.child(project.$value)));
+        			$scope.projectsWorking.push($firebaseObject(projectRef.child(project.$id)));
         		})
         	})
         	subscriberList.$loaded().then(function() {
         		angular.forEach(subscriberList, function(project) {
-        			$scope.projectsFollowing.push($firebaseObject(projectRef.child(project.$value)));
+        			$scope.projectsFollowing.push($firebaseObject(projectRef.child(project.$id)));
         		})
         	})
         }
