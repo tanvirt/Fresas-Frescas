@@ -1,3 +1,11 @@
+body {
+	background: #eee;
+}
+
+textarea {
+   resize: none;
+}
+
 #login{
 	width: 100%;
 	height: 100%;
@@ -8,8 +16,51 @@
 	overflow-y:auto;
 }
 
-#signupPage {
-	overflow: scroll;
+.card-icon {
+	margin-right: 2rem;
+}
+
+.card .card-content .card-title {
+    line-height: inherit;
+}
+
+.dropdown-menu {
+  min-width:auto;
+  width:100%;
+}
+
+.text-input {
+	height: 5.15rem;
+}
+
+#project-save {
+	width: 47.5%;
+	margin-right: 5%;
+}
+
+#project-cancel-save {
+	width: 47.5%;
+}
+
+.pill {
+	border: 0;
+	border-radius: 2rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	margin: 0.25rem;
+}
+
+.icon {
+	top: 0.25rem;
+}
+
+.project-component {
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.full-width {
+	width: 100%;
 }
 
 .logo {

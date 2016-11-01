@@ -1,9 +1,16 @@
 angular.module('main').controller('HomeController', function($rootScope, $scope, $firebaseArray, $firebaseAuth, $state, $firebaseObject) {
 	
+	var video = new Video('https://www.youtube.com/watch?v=WVPRkcczXCY', 132, 160);
+	VideoPlayer.play([video], function(event) {
+		var currentTime = event.time;
+		$scope.headingImage = "";
+		console.log("video started");
+	});
+
 	// App header variables
-	$scope.heading = "Fresas Frescas";
-	$scope.subheading = "We have the freshest berries.";
-	$scope.headingImage = "../../assets/img/tinted_strawberry.jpg";
+	$scope.heading = "BUILD SOMETHING AMAZING";
+	$scope.subheading = "Create meaningful and lasting relationships.";
+	$scope.headingImage = "";
 
 	var ref = firebase.database().ref();
 
