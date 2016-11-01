@@ -5,10 +5,34 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 	$scope.subheading = "We have the freshest berries.";
 	$scope.headingImage = "../../assets/img/tinted_strawberry.jpg";
 
-	var ref = firebase.database().ref().child("messages");
+	var ref = firebase.database().ref();
 
 	// create a synchronized array
-	$scope.messages = $firebaseArray(ref);
+	$scope.messages = $firebaseArray(ref.child("messages"));
+
+	$scope.projectList = $firebaseArray(ref.child("projects"));
+
+	// getting current user
+	$rootScope.authObj = $firebaseAuth();
+	$scope.user = $rootScope.authObj.$getAuth();
+
+	// getting tags for the user for recommended
+	$rootScope.authObj.$onAuthStateChanged(function(user) {
+        if(user) {
+        	//$scope.userTag =
+        }
+    })
+
+	// wait for data to load
+	$scope.projectList.$loaded()
+	.then(function() {
+		$scope.numProjects = $scope.projectList.length;
+		setFeaturedProject();
+		setPopularProject();
+	})
+	.catch(function(err) {
+		console.error(err);
+	});
 
 	// add new items to the array
 	// the message is automatically added to our Firebase database!
@@ -36,13 +60,66 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		$state.go('createProject');
 	}
 
-	$scope.featured = {
-		title: "Test Title",
-		description: "I am typing a description here. This is a fantastic project. Good for this person",
-		owners: ["Kyle Wahl", "Tanvir Talukder", "Jason Ngo"],
-		imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
-		likes: 77,
-		views: 234
+	// $scope.like = function() {
+		
+	// }
+
+	random = function() {
+		return Math.floor((Math.random() * $scope.numProjects));
+	}
+
+	setFeaturedProject = function() {
+		// random freatured project
+		var rand = random();
+		var featuredProject = $scope.projectList[rand];
+		console.log(featuredProject.summary);
+		$scope.featured = {
+			title: featuredProject.title,
+			description: featuredProject.summary,
+			owners: featuredProject.owners,
+			imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
+			likes: featuredProject.likes,
+			views: featuredProject.views
+		}
+	}
+
+	setRecommendedProjects = function() {
+
+	}
+
+	objectsToIds = function(objArray) {
+		var idArray = [];
+		//$firebaseArray(ref.child("users").ref()
+		for (var i=0; i < objArray.length; i++) {
+			//$firebaseArray(ref.child("users").ref.on(objArray[i]))
+			idArray.push(ref.child("users").ref.on(objArray[i]));
+		}
+		return idArray;
+	}
+
+	setPopularProject = function() {
+		var likes = 0;
+		var views = 0;
+		var popular;
+		for(project = 0; project < $scope.numProjects; project++) {
+			//console.log("likes: " + likes + "views: " + views);
+			//console.log("Project likes: " + $scope.projectList[project].likes + " Project views: " + $scope.projectList[project].views/20)
+			if((likes + views/20) < ($scope.projectList[project].likes + $scope.projectList[project].views/20)) {
+				likes = $scope.projectList[project].likes;
+				views = $scope.projectList[project].views;
+				popular = $scope.projectList[project];
+				//console.log("CHANGES");
+			}
+		}
+		console.log(popular);
+		$scope.popularProject = {
+			title: popular.title,
+			description: popular.summary,
+			owners: objectsToIds(popular.owners),
+			imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
+			likes: popular.likes,
+			views: popular.views
+		}
 	}
 
 	$scope.recommendedProjects = [{

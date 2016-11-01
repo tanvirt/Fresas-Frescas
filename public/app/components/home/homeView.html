@@ -24,6 +24,23 @@
             		</div>
             	</div>
 
+            	<h2>Popular Project</h2>
+            	<div id="featured-card">
+            		<div class="col-xs-12 col-sm-3">
+            			<img class="card-img" src="{{popularProject.imgSrc}}">            		
+            		</div>
+            		<div class="col-xs-12 col-sm-9 right-card">
+            			<h3>{{popularProject.title}}</h3>
+            			<div class="card-icons">
+            				<span class="glyphicon glyphicon-triangle-top"> {{popularProject.likes}} </span>
+            					&nbsp;	&nbsp;	&nbsp;	&nbsp;
+            				<span class="glyphicon glyphicon-eye-open"> {{popularProject.views}} </span>
+            			</div>
+            			<button type="button" class="owner-tag btn btn-info" ng-repeat="owner in popularProject.owners">{{owner}}</button>
+            			<div class="card-description">{{popularProject.description}}</div>
+            		</div>
+            	</div>
+
             	<h2>Recommended Projects</h2>
             	<div id="recommended-card" class="col-xs-12 col-sm-4" ng-repeat="recommended in recommendedProjects">
 	            	<div class="flip-container">
