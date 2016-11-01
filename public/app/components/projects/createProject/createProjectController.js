@@ -2,9 +2,11 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 //TODO:
 //1. form/field validation, required fields
 //2. upload photo stuff
-//3. change to use auto-generated firebase
+//3. fix owner and member list stuff
 
 	var ref = firebase.database().ref();
+	$scope.invalidTitle = false;
+	$scope.invalidTags = false;
 
 	//load all users
 	$scope.allUsers = $firebaseArray(ref.child("users"));
@@ -40,7 +42,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	// Create new project
 	$scope.project = {};
-	$scope.project.title = "Test for Chris";
+	$scope.project.title = "";
 	$scope.project.summary = "";
 	$scope.project.details = "";
 	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
@@ -53,6 +55,10 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.views = 0;
 
 	$scope.addProjectToDatabase = function() {
+		if (validateData() === false) {
+			return;
+		}
+
 		var creationDate = new Date();
 		var firebaseUser = $scope.authObj.$getAuth();
 		var uniqueId = firebaseUser.uid + ';' + creationDate;
@@ -61,7 +67,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		ownersList.push(firebaseUser.uid);
 
 		try {
-			ref.child("projects").child(uniqueId).set({
+			var projects = $firebaseArray(ref.child("projects"));
+			projects.$add({
 				title: $scope.project.title,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
@@ -76,15 +83,15 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 			});
 
 			for (var i=0; i < $scope.project.tags.length; i++) {
-				var tagsRef = ref.child("tags").child($scope.project.tags[i]).child(uniqueId);
-				tagsRef.set({title: $scope.project.title});
+				var tagsData = $firebaseArray(ref.child("tags").child($scope.project.tags[i]));
+				tagsData.$add({title: $scope.project.title});
 			}
 
 			for(var i=0; i < $scope.project.owners.length; i++) {
 				var projectOwnersRef = ref.child("users").child($scope.project.owners[i].$id).child("ownedProjects");
 				projectOwnersRef.$add({project: $scope.project.title});
 			}
-		
+
 			for(var i=0; i < $scope.project.members.length; i++) {
 				var projectMembersRef = ref.child("users").child($scope.project.members[i].$id).child("memberProjects");
 				projectMembersRef.$add({project: $scope.project.title});
@@ -111,6 +118,22 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		}
 
 		return idArray;
+	}
+
+	validateData = function() {
+		console.log("here x1");
+		if ($scope.project.title === "") {
+			$scope.invalidTitle = true;
+			return false;
+		}
+		else if ($scope.project.tags.length === 0) {
+			console.log("here x2");
+			$scope.invalidTags === true;
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	$scope.uploadPhoto = function() {
@@ -151,7 +174,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		} else {
 			console.log("error, not a real user");
 		}
-		
+
 	}
 
 	$scope.addMember = function() {
@@ -162,7 +185,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		} else {
 			console.log("error, not a real user");
 		}
-		
+
 	}
 
 	$scope.addSubscriber = function() {
@@ -176,18 +199,6 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	}
 
 	$scope.addTag = function() {
-		if ($scope.allTags.indexOf($scope.selectedTag) < 0) {
-			console.log($scope.selectedTag);
-			console.log($scope.allTags);
-			console.log("TROUBLEEEEEE");
-			try {
-				var tagsRef = ref.child("tags");
-				tagsRef.child($scope.selectedTag).set({});
-			} catch(error) {
-				console.log("Error adding to db", error);
-			}
-		}
-
 		$scope.project.tags.push($scope.selectedTag);
 	}
 

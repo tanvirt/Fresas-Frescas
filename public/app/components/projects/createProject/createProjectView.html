@@ -19,6 +19,7 @@
 				<div class="project-component">
 					<div class="form-group">
 						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
+						<p class="error-message" ng-show="invalidTitle"> * Error, title is required </p>
 					</div>
 					<div class="form-group">
 						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
@@ -80,11 +81,13 @@
             				<span class="glyphicon glyphicon-remove icon"></span>
             				{{tag}}
             			</button>
+									<p class="error-message" ng-show="invalidTags"> * Error, at least one tag is required </p>
 	            		<button class="btn-info pill" ng-hide="editingTags" ng-click="editingTags=true">+</button>
 									<button class="btn-info pill" ng-show="editingTags">
 												<input name="tags" type="text" placeholder="enter a tag" ng-model="selectedTag"
 											typeahead="tag.$id for tag in allTags | filter:$viewValue | limitTo:8" class="form-control">
 												<span class="glyphicon glyphicon-ok" ng-click="editingTags=false; addTag()"></span>
+												<span class="glyphicon glyphicon-remove icon" ng-click="editingTags=false"></span>
 									</button>
 									</button>
 	            	</div>
