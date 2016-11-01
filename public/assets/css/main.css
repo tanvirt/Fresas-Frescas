@@ -5,6 +5,7 @@
 	z-index: 0;
 	background-position: center center;
 	background-image: url("../img/strawberry.jpg");
+	overflow-y:auto;
 }
 
 #signupPage {
@@ -87,7 +88,6 @@ html, body, .ng-scope, .container-fluid, .row {
 #recommended-card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    overflow: auto;
     text-align: center;
     padding: 0;
 }
@@ -172,8 +172,21 @@ html, body, .ng-scope, .container-fluid, .row {
 	transform: rotateY(180deg);
 	background-color: rgba(0, 0, 0, 0.6) ;
 	width: 100%;
+	color: white;
+	
 }
 
-.recommended-img {
+.vertical-img {
 	opacity: .3;
+	margin-top:30%;
+	z-index: 0;
+}
+
+#vertical-description {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 83%;
+	background-image: url('http://l.yimg.com/dh/ap/att/portal/common/i/att_open-graph_icon_1.png') no-repeat center center;
+	position: absolute;
+	z-index: 1;
 }
