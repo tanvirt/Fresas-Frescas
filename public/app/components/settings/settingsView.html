@@ -13,7 +13,8 @@
 				<div>
             		<div class="row" id="profileHeading">
             			<div class="col-md-8">
-            				<h1>{{currentUser.name}}</h1>
+            				<h1>{{currentUser.firstName}}</h1>
+										<h1>{{currentUser.lastName}}</h1>
             				<h3>{{currentUser.position}}</h3>
             			</div>
             			<img class="col-md-4 pull-right img-responsive" ng-show="currentUser.image != null" src={{currentUser.image}}>
@@ -27,7 +28,7 @@
             		</div>
 
             		<div class="content" id="currentProjectsContent">
-            			<h5>Crrent Projects</h5>
+            			<h5>Current Projects</h5>
             			<div class="btn-group">
 	                      	<button ng-repeat="project in currentUser.projects" class="btn-info pill">
 	                      		<span class="glyphicon glyphicon-remove icon" ng-show="!editingProjects && editing" ng-click="removeProject(project)"></span>
@@ -76,7 +77,7 @@
 					<div id="myModal" class="modal fade" role="dialog">
 					  <div class="modal-dialog">
 
-					    
+
 					    <div class="modal-content">
 					      <div class="modal-header">
 					        <button type="button" class="close" data-dismiss="modal">&times;</button>

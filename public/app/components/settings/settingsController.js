@@ -1,16 +1,9 @@
 angular.module('main').controller('SettingsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
-	
+
 	// App header variables
 	$scope.heading = "Settings";
 	$scope.subheading = "Our berries will change your life.";
 	$scope.headingImage = "../../assets/img/tinted_settings.jpg";
-
-	//temp variables for editing profile info
-	// $scope.editPositon;
-	// $scope.editSummary;
-	// $scope.editProjects;
-	// $scope.editExperience;
-	// $scope.editSkills;
 
 	$scope.editing = false;
 	$scope.editMessage = "Edit Profile";
@@ -23,27 +16,27 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 	$scope.user = null;
 	$scope.profileObject = null;
 	$scope.profileData = null;
-	$rootScope.addListener(new function() {
-		this.onUserAuth = function(user) {
-			$scope.user = $scope.authObj.$getAuth();
+	$scope.currentUser = {};
 
-			var ref = firebase.database().ref().child("users");
-			var profileRef = ref.child($scope.user.uid);
-			
-			$scope.profileObject = $firebaseObject(profileRef);
-
-			$scope.profileObject.$bindTo($scope, "profileData").then(function() {
-				// Access user data here for the specified user doing $scope.data.<whatever>
-			}).catch(function(error) {
-				console.error("error:", error);
-			});
-			
-		};
+	var ref = firebase.database().ref();
+	//all projects in database -- for typeahead
+	var existingProjects = $firebaseObject(ref.child("projects"));
 
 
-	});
+	$scope.authObj.$onAuthStateChanged(function(user) {
+		if(user) {
+			var userId = user.uid;
+			var userData = $firebaseObject(ref.child("users").child(userId));
+			userData.$loaded().then(function() {
+				console.log(userData);
+				userData.$bindTo($scope, "currentUser");
+			})
+		} else {
+			console.log("error, who are you?");
+		}
+	})
 
-	$scope.delete = function() {
+	/*$scope.delete = function() {
 		$scope.message = null;
 		$scope.error = null;
 
@@ -55,7 +48,7 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			//Deleted
 		}), function(error) {
 			console.log("Error:", error);
-		};
+		};*
 
 		$scope.authObj.$deleteUser().then(function() {
 			console.log($scope.data);
@@ -63,23 +56,16 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		}).catch(function(error) {
 				$scope.error = error;
 		});
-	};
+	};*/
 
-	// $scope.saveInfo = function(position, summary, projects, experience, skills){
-	// 	$scope.currentUser.position = position;
-	// 	$scope.currentUser.summary = summary;
-	// 	$scope.currentUser.projects = projects;
-	// 	$scope.currentUser.experience = experience;
-	// 	$scope.currentUser.skills = skills;
-	// }
 
 	$scope.editPressed = function(){
-
 		if($scope.editing){
 			$scope.editMessage = "Edit Profile";
 		}
 		else{
 			$scope.editMessage = "Done Editing";
+			//updateDatabase();
 		}
 
 		$scope.editing = !($scope.editing);
@@ -133,4 +119,5 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
     placeholder: 'Enter a tag',
     secondaryPlaceholder: '+Skill',
   });
+
 });

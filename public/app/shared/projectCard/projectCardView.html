@@ -1,26 +1,26 @@
 <div class="card horizontal">
-	<div class="card-image waves-effect waves-block waves-light" style="max-width: 33.3%;">
+	<div ng-show="image" class="card-image waves-effect waves-block waves-light" style="max-width: 33.3%;">
 		<img class="activator" src="../../assets/img/splash.jpg" style="min-height: 100%;">
 	</div>
 	<div class="card-content" style="width: 100%;">
 		<span class="card-title activator grey-text text-darken-4">
-			<div>
+			<div ng-show="summary">
 				<i class="material-icons right">more_vert</i>
 			</div>
 			<div>
 				{{title}}
 			</div>
 		</span>
-		<div class="project-component">
+		<div ng-show="summary" class="project-component">
 			{{summary}}
 		</div>
-		<div class="full-width">
-			<span class="fa fa-thumbs-o-up card-icon"> {{likes}} </span>
-			<span class="fa fa-eye card-icon"> {{views}} </span>
-			<span class="fa fa-commenting-o card-icon"> {{comments}} </span>
+		<div ng-show="likes || views || comments" class="full-width">
+			<span ng-show="likes" class="fa fa-thumbs-o-up card-icon"> {{likes}} </span>
+			<span ng-show="views" class="fa fa-eye card-icon"> {{views}} </span>
+			<span ng-show="comments" class="fa fa-commenting-o card-icon"> {{comments}} </span>
 		</div>
 	</div>
-	<div class="card-reveal">
+	<div ng-show="title && summary" class="card-reveal">
 		<span class="card-title grey-text text-darken-4">
 			<div>
 				<i class="material-icons right">close</i>
