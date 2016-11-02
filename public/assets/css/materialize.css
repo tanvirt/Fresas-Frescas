@@ -443,7 +443,7 @@ i.right {
 .circle {
   border-radius: 50%;
 }
-=======
+
 .chip {
   display: inline-block;
   height: 32px;
@@ -457,4 +457,3 @@ i.right {
   margin-bottom: 5px;
   margin-right: 5px;
 }
->>>>>>> 6263db3ee65460d39ba52c03e16490f208777b12

@@ -6,6 +6,11 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 
 	// Main content starts
 	$scope.comments = [];
+
+	$scope.newComment = "";
+	$scope.addComment = function() {
+		console.log($scope.newComment);
+	}
 	
 	var sampleComment1 = {
 		id: "dfgdfg87987dfg",
