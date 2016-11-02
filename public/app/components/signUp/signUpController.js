@@ -8,7 +8,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.password;
 	$scope.confirmPassword;
 	$scope.position;
-	$scope.skills;
+	$scope.skills = [];
 	$scope.summary = "";
 	$scope.experience = "";
 
@@ -43,7 +43,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	}
 
 	fieldsAreValid = function() {
-		var fields = ["firstName", "lastName", "username", "password", "confirmPassword", "position", "skills"];
+		var fields = ["firstName", "lastName", "username", "password", "confirmPassword", "position"];
 		fields.forEach(function(name) {
 			if(!$scope.inputBoxes[name].$valid) {
 				console.log("invalid: " + name);
@@ -87,5 +87,17 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 			$scope.data.summary = $scope.summary;
 		})
 	}
+
+	
+	$('.chips').material_chip();
+
+  	$('.chips-placeholder').material_chip({
+    	placeholder: 'Enter a tag',
+    	secondaryPlaceholder: '+Tag',
+  	});
+        
+	$('.chips').on('chip.add', function(e, chip){
+    	$scope.skills.push(chip.tag);
+  	});
 
 });

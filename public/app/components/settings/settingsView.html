@@ -29,18 +29,10 @@
 
             		<div class="content" id="currentProjectsContent">
             			<h5>Current Projects</h5>
-            			<div class="btn-group">
-	                      	<button ng-repeat="project in currentUser.projects" class="btn-info pill">
-	                      		<span class="glyphicon glyphicon-remove icon" ng-show="!editingProjects && editing" ng-click="removeProject(project)"></span>
-	                      		{{project}}
-	                      	</button>
-	                      	<button class="btn-info pill" ng-show="!editingProjects && editing" ng-click="editingProjects=true">+</button>
-	                      	<button class="btn-info pill" ng-show="editingProjects">
-	                      		<!-- need to add typeahead functionality -->
-	                      		<input type="text" name="skills" placeholder="enter a project" ng-model="selectedProject">
-	                      		<span class="glyphicon glyphicon-ok" ng-click="editingProjects=false; addProjects()"></span>
-	                      	</button>
-	                      </div>
+            			<div ng-repeat="project in currentUser.projects" class="chip">
+	                      	<!-- <img src="project.image"> -->
+	                      	{{project.title}}
+	                    </div>
             		</div>
 
             		<div class="content" id="experienceContent">
@@ -51,17 +43,12 @@
 
             		<div class="content" id="skillsContent">
                         <h5>Skills</h5>
-	                      <div class="btn-group">
+	                      <div>
 	                      	<div ng-repeat="skill in currentUser.skills" class="chip">
 	                      		{{skill}}
 	                      		<i class="close material-icons" ng-show="!editingSkills && editing" ng-click="removeSkill(skill)">close</i>
 	                      	</div>
-	                      	<div class="chips chips-placeholder" ng-show="!editingSkills && editing">+Skill</div>
-	                      		                      	<button class="btn-info pill" ng-show="editingSkills">
-	                      		<!-- need to add typeahead functionality -->
-	                      		<input type="text" name="skills" placeholder="enter a skill" ng-model="selectedSkill">
-	                      		<span class="glyphicon glyphicon-ok" ng-click="editingSkills=false; addSkill()"></span>
-	                      	</button>
+	                      	<div class="chips-placeholder" ng-show="!editingSkills && editing">+Skill</div>
 	                      </div>
             		</div>
 
@@ -69,39 +56,6 @@
             			<!-- <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Edit Profile</button> -->
                               <button type="button" class="btn btn-info btn-md" ng-click="editPressed()">{{editMessage}}</button>
             		</div>
-
-
-
-
-            		<!-- Modal
-					<div id="myModal" class="modal fade" role="dialog">
-					  <div class="modal-dialog">
-
-
-					    <div class="modal-content">
-					      <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">&times;</button>
-					        <h4 class="modal-title">Edit Profile</h4>
-					      </div>
-					      <div class="modal-body">
-					     	<h5>position</h5>
-					        <input type="text" class="form-control" ng-model="editPosition" ng-init="editPosition=currentUser.position">
-					      	<h5>Summary</h5>
-					        <input type="text" class="form-control" ng-model="editSummary" ng-init="editSummary=currentUser.summary">
-					        <h5>Projects</h5>
-					        <input type="text" class="form-control" ng-model="editProjects" ng-init="editProjects=currentUser.projects">
-					        <h5>Experience</h5>
-					        <input type="text" class="form-control" ng-model="editExperience" ng-init="editExperience=currentUser.experience">
-					        <h5>Skills</h5>
-					        <input type="text" class="form-control" ng-model="editSkills" ng-init="editSkills=currentUser.skills">
-					      </div>
-					      <div class="modal-footer">
-					        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveInfo(editPosition, editSummary, editProjects, editExperience, editSkills)">Save</button>
-					      </div>
-					    </div>
-
-					  </div>
-					</div> -->
 
             	</div>
 				<!-- Main content ends -->
