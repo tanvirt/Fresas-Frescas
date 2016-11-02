@@ -51,12 +51,12 @@
             		<div class="content" id="skillsContent">
                         <h5>Skills</h5>
 	                      <div class="btn-group">
-	                      	<button ng-repeat="skill in currentUser.skills" class="btn-info pill">
-	                      		<span class="glyphicon glyphicon-remove icon" ng-show="!editingSkills && editing" ng-click="removeSkill(skill)"></span>
+	                      	<div ng-repeat="skill in currentUser.skills" class="chip">
 	                      		{{skill}}
-	                      	</button>
-	                      	<button class="btn-info pill" ng-show="!editingSkills && editing" ng-click="editingSkills=true">+</button>
-	                      	<button class="btn-info pill" ng-show="editingSkills">
+	                      		<i class="close material-icons" ng-show="!editingSkills && editing" ng-click="removeSkill(skill)">close</i>
+	                      	</div>
+	                      	<div class="chips chips-placeholder" ng-show="!editingSkills && editing">+Skill</div>
+	                      		                      	<button class="btn-info pill" ng-show="editingSkills">
 	                      		<!-- need to add typeahead functionality -->
 	                      		<input type="text" name="skills" placeholder="enter a skill" ng-model="selectedSkill">
 	                      		<span class="glyphicon glyphicon-ok" ng-click="editingSkills=false; addSkill()"></span>
