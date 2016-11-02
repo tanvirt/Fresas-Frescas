@@ -13,7 +13,7 @@ VideoPlayer.play = function(videos, onStart) {
 		videoArray.push({
 			videoURL: videos[i].URL,
 			containment: '.video-section',
-			quality: 'large',
+			quality: 'highres',
 			autoPlay: true,
 			mute: true,
 			opacity: 1,
