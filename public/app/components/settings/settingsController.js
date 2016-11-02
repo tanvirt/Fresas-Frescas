@@ -94,8 +94,7 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			$scope.currentUser.projects.splice(index, 1)
 		}
 	}
-
-
+	
   	$('.chips').material_chip();
   	$('.chips-placeholder').material_chip({
     	placeholder: 'Enter a tag',
@@ -108,7 +107,6 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
   	});
 
   	$('.chips').on('chip.delete', function(e, chip){
-    
   });
 
 
