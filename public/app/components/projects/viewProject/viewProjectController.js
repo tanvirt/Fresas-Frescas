@@ -1,4 +1,4 @@
-angular.module('main').controller('ViewProjectController', function($scope) {
+angular.module('main').controller('ViewProjectController', function($rootScope, $scope) {
 	
 	// App header variables
 	$scope.heading = "Project Title";
@@ -9,7 +9,10 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 
 	$scope.newComment = "";
 	$scope.addComment = function() {
+		var date = new Date();
+		console.log($rootScope.user.uid);
 		console.log($scope.newComment);
+		console.log(date);
 	}
 	
 	var sampleComment1 = {
