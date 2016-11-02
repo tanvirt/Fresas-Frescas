@@ -8,7 +8,9 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 	$scope.comments = [];
 	
 	var sampleComment1 = {
+		id: "dfgdfg87987dfg",
 		user: {
+			id: "234g3y4ugjkhb",
 			firstName: "Tanvir",
 			lastName: "Talukder"
 		},
@@ -16,7 +18,9 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 		date: "11/2/2016 10:30 AM"
 	};
 	var sampleComment2 = {
+		id: "dfgdfg87987dfg",
 		user: {
+			id: "234g3y4ugjkhb",
 			firstName: "Tanvir",
 			lastName: "Talukder"
 		},
@@ -24,7 +28,9 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 		date: "11/2/2016 10:45 AM"
 	};
 	var sampleComment3 = {
+		id: "dfgdfg87987dfg",
 		user: {
+			id: "234g3y4ugjkhb",
 			firstName: "Tanvir",
 			lastName: "Talukder"
 		},
@@ -32,7 +38,9 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 		date: "11/2/2016 11:00 AM"
 	};
 	var sampleComment4 = {
+		id: "dfgdfg87987dfg",
 		user: {
+			id: "234g3y4ugjkhb",
 			firstName: "Tanvir",
 			lastName: "Talukder"
 		},
@@ -40,7 +48,9 @@ angular.module('main').controller('ViewProjectController', function($scope) {
 		date: "11/2/2016 11:15 AM"
 	};
 	var sampleComment5 = {
+		id: "dfgdfg87987dfg",
 		user: {
+			id: "234g3y4ugjkhb",
 			firstName: "Douche",
 			lastName: "Bag"
 		},
