@@ -8,9 +8,7 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 	$scope.editing = false;
 	$scope.editMessage = "Edit Profile";
 	$scope.editingSkills = false;
-	$scope.selectedSkill;
 	$scope.editingProjects = false;
-	$scope.selectedProject;
 
 	$scope.authObj = $firebaseAuth();
 	$scope.user = null;
@@ -65,15 +63,18 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		}
 		else{
 			$scope.editMessage = "Done Editing";
+			$('.chips-placeholder').material_chip({
+    			placeholder: 'Enter a tag',
+    			secondaryPlaceholder: '+Skill',
+  			});
 			//updateDatabase();
 		}
 
 		$scope.editing = !($scope.editing);
 	}
 
-	$scope.addSkill = function(){
-		$scope.currentUser.skills.push($scope.selectedSkill);
-		$scope.selectedSkill = undefined;
+	$scope.addSkill = function(skill){
+		$scope.currentUser.skills.push(skill);
 	}
 
 	$scope.removeSkill = function(skill){
@@ -85,7 +86,6 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 
 	$scope.addproject = function(){
 		$scope.currentUser.projects.push($scope.selectedProject);
-		$scope.selectedProject = undefined;
 	}
 
 	$scope.removeProject = function(project){
@@ -94,5 +94,20 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			$scope.currentUser.projects.splice(index, 1)
 		}
 	}
+	
+  	$('.chips').material_chip();
+  	$('.chips-placeholder').material_chip({
+    	placeholder: 'Enter a tag',
+    	secondaryPlaceholder: '+Skill',
+  	});
+
+	
+   	$('.chips').on('chip.add', function(e, chip){
+    $scope.addSkill(chip.tag);
+  	});
+
+  	$('.chips').on('chip.delete', function(e, chip){
+  });
+
 
 });

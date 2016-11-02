@@ -276,3 +276,16 @@ html, body, .ng-scope, .container-fluid, .row {
 	position: absolute;
 	z-index: 1;
 }
+
+#update-user {
+	margin-right: 3em;
+}
+
+.extra-chips {
+	text-align: center;
+	margin-top: .5em;
+}
+
+.card-styling-title {
+    font-weight: bold;
+}
