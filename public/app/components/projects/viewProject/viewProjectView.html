@@ -11,52 +11,52 @@
 				<div>
 					<ul class="nav nav-tabs">
 						<li class="active"><a data-toggle="tab" href="#info">Info</a></li>
-						<li><a data-toggle="tab" href="#update">Update</a></li>
-						<li><a data-toggle="tab" href="#comment">Comment</a></li>
+						<li><a data-toggle="tab" href="#update">Updates</a></li>
+						<li><a data-toggle="tab" href="#comment">Comments</a></li>
 					</ul>
+					<br>
 					<div class="tab-content">
 						<div id="info" class="tab-pane fade in active">
-							<h3>Info</h3>
-							<img src="{{project.photo}}" class="col-xs-12 col-sm-6">
+							<div class="col-xs-12 col-sm-6">
+								<img src="{{project.photo}}" style="width: 100%; height:14em">
+								<div class="extra-chips">
+							    	<div class="chip"><span class="fa fa-thumbs-o-up card-icon"> {{project.likes}} </span></div>
+							    	<div class="chip"><span class="fa fa-eye card-icon"> {{project.views}} </span></div>
+							    	<div class="chip"><span class="fa fa-commenting-o card-icon"> {{project.comments}} </span></div>
+							    </div>
+							</div>
+
 						    <div class="col-xs-12 col-sm-6">
 						      <div>
 						        <div class="card-panel">
-						          <span>
-						          	{{project.summary}}
-						          </span>
+						          <span class="card-styling-title">Summary</span> <br>
+						          <span>{{project.summary}}</span>
 						        </div>
 						      </div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip col-xs-12 col-sm-2" style="font-weight: bold">Owners: </div> 
+						    	<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners: </div> 
 						    	<div class="chip" ng-repeat="owner in project.owners">{{owner}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-2" style="font-weight: bold">Members: </div> 
+						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Members: </div> 
 						    	<div class="chip" ng-repeat="member in project.members">{{member}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-2" style="font-weight: bold">Tags: </div> 
+						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Tags: </div> 
 						    	<div class="chip" ng-repeat="tag in project.tags">{{tag}}</div>
 						    </div>
-						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip"><span class="fa fa-thumbs-o-up card-icon"> {{project.likes}} </span></div>
-						    	<div class="chip"><span class="fa fa-eye card-icon"> {{project.views}} </span></div>
-						    	<div class="chip"><span class="fa fa-commenting-o card-icon"> {{project.comments}} </span></div>
-						    </div>
+
 						    <div class="col-xs-12 col-sm-12">
 						      <div>
 						        <div class="card-panel">
-						          <span>
-						          	{{project.detail}}
-						          </span>
+						        	<span class="card-styling-title">Details</span> <br>
+						          <span>{{project.detail}}</span>
 						        </div>
 						      </div>
 						    </div>  
 						</div>
 						<div id="update" class="tab-pane fade">
-							<h3>Update</h3>
-							<p>Some content in update.</p>
 						      <div class="row" ng-repeat="update in updates">
 						        <div class="col s12 m6">
 						          <div class="card blue-grey darken-1">

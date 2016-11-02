@@ -281,6 +281,11 @@ html, body, .ng-scope, .container-fluid, .row {
 	margin-right: 3em;
 }
 
-.name-chips {
+.extra-chips {
 	text-align: center;
+	margin-top: .5em;
+}
+
+.card-styling-title {
+    font-weight: bold;
 }
