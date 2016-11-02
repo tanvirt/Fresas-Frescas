@@ -1,6 +1,7 @@
 angular.module('main', [
 	"firebase",
-	'ui.router'
+	'ui.router',
+	'ui.bootstrap'
 ]);
 
 angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
@@ -22,6 +23,8 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 	$rootScope.addListener = function(listener) {
 		$rootScope.listeners.push(listener);
 	}
+
+	Theme.init();
 
     $rootScope.authObj.$onAuthStateChanged(function(user) {
         if(user) {
@@ -54,11 +57,20 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'settings') {
 			$state.go('settings');
 		}
-		else if (toState.name == 'signUp') {
+		else if(toState.name == 'signUp') {
 			$state.go('signUp');
 		}
-		else if (toState.name == 'createProject') {
+		else if(toState.name == 'createProject') {
 			$state.go('createProject');
+		}
+		else if(toState.name == 'myProjects') {
+			$state.go('myProjects');
+		}
+		else if(toState.name == 'search') {
+			$state.go('search');
+		}
+		else if(toState.name == 'viewProject') {
+			$state.go('viewProject');
 		}
 		else {
 			$state.go('404');

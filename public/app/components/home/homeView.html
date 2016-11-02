@@ -40,6 +40,18 @@
             		link="recommended.link">
             	</vertical-flip-card>
 
+                  <h2>New Projects</h2>
+                  <vertical-flip-card ng-repeat="newProject in newProjects"
+                        image="newProject.imgSrc"
+                        title="newProject.title"
+                        summary="newProject.summary"
+                        description="newProject.description"
+                        owners="newProject.owners"
+                        likes="newProject.likes"
+                        views="newProject.views"
+                        link="newProject.link">
+                  </vertical-flip-card>                  
+
             	<div>
             	<br>
             	
