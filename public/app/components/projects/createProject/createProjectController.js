@@ -59,29 +59,14 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 			return;
 		}
 
-		var creationDate = new Date();
 		var firebaseUser = $scope.authObj.$getAuth();
-		var uniqueId = firebaseUser.uid + ';' + creationDate;
 
 		var ownersList = objectsToIds($scope.project.owners);
 		ownersList.push(firebaseUser.uid);
 
 		try {
-			// var projects = $firebaseArray(ref.child("projects"));
-			// projects.$add({
-			// 	title: $scope.project.title,
-			// 	summary: $scope.project.summary,
-			// 	details: $scope.project.details,
-			// 	members: objectsToIds($scope.project.members),
-			// 	owners: ownersList,
-			// 	subscribers: $scope.project.subscribers,
-			// 	assets: $scope.project.assets,
-			// 	likes: $scope.project.likes,
-			// 	views: $scope.project.views,
-			// 	tags: $scope.project.tags,
-			// 	creationDate: creationDate
-			// });
 			var projectAddRef = ref.child("projects").push({
+				creationDate: new Date().toString(),
 				title: $scope.project.title,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
@@ -91,8 +76,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				assets: $scope.project.assets,
 				likes: $scope.project.likes,
 				views: $scope.project.views,
-				tags: $scope.project.tags,
-				creationDate: creationDate
+				tags: $scope.project.tags
 			});
 			var projectAddObj = $firebaseObject(projectAddRef);
 			var addedID = projectAddObj.$id;
