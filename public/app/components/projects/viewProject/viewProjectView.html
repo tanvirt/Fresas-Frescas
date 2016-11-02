@@ -24,8 +24,32 @@
 							<p>Some content in update.</p>
 						</div>
 						<div id="comment" class="tab-pane fade">
-							<h3>Comment</h3>
-							<p>Some content in comment.</p>
+							<h3>Comments</h3>
+							<div class="collection">
+								<div ng-show="comments.length <= 0" class="collection-item avatar">
+									<p>
+										No comments yet.
+									</p>
+								</div>
+								<div ng-repeat="comment in comments" class="collection-item avatar">
+									<br>
+									<img src="../assets/img/splash.jpg" alt="" class="circle">
+									<span style="color:#337ab7; font-weight: bold;">
+										{{comment.user.firstName}} {{comment.user.lastName}}
+									</span>
+									<br><br>
+									<p>
+										<div>
+											{{comment.text}}
+										</div>
+										<br>
+								 		<div class="text-muted">
+								 			{{comment.date}}
+								 		</div>
+									</p>
+									<br>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
