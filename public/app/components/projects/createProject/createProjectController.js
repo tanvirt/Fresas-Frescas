@@ -2,7 +2,6 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 //TODO:
 //1. form/field validation, required fields
 //2. upload photo stuff
-//3. fix owner and member list stuff
 
 	var ref = firebase.database().ref();
 	$scope.invalidTitle = false;
@@ -12,7 +11,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.allUsers = $firebaseArray(ref.child("users"));
 	$scope.allTags = $firebaseArray(ref.child("tags"));
 	$scope.authObj = $firebaseAuth();
-	//WE SHOULD HAVE A FACTORY FOR TAGS!!
+
+	$scope.uploader = {};
 
 	//wait for data to load
 	$scope.allUsers.$loaded()
@@ -45,7 +45,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.title = "";
 	$scope.project.summary = "";
 	$scope.project.details = "";
-	$scope.project.photo = "../../assets/img/modern_workplace.jpg";
+	$scope.project.photo = "";
 	$scope.project.owners = [];
 	$scope.project.members = [];
 	$scope.project.subscribers = [];
@@ -55,6 +55,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.views = 0;
 
 	$scope.addProjectToDatabase = function() {
+		console.log($scope.uploader.flow);
 		if (validateData() === false) {
 			return;
 		}
@@ -76,14 +77,13 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				assets: $scope.project.assets,
 				likes: $scope.project.likes,
 				views: $scope.project.views,
-				tags: $scope.project.tags
+				tags: $scope.project.tags,
+				photo: $scope.uploader.flow.files
 			});
 			var projectAddObj = $firebaseObject(projectAddRef);
 			var addedID = projectAddObj.$id;
 
 			for (var i=0; i < $scope.project.tags.length; i++) {
-				// var tagsData = $firebaseArray(ref.child("tags").child($scope.project.tags[i]));
-				// tagsData.child("projects").$add({project: addedID});
 				ref.child("tags").child($scope.project.tags[i]).child("projects").child(addedID).set({
 					project: $scope.project.title
 				});
@@ -205,6 +205,11 @@ angular.module('main').controller('CreateProjectController', function($rootScope
     		var data = e.target.result;
   		}
   		r.readAsBinaryString(f);
+	}
+
+	$scope.callMe = function() {
+		console.log("i have no idea what i'm doing here");
+		console.log($flow.files[0]);
 	}
 
 	$scope.cancel = function() {

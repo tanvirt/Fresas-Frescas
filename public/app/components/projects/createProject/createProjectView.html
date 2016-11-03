@@ -9,11 +9,15 @@
 
             	<!-- Main content starts-->
             	<div class="project-component">
-					<img class="img-responsive full-width" ng-src="{{project.photo}}">
-					<input type="file" id="file-photo" name="file-photo"/>
-					<button class="btn btn-success full-width" ng-click="uploadPhoto()">
-						<span class="fa fa-arrow-circle-o-up icon"></span>Upload Photo
-					</button>
+					<img class="img-responsive full-width" ng-hide="uploader.flow.length" ng-src="../../assets/img/modern_workplace.jpg">
+					<div flow-init flow-name="uploader.flow">
+						<!--if image is uploaded, display the image-->
+						<div ng-show="$flow.files.length">
+							<img class = "img-responsive full-width" flow-img="$flow.files[0]" />
+						</div>
+						<!-- upload image -->
+						<input type="file" class="btn" flow-btn flow-attrs="{accept:'image/*'}" />
+					</div>
 				</div>
 				<div class="project-component">
 					<div class="form-group">
