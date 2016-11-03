@@ -13,8 +13,8 @@
 	            		<div>Owner</div>
 	            		<div ng-repeat="project in projectsOwning">
 	            			<div class="project-component">
-	            				<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
-	            				<project-card-mobile ng-show="mobile" ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card-mobile>	            				
+	            				<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
+	            				<project-card-mobile ng-show="mobile" ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card-mobile>
             				</div>
             			</div>
 	            	</div>
@@ -22,8 +22,8 @@
 	            		<div>Member</div>
 	            		<div ng-repeat="project in projectsWorking">
 	            			<div class="project-component">
-		            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
-		            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card-mobile>		     
+		            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
+		            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card-mobile>		     
             				</div>
             			</div>
 	            	</div>
@@ -31,8 +31,8 @@
 	            		<div>Following</div>
 	            		<div ng-repeat="project in projectsFollowing">
 	            			<div class="project-component">
-		            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card>
-		            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details"></project-card-mobile>
+		            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
+		            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card-mobile>
             				</div>
             			</div>
 	            	</div>
