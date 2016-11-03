@@ -11,12 +11,12 @@ angular.module('main').controller('NotificationsController', function($scope, $f
 	$scope.authObj = $firebaseAuth();
 	$scope.notifications = [];
 
-	$rootScope.authObj.$onAuthStateChanged(function(user) {
+	$scope.authObj.$onAuthStateChanged(function(user) {
 		if (user) {
 			$scope.notifications = $firebaseArray(ref.child("users").child(user.uid).child("notifications"));
 			$scope.notifications.$loaded().then(function() {
 				console.log($scope.notifications);
 			})
 		}
-	}
+	});
 });

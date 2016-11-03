@@ -1,0 +1,24 @@
+<div class="card horizontal">
+	<div ng-show="image" class="card-image waves-effect waves-block waves-light" style="max-width: 33.3%;">
+		<img class="activator" src="../../assets/img/splash.jpg" style="min-height: 100%;">
+	</div>
+	<div class="card-content" style="width: 100%;">
+		<span class="card-title activator grey-text text-darken-4">
+			<div ng-show="summary">
+				<i class="material-icons right">more_vert</i>
+			</div>
+			<div ng-click="goToProject()">
+				{{title}}
+			</div>
+		</span>
+		<div ng-show="text" class="project-component">
+			{{text}}
+		</div>
+		<div class="full-width">
+		{{date}}
+		</div>
+	</div>
+	<div ng-show="interactive">
+		<!-- interactivity here -->
+	</div>
+</div>
