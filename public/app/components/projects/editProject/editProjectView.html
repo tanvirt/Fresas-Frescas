@@ -1,0 +1,119 @@
+<div>
+	<navbar></navbar>
+	<appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader>
+
+	<!-- Main content in each page should be wrapped by the following 3 div elements -->
+	<div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+
+            	<!-- Main content starts-->
+				<!-- FRONT-END FOR UPLOADING PHOTOS
+            	<div class="project-component">
+					<img class="img-responsive full-width" ng-hide="uploader.flow.length" ng-src="../../assets/img/modern_workplace.jpg">
+					<div flow-init flow-name="uploader.flow">
+						<div ng-show="$flow.files.length">
+							<img class = "img-responsive full-width" flow-img="$flow.files[0]" />
+						</div>
+						<input type="file" class="btn" flow-btn flow-attrs="{accept:'image/*'}" />
+					</div> -->
+            	<div class="col-xs-12 col-sm-6">
+					<img style="width: 100%; height:14em" ng-src="{{project.photo}}">
+
+					<!--<input class="btn btn-success full-width" type="file" id="file-photo" name="file-photo"/>
+					<button class="btn btn-success full-width" ng-click="uploadPhoto()">
+						<span class="fa fa-arrow-circle-o-up icon"></span>Upload Photo
+					</button>-->
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="form-group">
+						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
+					</div>
+					<div class="form-group">
+						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
+					</div>
+					<div>
+						<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners:</div> 
+					    <div class="chip" ng-repeat="owner in project.owners">{{owner.firstName}} {{owner.lastName}} <i ng-click="removeOwner(owner)" class="close material-icons">close</i></div>
+		            	<div class="chip" ng-hide="editingOwners" ng-click="editingOwners=true" style="font-weight: bold; font-size: 15px;">+</div>
+						<div class="chip pill" ng-show="editingOwners">
+							<input name="owners" type="text" placeholder="enter an owner" ng-model="selectedOwner" typeahead="owner as owner.firstName + ' ' + owner.lastName for owner in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+							<span class="glyphicon glyphicon-ok" ng-click="editingOwners=false; addOwner()"></span>
+							<span class="glyphicon glyphicon-remove icon" ng-click="editingOwners=false"></span>
+						</div>
+					</div>
+            		<div>
+            			<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Members:</div>
+            			<div class="chip" ng-repeat="member in project.members">{{member.firstName}} {{member.lastName}} <i ng-click="removeMember(member)" class="close material-icons">close</i></div>
+            			<div class="chip" ng-hide="editingMembers" ng-click="editingMembers=true" style="font-weight: bold; font-size: 15px;">+</div>
+            			<div class="chip pill" ng-show="editingMembers">
+							<input name="owners" type="text" placeholder="enter a member" ng-model="selectedMember" typeahead="member as member.firstName + ' ' + member.lastName for member in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+							<span class="glyphicon glyphicon-ok" ng-click="editingMembers=false; addMember()"></span>
+							<span class="glyphicon glyphicon-remove icon" ng-click="editingMembers=false"></span>
+						</div>
+					</div>
+	            	<div>
+	            		<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Tags:</div>
+	            		<div class="chip" ng-repeat="tag in project.tags">{{tag}} <i ng-click="removeTag(member)" class="close material-icons">close</i></div>
+	            		<div class="chip" ng-hide="editingTags" ng-click="editingTags=true" style="font-weight: bold; font-size: 15px;">+</div>
+	            		<div class="chip pill" ng-show="editingTags">
+							<input name="tags" type="text" placeholder="enter a tag" ng-model="selectedTag"
+								typeahead="tag.$id for tag in allTags | filter:$viewValue | limitTo:8" class="form-control">
+							<span class="glyphicon glyphicon-ok" ng-click="editingTags=false; addTag()"></span>
+							<span class="glyphicon glyphicon-remove icon" ng-click="editingTags=false"></span>
+		            	</div>
+	            	</div>
+            	</div>
+            	<br>
+            	<div class="col-xs-12" style="margin-top: 1em">
+					<input type="text" class="form-control" ng-model="project.photo" placeholder="Photo URL">
+            	</div>
+				<div class="col-xs-12" style="margin-top:1em">
+					<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
+				</div>
+
+				
+
+            	<!--<div class="project-component">
+            		<div>Subscribers</div>
+            		<div class="btn-group">
+	            		<button ng-repeat="subscriber in project.subscribers" class="btn-info pill">
+            				<span class="glyphicon glyphicon-remove icon" ng-click="removeSubscriber(subscriber)"></span>
+            				{{subscriber.firstName}} {{subscriber.lastName}}
+            			</button>
+	            		<button class="btn-info pill" ng-hide="editingSubscribers" ng-click="editingSubscribers=true">+</button>
+							<button class="btn-info pill" ng-show="editingSubscribers">
+								<input name="members" type="text" placeholder="enter a subscriber" ng-model="selectedSubscriber" typeahead="subscriber as subscriber.firstName + ' ' + subscriber.lastName for subscriber in allUsers | filter:$viewValue | limitTo:8" class="form-control">
+								<span class="glyphicon glyphicon-ok" ng-click="editingSubscribers=false; addSubscriber()"></span>
+								<span class="glyphicon glyphicon-remove icon" ng-click="editingSubscribers=false"></span>
+							</button>
+					</div>
+            	</div>-->
+				<div class="col-xs-12" style="margin-top: 1em">
+						<div class="form-group">
+							<textarea ng-model="project.assets" class="form-control" rows="5" id="description" placeholder="Any relevant project assets or notes"></textarea>
+						</div>
+						<!--<div class="form-group">
+							<input type="file" id="file" name="file"/><button class="btn-info pill" ng-click="uploadAsset()">Upload</button>
+						</div>-->
+				</div>
+
+				<div class="alert alert-danger col-xs-12" ng-show="invalidTitle">Error: Title is required </div>
+				<div class="alert alert-danger col-xs-12" ng-show="invalidTags">Error: At least one tag is required </div>
+
+            	<div class="btn-group project-component full-width">
+            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
+            			<span class="glyphicon glyphicon-floppy-disk icon"></span>
+            			Save
+            		</button>
+            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()">
+            			<span class="fa fa-ban icon"></span>
+            			Cancel
+            		</button>
+            	</div>
+				<!-- Main content ends -->
+
+			</div>
+		</div>
+	</div>
+</div>
