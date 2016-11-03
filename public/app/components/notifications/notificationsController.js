@@ -1,4 +1,4 @@
-angular.module('main').controller('NotificationsController', function($scope) {
+angular.module('main').controller('NotificationsController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
 	$scope.heading = "View My Notifications";
@@ -6,5 +6,16 @@ angular.module('main').controller('NotificationsController', function($scope) {
 	$scope.headingImage = "../../assets/img/binary.jpg";
 
 	// Main content starts
+	var ref = firebase.database().ref();
+	$scope.authObj = $firebaseAuth();
+	$scope.notifications = [];
 
+	$rootScope.authObj.$onAuthStateChanged(function(user) {
+		if (user) {
+			$scope.notifications = $firebaseArray(ref.child("users").child(user.uid).child("notifications"));
+			$scope.notifications.$loaded().then(function() {
+				console.log($scope.notifications);
+			})
+		}
+	}
 });
