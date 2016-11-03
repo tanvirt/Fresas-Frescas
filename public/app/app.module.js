@@ -88,6 +88,9 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'viewProject') {
 			$state.go('viewProject');
 		}
+		else if(toState.name == 'notifications') {
+			$state.go('notifications');
+		}
 		else {
 			$state.go('404');
 		}
