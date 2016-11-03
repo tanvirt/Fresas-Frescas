@@ -63,6 +63,12 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             controller: 'ViewProjectController'
         });
 
+        .state('editProject', {
+            url: '/editProject',
+            templateUrl: 'app/components/projects/editProject/editProjectView.html',
+            controller: 'editProjectController'
+        })
+
     $urlRouterProvider.otherwise('404');
 
 });

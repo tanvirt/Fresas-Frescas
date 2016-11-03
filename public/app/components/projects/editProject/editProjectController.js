@@ -1,4 +1,4 @@
-angular.module('main').controller('CreateProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseObject, $firebaseArray, $state) {
+angular.module('main').controller('EditProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseObject, $firebaseArray, $state) {
 //TODO:
 //1. form/field validation, required fields
 //2. upload photo stuff

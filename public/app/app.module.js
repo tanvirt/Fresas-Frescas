@@ -88,6 +88,9 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == 'viewProject') {
 			$state.go('viewProject');
 		}
+		else if(toState.name == 'editProject') {
+			$state.go('editProject');
+		}
 		else if(toState.name == 'notifications') {
 			$state.go('notifications');
 		}
