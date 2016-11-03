@@ -51,11 +51,23 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             controller: 'SearchController'
         })
 
+        .state('notifications', {
+            url: '/notifications',
+            templateUrl: 'app/components/notifications/notificationsView.html',
+            controller: 'NotificationsController'
+        })
+
         .state('viewProject', {
             url: '/viewProject',
             templateUrl: 'app/components/projects/viewProject/viewProjectView.html',
             controller: 'ViewProjectController'
         });
+
+        .state('editProject', {
+            url: '/editProject',
+            templateUrl: 'app/components/projects/editProject/editProjectView.html',
+            controller: 'editProjectController'
+        })
 
     $urlRouterProvider.otherwise('404');
 
