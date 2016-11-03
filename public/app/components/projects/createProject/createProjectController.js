@@ -45,7 +45,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 	$scope.project.title = "";
 	$scope.project.summary = "";
 	$scope.project.details = "";
-	$scope.project.photo = "";
+	$scope.project.photo = "https://community.dynamics.com/cfs-filesystemfile/__key/msdenhancedbloggingcfs/FeaturedImages/227825_5F00_Modern-Workplace.jpg"; //default img
 	$scope.project.owners = [];
 	$scope.project.members = [];
 	$scope.project.subscribers = [];
@@ -78,7 +78,8 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				likes: $scope.project.likes,
 				views: $scope.project.views,
 				tags: $scope.project.tags,
-				photo: $scope.uploader.flow.files
+				//photo: $scope.uploader.flow.files
+				photo: $scope.project.photo
 			});
 			var projectAddObj = $firebaseObject(projectAddRef);
 			var addedID = projectAddObj.$id;
@@ -118,6 +119,9 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 
 	validateData = function() {
 		console.log("here x1");
+		if($scope.project.photo == ""){
+			$scope.project.photo = "https://community.dynamics.com/cfs-filesystemfile/__key/msdenhancedbloggingcfs/FeaturedImages/227825_5F00_Modern-Workplace.jpg";
+		}
 		if ($scope.project.title === "") {
 			$scope.invalidTitle = true;
 			$scope.invalidTags = false;

@@ -19,10 +19,11 @@
 					</div> -->
             	<div class="col-xs-12 col-sm-6">
 					<img style="width: 100%; height:14em" ng-src="{{project.photo}}">
-					<input class="btn btn-success full-width" type="file" id="file-photo" name="file-photo"/>
+
+					<!--<input class="btn btn-success full-width" type="file" id="file-photo" name="file-photo"/>
 					<button class="btn btn-success full-width" ng-click="uploadPhoto()">
 						<span class="fa fa-arrow-circle-o-up icon"></span>Upload Photo
-					</button>
+					</button>-->
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<div class="form-group">
@@ -63,6 +64,10 @@
 		            	</div>
 	            	</div>
             	</div>
+            	<br>
+            	<div class="col-xs-12" style="margin-top: 1em">
+					<input type="text" class="form-control" ng-model="project.photo" placeholder="Photo URL">
+            	</div>
 				<div class="col-xs-12" style="margin-top:1em">
 					<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 				</div>
@@ -84,13 +89,13 @@
 							</button>
 					</div>
             	</div>-->
-				<div class="col-xs-12" style="margin-top: .5em">
+				<div class="col-xs-12" style="margin-top: 1em">
 						<div class="form-group">
-							<textarea ng-model="project.assets" class="form-control" rows="5" id="description" placeholder="Any relevant links/files/other project assets"></textarea>
+							<textarea ng-model="project.assets" class="form-control" rows="5" id="description" placeholder="Any relevant project assets or notes"></textarea>
 						</div>
-						<div class="form-group">
+						<!--<div class="form-group">
 							<input type="file" id="file" name="file"/><button class="btn-info pill" ng-click="uploadAsset()">Upload</button>
-						</div>
+						</div>-->
 				</div>
 
 				<div class="alert alert-danger col-xs-12" ng-show="invalidTitle">Error: Title is required </div>
