@@ -1,4 +1,4 @@
-angular.module('main').directive('projectCard', function($state) {
+angular.module('main').directive('projectCard', function($state, $stateParams) {
 
     var directive = {};
 
@@ -19,7 +19,7 @@ angular.module('main').directive('projectCard', function($state) {
     directive.link = function(scope, elem, attrs) {
         scope.goToProject  = function () {
             console.log(scope.projectid);
-            //$state.go("home");
+            $state.go("viewProject", {projectId: scope.projectid});
         };
     }
 

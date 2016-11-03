@@ -1,15 +1,19 @@
-angular.module('main').controller('ViewProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
-	
-	// App header variables
-	$scope.heading = "Project Title";
-	$scope.headingImage = "../../assets/img/computer.jpg";
+angular.module('main').controller('ViewProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject, $state, $stateParams) {
+	$scope.myProjectId = $stateParams.projectId;
+	console.log($scope.myProjectId);
+
 
 	// Main content starts
 	$scope.projectID = "-KV_RmwoD5Nd2R5gbGsF";
+
+		// App header variables
+	$scope.heading = "Project Title";
+	$scope.headingImage = "../../assets/img/computer.jpg";
 	
 	var ref = firebase.database().ref();
 	var currProjectRef = ref.child("projects").child($scope.projectID);
 	$scope.comments = $firebaseArray(currProjectRef.child("comments"));
+
 	$scope.comments.$loaded().then(function() {
 		$scope.comments.reverse();
 	})
@@ -119,4 +123,10 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		$scope.updates[i].date = new Date($scope.updates[i].date);
 		$scope.updates[i].date = $scope.updates[i].date.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
 	}
+
+	$scope.editProject = function() {
+		console.log($scope.myProjectId);
+		$state.go("editProject", {editProjectId: $scope.myProjectId});
+	}
+
 });
