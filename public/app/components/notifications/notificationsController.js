@@ -1,9 +1,8 @@
-angular.module('main').controller('NotificationsController', function($scope, $firebaseArray, $firebaseObject, $firebaseAuth) {
-	
+angular.module('main').controller('NotificationsController', function($scope) {
 	// App header variables
 	$scope.heading = "View My Notifications";
 	$scope.subheading = "Keep yourself up-to-date.";
-	$scope.headingImage = "../../assets/img/splash.jpg";
+	$scope.headingImage = "../../assets/img/binary.jpg";
 
 	// Main content starts
 	var ref = firebase.database().ref().child("users");
