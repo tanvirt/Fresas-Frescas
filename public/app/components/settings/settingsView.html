@@ -13,11 +13,13 @@
 				<div>
             		<div class="row" id="profileHeading">
             			<div class="col-md-8">
-            				<h1>{{currentUser.firstName}}</h1>
-										<h1>{{currentUser.lastName}}</h1>
-            				<h3>{{currentUser.position}}</h3>
+            				<h1 id="profileHeader">{{currentUser.firstName}}</h1>
+							<h1 id="profileHeader">{{currentUser.lastName}}</h1>
+            				<h3 id="profileSubheader">{{currentUser.position}}</h3>
             			</div>
-            			<img class="col-md-4 pull-right img-responsive" ng-show="currentUser.image != null" src={{currentUser.image}}>
+            			<div class="col-md-4 pull-right" ng-hide="currentUser.profilePicture == ''">
+            				<img class="img-responsive" src={{currentUser.profilePicture}}>
+            			</div>
             		</div>
 
             		<div class="content" id="summaryContent">
@@ -53,9 +55,11 @@
             		</div>
 
             		<div class="offset4 span4 text-center" id="editButton">
-            			<!-- <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Edit Profile</button> -->
-                              <button type="button" class="btn btn-info btn-md" ng-click="editPressed()">{{editMessage}}</button>
+                        <button type="button" class="btn btn-info btn-md" ng-click="editPressed()">{{editMessage}}</button>
+                        <button ng-click="signOut()" class="btn btn-danger" type="submit">Sign Out</button>
             		</div>
+
+
 
 
 

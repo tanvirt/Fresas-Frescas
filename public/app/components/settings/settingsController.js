@@ -1,9 +1,9 @@
 angular.module('main').controller('SettingsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
-	$scope.heading = "Settings";
-	$scope.subheading = "Our berries will change your life.";
-	$scope.headingImage = "../../assets/img/tinted_settings.jpg";
+	$scope.heading = "Profile";
+	$scope.subheading = "You. Are. Awesome.";
+	$scope.headingImage = "../../assets/img/profile.jpg";
 
 	$scope.editing = false;
 	$scope.editMessage = "Edit Profile";
@@ -56,6 +56,10 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		});
 	};*/
 
+	$scope.signOut = function() {
+		$scope.authObj.$signOut();
+		$state.go('login');
+	}
 
 	$scope.editPressed = function(){
 		if($scope.editing){

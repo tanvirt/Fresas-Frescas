@@ -16,11 +16,12 @@
 							<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="password" name="confirmPassword" ng-model="confirmPassword" required><br>
 							<label>Position:</label><input class="form-control input-lg clearForm" type="text" name="position" ng-model="position" required><br>
 							<label>Skills:</label><br>	                      
-							<div>
-	                      		<div class="chips chips-placeholder">+Skill</div>
-	                      	</div><br>
+							<div id=signUpChips>
+	                      		<div class="chips chips-placeholder">+Skill</div><br>
+	                      	</div>
 							<label>Expeirence:</label><input class="form-control input-lg clearForm" type="text" name="experience" ng-model="experience"><br>
 							<label>Summary:</label><textarea class="form-control input-lg clearForm" type="text" name="summary" ng-model="summary"></textarea><br>
+							<label>Profile Picture</label><input class="form-control input-lg clearForm" type="url" name="profilePicture" ng-model="profilePicture" placeholder="http://youreimageurl.com/"><br>
 						</form>
 						<button id="loginButton" class="waves-effect waves-teal btn-flat" ng-click="signUp()">Sign Up</button>
 						<button id="signUpButton" class="waves-effect waves-teal btn-flat" ng-click="back()">Back to Log In</button>

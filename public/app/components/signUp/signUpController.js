@@ -11,6 +11,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.skills = [];
 	$scope.summary = "";
 	$scope.experience = "";
+	$scope.profilePicture = "";
 
 	$scope.error = "";
 
@@ -85,6 +86,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 			$scope.data.skills = $scope.skills;
 			$scope.data.experience = $scope.experience;
 			$scope.data.summary = $scope.summary;
+			$scope.data.profilePicture = $scope.profilePicture
 		})
 	}
 
@@ -92,8 +94,8 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$('.chips').material_chip();
 
   	$('.chips-placeholder').material_chip({
-    	placeholder: 'Enter a tag',
-    	secondaryPlaceholder: '+Tag',
+    	placeholder: 'Enter a skill',
+    	secondaryPlaceholder: '+Skill',
   	});
         
 	$('.chips').on('chip.add', function(e, chip){
