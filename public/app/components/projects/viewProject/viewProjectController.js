@@ -12,6 +12,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	
 	var ref = firebase.database().ref();
 	var currProjectRef = ref.child("projects").child($scope.projectID);
+	$scope.projectObject = $firebaseObject(currProjectRef);
 	$scope.comments = $firebaseArray(currProjectRef.child("comments"));
 
 	$scope.comments.$loaded().then(function() {
@@ -50,6 +51,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 				$scope.comments.$loaded().then(function() {
 					$scope.comments.reverse();
 				})
+				sendCommentNotification(currentUser, original_date);
 			})
 		}
 		catch(error) {
@@ -89,6 +91,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 				$scope.updates.$loaded().then(function() {
 					$scope.updates.reverse();
 				})
+				sendUpdateNotification(currentUser, original_date);
 			})
 		}
 		catch(error) {
@@ -96,21 +99,118 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		}
 	}
 
+	sendCommentNotification = function(user, dateAdd) {
+		var notificationText = "The Project " + $scope.projectObject.title + " has a new comment.";
+		var notificationTitle = "New Comment";
+		projectOwners = $firebaseArray(currProjectRef.child("owners"));
+		projectMembers = $firebaseArray(currProjectRef.child("members"));
 
-	$scope.project = {
-		title: "Improving Q",
-		summary: "I would like to improve Q by adding automatic workplace integration. This allows for a more efficient workplace.",
-		detail: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
-		photo: "../../assets/img/modern_workplace.jpg",
-		owners: ["Kyle Wahl", "Tanvir Talukder", "Chris Martin"],
-		members: ["Johhny Dude", "Other Person"],
-		subscribers: ["first", "second", "third"],
-		tags: ["JavaScript", "HTML", "CSS"],
-		assets: [],
-		comments: 10,
-		likes: 12,
-		views: 125
-	};
+		projectOwners.$loaded().then(function() {
+			angular.forEach(projectOwners, function(owner) {
+				if (owner.$value != user.$id) {
+					ref.child("users").child(owner.$value).child("notifications").push({ 
+						projectID: $scope.projectObject.$id,
+						projectTitle: $scope.projectObject.title,
+						title: notificationTitle,
+						text: notificationText,
+						date: dateAdd
+					})
+				}
+			})
+		})
+		projectMembers.$loaded().then(function() {
+			angular.forEach(projectMembers, function(member) {
+				if (member.$value != user.$id) {
+					ref.child("users").child(member.$value).child("notifications").push({ 
+						projectID: $scope.projectObject.$id,
+						projectTitle: $scope.projectObject.title,
+						title: notificationTitle,
+						text: notificationText,
+						date: dateAdd
+					})
+				}
+			})
+		})
+	}
+
+	sendUpdateNotification = function(user, dateAdd) {
+		var notificationText = "The Project " + $scope.projectObject.title + " has a new update.";
+		var notificationTitle = "New Update";
+		projectOwners = $firebaseArray(currProjectRef.child("owners"));
+		projectMembers = $firebaseArray(currProjectRef.child("members"));
+		projectSubscribers = $firebaseArray(currProjectRef.child("subscribers"));
+
+		projectOwners.$loaded().then(function() {
+			angular.forEach(projectOwners, function(owner) {
+				if (owner.$value != user.$id) {
+					ref.child("users").child(owner.$value).child("notifications").push({ 
+						projectID: $scope.projectObject.$id,
+						projectTitle: $scope.projectObject.title,
+						title: notificationTitle,
+						text: notificationText,
+						date: dateAdd
+					})
+				}
+			})
+		})
+		projectMembers.$loaded().then(function() {
+			angular.forEach(projectMembers, function(member) {
+				if (member.$value != user.$id) {
+					ref.child("users").child(member.$value).child("notifications").push({ 
+						projectID: $scope.projectObject.$id,
+						projectTitle: $scope.projectObject.title,
+						title: notificationTitle,
+						text: notificationText,
+						date: dateAdd
+					})
+				}
+			})
+		})
+		projectSubscribers.$loaded().then(function() {
+			angular.forEach(projectSubscribers, function(subscriber) {
+				if (subscriber.$value != user.$id) {
+					ref.child("users").child(subscriber.$value).child("notifications").push({ 
+						projectID: $scope.projectObject.$id,
+						projectTitle: $scope.projectObject.title,
+						title: notificationTitle,
+						text: notificationText,
+						date: dateAdd
+					})
+				}
+			})
+		})
+	}
+
+	$scope.projectObject.$loaded().then(function() {
+
+		$scope.project = {
+			title: $scope.projectObject.title,
+			summary: $scope.projectObject.summary,
+			detail: $scope.projectObject.details,
+			owners: $scope.projectObject.owners,
+			members: $scope.projectObject.members,
+			subscribers: $scope.projectObject.subscribers,
+			tags: $scope.projectObject.tags,
+			likes: $scope.projectObject.likes,
+			views: $scope.projectObject.views,
+			comments: $scope.projectObject.comments.length
+		};
+	})
+
+	// $scope.project = {
+	// 	title: "Improving Q",
+	// 	summary: "I would like to improve Q by adding automatic workplace integration. This allows for a more efficient workplace.",
+	// 	detail: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
+	// 	photo: "../../assets/img/modern_workplace.jpg",
+	// 	owners: ["Kyle Wahl", "Tanvir Talukder", "Chris Martin"],
+	// 	members: ["Johhny Dude", "Other Person"],
+	// 	subscribers: ["first", "second", "third"],
+	// 	tags: ["JavaScript", "HTML", "CSS"],
+	// 	assets: [],
+	// 	comments: 10,
+	// 	likes: 12,
+	// 	views: 125
+	// };
 
 	$scope.updates = [{
 		title: "Sample title here",
