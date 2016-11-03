@@ -1,8 +1,24 @@
 angular.module('main', [
 	"firebase",
 	'ui.router',
-	'ui.bootstrap'
+	'ui.bootstrap',
+	'flow'
 ]);
+
+angular.module('main').config(['flowFactoryProvider', function(flowFactoryProvider) {
+	 flowFactoryProvider.defaults = {
+    target: 'upload.php',
+    permanentErrors: [404, 500, 501],
+    maxChunkRetries: 1,
+    chunkRetryInterval: 5000,
+    simultaneousUploads: 4,
+    singleFile: true
+  };
+  flowFactoryProvider.on('catchAll', function (event) {
+    console.log('catchAll', arguments);
+  });
+
+}]);
 
 angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 

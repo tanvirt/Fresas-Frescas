@@ -55,6 +55,4 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
 	$scope.projectsFollowing.push(tempProject);
 
     $scope.mobile = Mobile.isPhone();
-
-
 });
