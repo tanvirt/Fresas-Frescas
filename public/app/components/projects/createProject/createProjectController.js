@@ -120,11 +120,13 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		console.log("here x1");
 		if ($scope.project.title === "") {
 			$scope.invalidTitle = true;
+			$scope.invalidTags = false;
 			return false;
 		}
 		else if ($scope.project.tags.length === 0) {
 			console.log("here x2");
-			$scope.invalidTags === true;
+			$scope.invalidTags = true;
+			$scope.invalidTitle = false;
 			return false;
 		}
 		else {
