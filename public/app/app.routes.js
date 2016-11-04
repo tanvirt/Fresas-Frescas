@@ -16,7 +16,10 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         })
 
         .state('settings', {
-            url: '/settings',
+            url: '/profile/:userId',
+            params: {
+                userId: null
+            },
             templateUrl: 'app/components/settings/settingsView.html',
             controller: 'SettingsController'
         })
@@ -58,7 +61,7 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
         })
 
         $stateProvider.state('viewProject', {
-            url: '/viewProject',
+            url: '/viewProject/:projectId',
             params: {
                 projectId: null
             },

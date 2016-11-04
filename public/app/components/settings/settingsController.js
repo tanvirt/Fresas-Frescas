@@ -1,5 +1,10 @@
-angular.module('main').controller('SettingsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
+angular.module('main').controller('SettingsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams) {
 
+	if ($stateParams.userId === null) {
+		$scope.userId = null;
+	} else {
+		$scope.userId = $stateParams.userId;
+	}
 	// App header variables
 	$scope.heading = "Profile";
 	$scope.subheading = "You. Are. Awesome.";
@@ -33,28 +38,6 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			console.log("error, who are you?");
 		}
 	})
-
-	/*$scope.delete = function() {
-		$scope.message = null;
-		$scope.error = null;
-
-		var firebaseUser = $scope.authObj.$getAuth();
-		var profileRef = firebase.database().ref().child("users").child(firebaseUser.uid);
-		var profileObject = $firebaseObject(profileRef);
-
-		profileObject.$remove().then(function(ref) {
-			//Deleted
-		}), function(error) {
-			console.log("Error:", error);
-		};*
-
-		$scope.authObj.$deleteUser().then(function() {
-			console.log($scope.data);
-			$scope.message = "User deleted";
-		}).catch(function(error) {
-				$scope.error = error;
-		});
-	};*/
 
 	$scope.signOut = function() {
 		$scope.authObj.$signOut();

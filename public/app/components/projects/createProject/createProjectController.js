@@ -63,6 +63,13 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		var firebaseUser = $scope.authObj.$getAuth();
 
 		var ownersList = objectsToIds($scope.project.owners);
+		if (ownersList == null) {
+			ownersList.push("");
+		}
+		if ($scope.project.members == null) {
+			$scope.project.members.push("");
+		}
+		$scope.project.subscribers.push("");
 
 		try {
 			var projectAddRef = ref.child("projects").push({
@@ -83,6 +90,10 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 			});
 			var projectAddObj = $firebaseObject(projectAddRef);
 			var addedID = projectAddObj.$id;
+
+			ref.child("users").child(firebaseUser.uid).child("createdProjects").child(addedID).set({
+				project: $scope.project.title
+			});
 
 			for (var i=0; i < $scope.project.tags.length; i++) {
 				ref.child("tags").child($scope.project.tags[i]).child("projects").child(addedID).set({
