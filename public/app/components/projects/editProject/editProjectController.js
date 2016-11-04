@@ -1,7 +1,18 @@
-angular.module('main').controller('EditProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseObject, $firebaseArray, $state) {
-//TODO:
-//1. form/field validation, required fields
-//2. upload photo stuff
+angular.module('main').controller('EditProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseObject, $firebaseArray, $state, $stateParams) {
+
+	$scope.myProjectId = $stateParams.editProjectId;
+	console.log($scope.myProjectId);
+
+	//get the project
+	var ref = firebase.database().ref();
+	var currProjectRef = ref.child("projects").child($scope.myProjectId);
+	var currentProject = {};
+	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+//	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+	projectData.$loaded().then(function() {
+		projectData.$bindTo($scope, "currentProject");
+		console.log($scope.currentProject);
+	}
 
 	var ref = firebase.database().ref();
 	$scope.invalidTitle = false;
