@@ -13,7 +13,7 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
 	var projectRef = firebase.database().ref().child("projects");
 	var projectList = $firebaseArray(projectRef);
 
-	$rootScope.authObj.$onAuthStateChanged(function(user) {
+	$scope.authObj.$onAuthStateChanged(function(user) {
         if(user) {
         	var userRef = firebase.database().ref().child("users").child(user.uid)
         	var ownedList = $firebaseArray(userRef.child("ownedProjects"));
