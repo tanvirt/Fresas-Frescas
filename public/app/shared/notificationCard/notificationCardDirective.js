@@ -19,6 +19,13 @@ angular.module('main').directive('notificationCard', function($state, $statePara
         scope.deleteNotification  = function () {
           console.log(scope.userId);
         };
+
+        scope.accept = function(){
+
+        };
+        scope.decline = function(){
+
+        };
     }
 
     return directive;

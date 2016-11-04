@@ -15,11 +15,13 @@
 		<div ng-show="text" class="project-component">
 			{{text}}
 		</div>
+		<div ng-show="interactive" class="project-component">
+			<button type="button" class="btn btn-success btn-md" ng-click="accept()">Accept</button>
+            <button ng-click="decline()" class="btn btn-danger" type="submit">Decline</button>
+		</div>
 		<div class="full-width">
-		{{date}}
+			{{date}}
 		</div>
 	</div>
-	<div ng-show="interactive">
-		<!-- interactivity here -->
-	</div>
+
 </div>
