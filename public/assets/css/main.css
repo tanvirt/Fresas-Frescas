@@ -575,3 +575,8 @@ html, body, .ng-scope, .container-fluid, .row {
 #profileSubheader{
 	font-size: 3rem;
 }
+
+#resizeArea: {
+  overflow: auto;
+  resize: auto;
+}

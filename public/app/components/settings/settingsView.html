@@ -26,7 +26,7 @@
             			<div class="row">
             				<h5 class="col-xs-11 pull-left">Summary</h5>
             			</div>
-                              <input type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.summary">
+                              <textarea type="text" id="resizeArea" class="form-control" ng-readonly="!editing" ng-model="currentUser.summary"></textarea>
             		</div>
 
             		<div class="content" id="currentProjectsContent">
@@ -40,8 +40,7 @@
 
             		<div class="content" id="experienceContent">
             			<h5>Experience</h5>
-                              <input type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.experience">
-
+                              <textarea id="resizeArea" type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.experience"></textarea>
             		</div>
 
             		<div class="content" id="skillsContent">
