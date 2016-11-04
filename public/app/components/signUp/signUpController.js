@@ -73,8 +73,9 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	}
 
 	addUserToDatabase = function(user) {
-		var ref = firebase.database().ref().child("users");
-		var profileRef = ref.child(user.uid);
+		var ref = firebase.database().ref();
+		var userRef = ref.child("users");
+		var profileRef = userRef.child(user.uid);
 
 		var profileObject  = $firebaseObject(profileRef);
 
@@ -87,6 +88,14 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 			$scope.data.experience = $scope.experience;
 			$scope.data.summary = $scope.summary;
 			$scope.data.profilePicture = $scope.profilePicture
+		})
+		console.log($scope.skills);
+		angular.forEach($scope.skills, function(skill) {
+			console.log(skill);
+			ref.child("tags").child(skill).child("users").child(user.uid).set({
+				firstName: $scope.firstName,
+				lastName: $scope.lastName
+			})
 		})
 	}
 

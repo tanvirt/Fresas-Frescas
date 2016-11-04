@@ -8,7 +8,6 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 
 	$scope.ownerObjs = [];
 	$scope.memberObjs = [];
-
 	var ref = firebase.database().ref();
 	var currProjectRef = ref.child("projects").child($scope.myProjectId);
 	var currentProject = {};
@@ -56,13 +55,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	$scope.addComment = function() {
 		var firebaseUser = $scope.authObj.$getAuth();
 		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
-		var timestamp = new Date().getTime();
-		var toDate = new Date(timestamp).getDate();
-		var toMonth = new Date(timestamp).getMonth()+1;
-		var toYear = new Date(timestamp).getFullYear();
-		var hours = new Date(timestamp).getHours();
-		var minutes = new Date(timestamp).getMinutes();
-		var original_date = toMonth + '/' + toDate + '/' + toYear + " " + hours + ":" + minutes;
+		var dateStamp = new Date();
+		dateStamp = dateStamp.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
 		try {
 			currentUser.$loaded().then(function() {
 				currProjectRef.child("comments").push({
@@ -72,19 +66,20 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						lastName: currentUser.lastName
 					},
 					text: $scope.newComment,
-					date: original_date
+					date: dateStamp
 				})
 				$scope.newComment = "";
 				$scope.comments = $firebaseArray(currProjectRef.child("comments"));
 				$scope.comments.$loaded().then(function() {
 					$scope.comments.reverse();
 				})
-				sendCommentNotification(currentUser, original_date);
+				sendCommentNotification(currentUser, dateStamp);
 			})
 		}
 		catch(error) {
 			console.log('Error adding comment to DB: ', error);
 		}
+		// addSubscriber();
 	}
 
 
@@ -94,13 +89,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		var firebaseUser = $scope.authObj.$getAuth();
 		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
 
-		var timestamp = new Date().getTime();
-		var toDate = new Date(timestamp).getDate();
-		var toMonth = new Date(timestamp).getMonth()+1;
-		var toYear = new Date(timestamp).getFullYear();
-		var hours = new Date(timestamp).getHours();
-		var minutes = new Date(timestamp).getMinutes();
-		var original_date = toMonth + '/' + toDate + '/' + toYear + " " + hours + ":" + minutes;
+		var dateStamp = new Date();
+		dateStamp = dateStamp.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
 
 		try {
 			currentUser.$loaded().then(function() {
@@ -112,7 +102,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 					},
 					title: $scope.updateTitle,
 					description: $scope.updateText,
-					date: original_date
+					date: date
 				})
 				$scope.updateTitle = "";
 				$scope.updateText = "";
@@ -120,7 +110,21 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 				$scope.updates.$loaded().then(function() {
 					$scope.updates.reverse();
 				})
-				sendUpdateNotification(currentUser, original_date);
+				sendUpdateNotification(currentUser, dateStamp);
+			})
+		}
+		catch(error) {
+			console.log('Error adding comment to DB: ', error);
+		}
+	}
+
+	addSubscriber = function() {
+		var firebaseUser = $scope.authObj.$getAuth();
+		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
+
+		try {
+			currentUser.$loaded().then(function() {
+				currProjectRef.child("subscribers").child(currentUser.$id)
 			})
 		}
 		catch(error) {
@@ -142,7 +146,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
 						text: notificationText,
-						date: dateAdd
+						date: dateAdd,
+						type: "non-interactive"
 					})
 				}
 			})
@@ -155,7 +160,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
 						text: notificationText,
-						date: dateAdd
+						date: dateAdd,
+						type: "non-interactive"
 					})
 				}
 			})
@@ -177,7 +183,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
 						text: notificationText,
-						date: dateAdd
+						date: dateAdd,
+						type: "non-interactive"
 					})
 				}
 			})
@@ -190,7 +197,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
 						text: notificationText,
-						date: dateAdd
+						date: dateAdd,
+						type: "non-interactive"
 					})
 				}
 			})
@@ -203,7 +211,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
 						text: notificationText,
-						date: dateAdd
+						date: dateAdd,
+						type: "non-interactive"
 					})
 				}
 			})
@@ -226,5 +235,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		console.log($scope.myProjectId);
 		$state.go("editProject", {editProjectId: $scope.myProjectId});
 	}
+
+	// addSubscriber();
 
 });

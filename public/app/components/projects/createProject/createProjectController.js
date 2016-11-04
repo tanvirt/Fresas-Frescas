@@ -63,12 +63,12 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		var firebaseUser = $scope.authObj.$getAuth();
 
 		var ownersList = objectsToIds($scope.project.owners);
-		ownersList.push(firebaseUser.uid);
 
 		try {
 			var projectAddRef = ref.child("projects").push({
 				creationDate: new Date().toString(),
 				title: $scope.project.title,
+				creator: firebaseUser.uid,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
 				members: objectsToIds($scope.project.members),
