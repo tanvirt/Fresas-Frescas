@@ -4,10 +4,15 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	console.log($scope.myProjectId);
 
 	//get the project
-	var projectRef = firebase.database().ref().child("projects");
-	console.log(projectRef);
-	var theProject = $firebaseObject(projectRef.child($scope.myProjectId));
-	console.log(theProject);
+	var ref = firebase.database().ref();
+	var currProjectRef = ref.child("projects").child($scope.myProjectId);
+	var currentProject = {};
+	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+//	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+	projectData.$loaded().then(function() {
+		projectData.$bindTo($scope, "currentProject");
+		console.log($scope.currentProject);
+	}
 
 	var ref = firebase.database().ref();
 	$scope.invalidTitle = false;

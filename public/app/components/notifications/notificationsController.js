@@ -15,7 +15,7 @@ angular.module('main').controller('NotificationsController', function($scope, $f
 		if (user) {
 			$scope.notifications = $firebaseArray(ref.child("users").child(user.uid).child("notifications"));
 			$scope.notifications.$loaded().then(function() {
-				console.log($scope.notifications);
+				$scope.myUser = user.uid;
 			})
 		}
 	});

@@ -16,9 +16,8 @@ angular.module('main').directive('notificationCard', function($state, $statePara
     };
 
     directive.link = function(scope, elem, attrs) {
-        scope.goToProject  = function () {
-            console.log(scope.projectid);
-            $state.go("viewProject", {projectId: scope.projectid});
+        scope.deleteNotification  = function () {
+          console.log(scope.userId);
         };
     }
 

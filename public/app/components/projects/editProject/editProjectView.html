@@ -6,24 +6,9 @@
 	<div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
-
-            	<!-- Main content starts-->
-				<!-- FRONT-END FOR UPLOADING PHOTOS
-            	<div class="project-component">
-					<img class="img-responsive full-width" ng-hide="uploader.flow.length" ng-src="../../assets/img/modern_workplace.jpg">
-					<div flow-init flow-name="uploader.flow">
-						<div ng-show="$flow.files.length">
-							<img class = "img-responsive full-width" flow-img="$flow.files[0]" />
-						</div>
-						<input type="file" class="btn" flow-btn flow-attrs="{accept:'image/*'}" />
-					</div> -->
             	<div class="col-xs-12 col-sm-6">
 					<img style="width: 100%; height:14em" ng-src="{{project.photo}}">
 
-					<!--<input class="btn btn-success full-width" type="file" id="file-photo" name="file-photo"/>
-					<button class="btn btn-success full-width" ng-click="uploadPhoto()">
-						<span class="fa fa-arrow-circle-o-up icon"></span>Upload Photo
-					</button>-->
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<div class="form-group">
@@ -33,7 +18,7 @@
 						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
 					</div>
 					<div>
-						<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners:</div> 
+						<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners:</div>
 					    <div class="chip" ng-repeat="owner in project.owners">{{owner.firstName}} {{owner.lastName}} <i ng-click="removeOwner(owner)" class="close material-icons">close</i></div>
 		            	<div class="chip" ng-hide="editingOwners" ng-click="editingOwners=true" style="font-weight: bold; font-size: 15px;">+</div>
 						<div class="chip pill" ng-show="editingOwners">
@@ -72,7 +57,7 @@
 					<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 				</div>
 
-				
+
 
             	<!--<div class="project-component">
             		<div>Subscribers</div>
