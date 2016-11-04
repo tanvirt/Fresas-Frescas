@@ -1,18 +1,46 @@
 angular.module('main').controller('ViewProjectController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject, $state, $stateParams) {
-	$scope.myProjectId = $stateParams.projectId;
-	console.log($scope.myProjectId);
+	//this case shouldn't ever happen but....
+	if ($stateParams.projectId === null) {
+		$scope.myProjectId = "fill this with something";
+	} else {
+		$scope.myProjectId = $stateParams.projectId;
+	}
 
+	$scope.ownerObjs = [];
+	$scope.memberObjs = [];
 
-	// Main content starts
-	$scope.projectID = "-KV_RmwoD5Nd2R5gbGsF";
+	var ref = firebase.database().ref();
+	var currProjectRef = ref.child("projects").child($scope.myProjectId);
+	var currentProject = {};
+	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+//	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+	projectData.$loaded().then(function() {
+		projectData.$bindTo($scope, "currentProject");
+
+		//get owner and member objects
+		for(var i=0; i < projectData.owners.length; i++) {
+			convertIdToObj(projectData.owners[i], "owner");
+		}
+		for(var i=0; i < projectData.members.length; i++) {
+			convertIdToObj(projectData.members[i], "member");
+		}
+	})
 
 		// App header variables
-	$scope.heading = "Project Title";
+	//$scope.heading = "Project Title";
 	$scope.headingImage = "../../assets/img/computer.jpg";
-	
-	var ref = firebase.database().ref();
-	var currProjectRef = ref.child("projects").child($scope.projectID);
-	$scope.projectObject = $firebaseObject(currProjectRef);
+
+	convertIdToObj = function(id, type) {
+		var personObj = $firebaseObject(ref.child("users").child(id));
+
+		if (type === "owner") {
+			$scope.ownerObjs.push(personObj);
+		} else if (type === "member") {
+			$scope.memberObjs.push(personObj);
+		}
+	}
+	/*var currProjectRef = ref.child("projects").child($scope.projectID);
+	$scope.projectObject = $firebaseObject(currProjectRef);*/
 	$scope.comments = $firebaseArray(currProjectRef.child("comments"));
 
 	$scope.comments.$loaded().then(function() {
@@ -58,6 +86,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 			console.log('Error adding comment to DB: ', error);
 		}
 	}
+
 
 	$scope.updateTitle = "";
 	$scope.updateText = "";
@@ -108,7 +137,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		projectOwners.$loaded().then(function() {
 			angular.forEach(projectOwners, function(owner) {
 				if (owner.$value != user.$id) {
-					ref.child("users").child(owner.$value).child("notifications").push({ 
+					ref.child("users").child(owner.$value).child("notifications").push({
 						projectID: $scope.projectObject.$id,
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
@@ -121,7 +150,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		projectMembers.$loaded().then(function() {
 			angular.forEach(projectMembers, function(member) {
 				if (member.$value != user.$id) {
-					ref.child("users").child(member.$value).child("notifications").push({ 
+					ref.child("users").child(member.$value).child("notifications").push({
 						projectID: $scope.projectObject.$id,
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
@@ -143,7 +172,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		projectOwners.$loaded().then(function() {
 			angular.forEach(projectOwners, function(owner) {
 				if (owner.$value != user.$id) {
-					ref.child("users").child(owner.$value).child("notifications").push({ 
+					ref.child("users").child(owner.$value).child("notifications").push({
 						projectID: $scope.projectObject.$id,
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
@@ -156,7 +185,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		projectMembers.$loaded().then(function() {
 			angular.forEach(projectMembers, function(member) {
 				if (member.$value != user.$id) {
-					ref.child("users").child(member.$value).child("notifications").push({ 
+					ref.child("users").child(member.$value).child("notifications").push({
 						projectID: $scope.projectObject.$id,
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
@@ -169,7 +198,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		projectSubscribers.$loaded().then(function() {
 			angular.forEach(projectSubscribers, function(subscriber) {
 				if (subscriber.$value != user.$id) {
-					ref.child("users").child(subscriber.$value).child("notifications").push({ 
+					ref.child("users").child(subscriber.$value).child("notifications").push({
 						projectID: $scope.projectObject.$id,
 						projectTitle: $scope.projectObject.title,
 						title: notificationTitle,
@@ -180,37 +209,6 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 			})
 		})
 	}
-
-	$scope.projectObject.$loaded().then(function() {
-
-		$scope.project = {
-			title: $scope.projectObject.title,
-			summary: $scope.projectObject.summary,
-			detail: $scope.projectObject.details,
-			owners: $scope.projectObject.owners,
-			members: $scope.projectObject.members,
-			subscribers: $scope.projectObject.subscribers,
-			tags: $scope.projectObject.tags,
-			likes: $scope.projectObject.likes,
-			views: $scope.projectObject.views,
-			comments: $scope.projectObject.comments.length
-		};
-	})
-
-	// $scope.project = {
-	// 	title: "Improving Q",
-	// 	summary: "I would like to improve Q by adding automatic workplace integration. This allows for a more efficient workplace.",
-	// 	detail: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
-	// 	photo: "../../assets/img/modern_workplace.jpg",
-	// 	owners: ["Kyle Wahl", "Tanvir Talukder", "Chris Martin"],
-	// 	members: ["Johhny Dude", "Other Person"],
-	// 	subscribers: ["first", "second", "third"],
-	// 	tags: ["JavaScript", "HTML", "CSS"],
-	// 	assets: [],
-	// 	comments: 10,
-	// 	likes: 12,
-	// 	views: 125
-	// };
 
 	$scope.updates = [{
 		title: "Sample title here",

@@ -1,6 +1,6 @@
 <div>
 	<navbar></navbar>
-	<appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader>
+	<appheader heading="currentProject.title" subheading="subheading" heading-image="headingImage"></appheader>
 
 	<!-- Main content in each page should be wrapped by the following 3 div elements -->
 	<div class="container">
@@ -30,31 +30,31 @@
 						      <div>
 						        <div class="card-panel">
 						          <span class="card-styling-title">Summary</span> <br>
-						          <span>{{project.summary}}</span>
+						          <span>{{currentProject.summary}}</span>
 						        </div>
 						      </div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners: </div> 
-						    	<div class="chip" ng-repeat="owner in project.owners">{{owner}}</div>
+						    	<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners: </div>
+						    	<div class="chip" ng-repeat="owner in ownerObjs">{{owner.firstName}} {{owner.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Members: </div> 
-						    	<div class="chip" ng-repeat="member in project.members">{{member}}</div>
+						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Members: </div>
+						    	<div class="chip" ng-repeat="member in memberObjs">{{member.firstName}} {{member.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Tags: </div> 
-						    	<div class="chip" ng-repeat="tag in project.tags">{{tag}}</div>
+						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Tags: </div>
+						    	<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}}</div>
 						    </div>
 
 						    <div class="col-xs-12 col-sm-12">
 						      <div>
 						        <div class="card-panel">
 						        	<span class="card-styling-title">Details</span> <br>
-						          <span>{{project.detail}}</span>
+						          <span>{{currentProject.detail}}</span>
 						        </div>
 						      </div>
-						    </div>  
+						    </div>
 						</div>
 						<div id="update" class="tab-pane fade">
 						      <div class="row" ng-repeat="update in updates">
@@ -66,7 +66,7 @@
 						            </div>
 						            <div class="card-action">
 										<span id="update-user">{{update.user}}</span>
-										{{update.date}}	
+										{{update.date}}
 						            </div>
 						          </div>
 						        </div>
