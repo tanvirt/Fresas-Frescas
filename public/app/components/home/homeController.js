@@ -86,7 +86,10 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		// featuredProject.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
 		//console.log(featuredProject.summary);
 		// $scope.featured = featuredProject;
-		var numComments = Object.keys(featuredProject.comments).length;
+		var numComments = 0;
+		if(featuredProject.comments){
+			numComments = Object.keys(featuredProject.comments).length;
+		}
 		$scope.featured = {
 			$id: featuredProject.$id,
 			title: featuredProject.title,
@@ -156,7 +159,10 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		}
 		popularProject.owners = objectsToIds(popularProject.owners);
 		popularProject.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
-		var numComments = Object.keys(popularProject.comments).length;
+		var numComments = 0;
+		if(popularProject.comments){
+			numComments = Object.keys(popularProject.comments).length;
+		}
 		$scope.popular = {
 			$id: popularProject.$id,
 			title: popularProject.title,
@@ -172,6 +178,7 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 
 	var newProjects = [];
 	$scope.newProjects = [];
+	$scope.recommendedProjects = [];
 	setNewProjects = function() {
 		ref.child("projects").orderByChild("creationDate").limitToLast(4).on("child_added", function(snapshot) {
 			var project = $firebaseObject(ref.child("projects").child(snapshot.key));
@@ -179,27 +186,32 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 				console.log(project.owners);
 				project.owners = objectsToIds(project.owners);
 				project.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
-				newProjects.push(project);
+				/*$scope.newProjects.push({
+					$id: newProjects[i].$id,
+					title: newProjects[i].title,
+					details: newProjects[i].details,
+					summary: newProjects[i].summary,
+					owners: objectsToIds(newProjects[i].owners),
+					imgSrc: newProjects[i].photo,
+					likes: newProjects[i].likes,
+					views: newProjects[i].views,
+					comments: numComments
+				});*/
+				$scope.newProjects.push(project);
+				$scope.recommendedProjects.push(project);
+				/*for(var i = 0; i < newProjects.length; i++){
+					var numComments = 0;
+					if(newProjects[i].comments){
+						numComments = Object.keys(popularProject.comments).length;
+					}					
 
-				for(var i = 0; i < newProjects.length; i++){
-					var numComments = Object.keys(newProjects[i].comments).length;
-					$scope.newProjects.push({
-						$id: newProjects[i].$id,
-						title: newProjects[i].title,
-						details: newProjects[i].details,
-						summary: newProjects[i].summary,
-						owners: objectsToIds(newProjects[i].owners),
-						imgSrc: newProjects[i].photo,
-						likes: newProjects[i].likes,
-						views: newProjects[i].views,
-						comments: numComments
-					});
-				}				
+				}*/
+
 			})
 		})
 	}
 
-	$scope.recommendedProjects = [{
+	/*$scope.recommendedProjects = [{
 		title: "Test Title",
 		summary: "I am typing a summary here. This is a fantastic project. Good for this person",
 		details: "The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.",
@@ -243,7 +255,7 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		comments: 24,
 		link: "https://www.youtube.com/watch?v=3ECwzCUw3a4"
 	}
-	];
+	];*/
 
     $scope.mobile = Mobile.isPhone();
 });

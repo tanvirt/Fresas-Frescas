@@ -70,6 +70,11 @@ textarea {
 	margin-bottom: 5%;
 }
 
+.notification-component {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 .full-width {
 	width: 100%;
 }
@@ -96,10 +101,14 @@ textarea {
 	overflow: auto;
 }
 
-#loginWrapper{
+#loginWrapper, #signUpWrapper{
  	position: relative;
  	top: 50%;
-  	transform: translateY(-25%);
+  transform: translateY(-25%);
+}
+
+#signUpWrapper{
+  margin-bottom: 42rem;
 }
 
 #loginError{
@@ -566,6 +575,12 @@ html, body, .ng-scope, .container-fluid, .row {
           transform: translateY(-140%);
 }
 
+#profileHeading{
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
 #profileHeader{
 	font-size: 5rem;
 }
@@ -574,9 +589,10 @@ html, body, .ng-scope, .container-fluid, .row {
 	font-size: 3rem;
 }
 
-#resizeArea: {
+.profileText{
   overflow: auto;
-  resize: auto;
+  height: 150px !important;
+  background-color: rgb(225,225,225);
 }
 
 .extra-chips {
@@ -585,4 +601,9 @@ html, body, .ng-scope, .container-fluid, .row {
 
 .tag-group {
   margin-top: .1em;
+}
+
+.card.horizontal {
+  margin-right: 15px;
+  margin-left: 15px;
 }

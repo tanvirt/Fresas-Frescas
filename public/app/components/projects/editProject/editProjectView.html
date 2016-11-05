@@ -7,15 +7,15 @@
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
             	<div class="col-xs-12 col-sm-6">
-					<img style="width: 100%; height:14em" ng-src="{{project.photo}}">
+					<img style="width: 100%; height:14em" ng-src="{{currentProject.photo}}">
 
 				</div>
 				<div class="col-xs-12 col-sm-6">
 					<div class="form-group">
-						<input ng-model="project.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
+						<input ng-model="currentProject.title" type="text" class="form-control" placeholder="Project Title" autofocus data-toggle="validator" required>
 					</div>
 					<div class="form-group">
-						<textarea ng-model="project.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
+						<textarea ng-model="currentProject.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
 					</div>
 					<div>
 						<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners:</div>
@@ -29,7 +29,7 @@
 					</div>
             		<div class="tag-group">
             			<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Members:</div>
-            			<div class="chip" ng-repeat="member in project.members">{{member.firstName}} {{member.lastName}} <i ng-click="removeMember(member)" class="close material-icons">close</i></div>
+            			<div class="chip" ng-repeat="member in memberObjs">{{member.firstName}} {{member.lastName}} <i ng-click="removeMember(member)" class="close material-icons">close</i></div>
             			<div class="chip" ng-hide="editingMembers" ng-click="editingMembers=true" style="font-weight: bold; font-size: 15px;">+</div>
             			<div class="chip pill" ng-show="editingMembers">
 							<input name="owners" type="text" placeholder="enter a member" ng-model="selectedMember" typeahead="member as member.firstName + ' ' + member.lastName for member in allUsers | filter:$viewValue | limitTo:8" class="form-control">
@@ -39,7 +39,7 @@
 					</div>
 	            	<div class="tag-group">
 	            		<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Tags:</div>
-	            		<div class="chip" ng-repeat="tag in project.tags">{{tag}} <i ng-click="removeTag(member)" class="close material-icons">close</i></div>
+	            		<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}} <i ng-click="removeTag(member)" class="close material-icons">close</i></div>
 	            		<div class="chip" ng-hide="editingTags" ng-click="editingTags=true" style="font-weight: bold; font-size: 15px;">+</div>
 	            		<div class="chip pill" ng-show="editingTags">
 							<input name="tags" type="text" placeholder="enter a tag" ng-model="selectedTag"
@@ -51,10 +51,10 @@
             	</div>
             	<br>
             	<div class="col-xs-12" style="margin-top: 1em">
-					<input type="text" class="form-control" ng-model="project.photo" placeholder="Photo URL">
+					<input type="text" class="form-control" ng-model="currentProject.photo" placeholder="Photo URL">
             	</div>
 				<div class="col-xs-12" style="margin-top:1em">
-					<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
+					<textarea ng-model="currentProject.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 				</div>
 
             	<!--<div class="project-component">
@@ -74,7 +74,7 @@
             	</div>-->
 				<div class="col-xs-12" style="margin-top: 1em">
 						<div class="form-group">
-							<textarea ng-model="project.assets" class="form-control" rows="5" id="description" placeholder="Any relevant project assets or notes"></textarea>
+							<textarea ng-model="currentProject.assets" class="form-control" rows="5" id="description" placeholder="Any relevant project assets or notes"></textarea>
 						</div>
 						<!--<div class="form-group">
 							<input type="file" id="file" name="file"/><button class="btn-info pill" ng-click="uploadAsset()">Upload</button>

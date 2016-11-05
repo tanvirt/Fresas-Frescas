@@ -38,7 +38,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 			createUserWithEmailAndPassword();
   		}
   		else {
-  			$scope.error = "You're an idiot!! Fill out the form correctly";
+  			$scope.error = "Please fill out all fields correctly";
   			console.log($scope.error);
   		}
 	}

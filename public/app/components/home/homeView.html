@@ -7,24 +7,23 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
             	<!-- Main content starts -->
-            	<h2>Featured Project</h2>
+            	<h2 style="margin-left:15px">Featured Project</h2>
                   <project-card ng-show="!mobile" image="featured.imgSrc" title="featured.title" summary="featured.summary" likes="featured.likes" views="featured.views" comments="featured.comments" details="featured.details" projectid="featured.$id"></project-card>
-                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="featured.imgSrc" title="featured.title" summary="featured.summary" likes="featured.likes" views="featured.views" comments="featured.comments" details="featured.details" projectid="featured.$id"></project-card-mobile>
+                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="featured.imgSrc" title="featured.title" summary="featured.summary" likes="featured.likes" views="featured.views" comments="featured.comments" details="featured.details" projectid="featured.$id"></project-card-mobile>            
 
-            	<h2>Popular Project</h2>
-                  <project-card ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card>
-                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card-mobile>                 
-
-            	<h2>Recommended Projects</h2>
+            	<h2 style="margin-left:15px">Recommended Projects</h2>
                   <project-card-mobile ng-repeat="recommended in recommendedProjects" class="col-xs-12 col-sm-6" image="recommended.imgSrc" title="recommended.title" summary="recommended.summary" likes="recommended.likes" views="recommended.views" comments="recommended.comments" details="recommended.details" projectid="recommended.$id"></project-card-mobile>
 
-                  <h2>New Projects</h2>
+                  <h2 style="margin-left:15px">Popular Project</h2>
+                  <project-card ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card>
+                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card-mobile>   
+
+                  <h2 style="margin-left:15px">New Projects</h2>
                   <project-card-mobile ng-repeat="newProject in newProjects" class="col-xs-12 col-sm-6" image="newProject.imgSrc" title="newProject.title" summary="newProject.summary" likes="newProject.likes" views="newProject.views" comments="newProject.comments" details="newProject.details" projectid="newProject.$id"></project-card-mobile>
 			<!-- Main content ends -->
 
 			</div>
 		</div>
 	</div>
-
 	<appfooter></appfooter>
 </div>
