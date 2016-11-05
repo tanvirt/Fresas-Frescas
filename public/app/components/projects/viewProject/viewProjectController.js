@@ -15,7 +15,10 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	projectData.$loaded().then(function() {
 		//projectData.$bindTo($scope, "currentProject");
-		var numComments = Object.keys(projectData.comments).length;
+		var numComments = 0;
+		if(projectData.comments){
+			numComments = Object.keys(projectData.comments).length;
+		}
 		$scope.currentProject = {
 			$id: projectData.$id,
 			title: projectData.title,
