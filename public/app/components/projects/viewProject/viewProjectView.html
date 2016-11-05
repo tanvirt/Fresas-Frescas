@@ -20,9 +20,9 @@
 							<div class="col-xs-12 col-sm-6">
 								<img src="{{currentProject.photo}}" style="width: 100%; height:14em">
 								<div>
-							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.likes}} != undefined" ng-click="likeClicked()" style="cursor: pointer;"><span class="fa fa-thumbs-o-up card-icon"> {{currentProject.likes}} </span></div>
-							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.views}} != undefined"><span class="fa fa-eye card-icon"> {{currentProject.views}} </span></div>
-							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.comments}} != undefined"><span class="fa fa-commenting-o card-icon"> {{currentProject.commentsNum}} </span></div>
+							    	<div class="col-xs-4 text-center" ng-show="{{currentProject.likes}} != undefined" ng-click="likeClicked()" style="cursor: pointer;"><span class="fa fa-thumbs-o-up card-icon"> {{currentProject.likes}} </span></div>
+							    	<div class="col-xs-4 text-center" ng-show="{{currentProject.views}} != undefined"><span class="fa fa-eye card-icon"> {{currentProject.views}} </span></div>
+							    	<div class="col-xs-4 text-center" ng-show="{{currentProject.comments}} != undefined"><span class="fa fa-commenting-o card-icon"> {{currentProject.commentsNum}} </span></div>
 							    </div>
 							</div>
 
@@ -35,15 +35,15 @@
 						      </div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="col-xs-12 col-sm-3" >Owners: </div>
+						    	<div class="col-xs-12 col-sm-4" >Owners: </div>
 						    	<div class="chip" ng-repeat="owner in ownerObjs">{{owner.firstName}} {{owner.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="col-xs-12 col-sm-3">Members: </div>
+						    	<div class="col-xs-12 col-sm-4">Members: </div>
 						    	<div class="chip" ng-repeat="member in memberObjs">{{member.firstName}} {{member.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="col-xs-12 col-sm-3">Tags: </div>
+						    	<div class="col-xs-12 col-sm-4">Tags: </div>
 						    	<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}}</div>
 						    </div>
 

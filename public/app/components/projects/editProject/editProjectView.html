@@ -18,7 +18,7 @@
 						<textarea ng-model="currentProject.summary" class="form-control" rows="5" id="description" placeholder="Brief Summary"></textarea>
 					</div>
 					<div>
-						<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners:</div>
+						<div class="col-xs-12 col-sm-4">Owners:</div>
 					    <div class="chip" ng-repeat="owner in project.owners">{{owner.firstName}} {{owner.lastName}} <i ng-click="removeOwner(owner)" class="close material-icons">close</i></div>
 		            	<div class="chip" ng-hide="editingOwners" ng-click="editingOwners=true" style="font-weight: bold; font-size: 15px;">+</div>
 						<div class="chip pill" ng-show="editingOwners">
@@ -28,7 +28,7 @@
 						</div>
 					</div>
             		<div class="tag-group">
-            			<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Members:</div>
+            			<div class="col-xs-12 col-sm-4">Members:</div>
             			<div class="chip" ng-repeat="member in memberObjs">{{member.firstName}} {{member.lastName}} <i ng-click="removeMember(member)" class="close material-icons">close</i></div>
             			<div class="chip" ng-hide="editingMembers" ng-click="editingMembers=true" style="font-weight: bold; font-size: 15px;">+</div>
             			<div class="chip pill" ng-show="editingMembers">
@@ -38,7 +38,7 @@
 						</div>
 					</div>
 	            	<div class="tag-group">
-	            		<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Tags:</div>
+	            		<div class="col-xs-12 col-sm-4">Tags:</div>
 	            		<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}} <i ng-click="removeTag(member)" class="close material-icons">close</i></div>
 	            		<div class="chip" ng-hide="editingTags" ng-click="editingTags=true" style="font-weight: bold; font-size: 15px;">+</div>
 	            		<div class="chip pill" ng-show="editingTags">

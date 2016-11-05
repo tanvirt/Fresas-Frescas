@@ -607,3 +607,7 @@ html, body, .ng-scope, .container-fluid, .row {
   margin-right: 15px;
   margin-left: 15px;
 }
+
+.name-chips {
+  padding: 0;
+}
