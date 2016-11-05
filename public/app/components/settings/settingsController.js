@@ -90,7 +90,7 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 
 	
    	$('.chips').on('chip.add', function(e, chip){
-    $scope.addSkill(chip.tag);
+    	$scope.addSkill(chip.tag);
   	});
 
   	$('.chips').on('chip.delete', function(e, chip){

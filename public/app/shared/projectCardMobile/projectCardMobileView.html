@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" style="height:24em">
   	<div class="card-image waves-effect waves-block waves-light">
       <img class="activator" src="../../assets/img/splash.jpg" style="min-height: 100%">
     </div>
@@ -14,7 +14,7 @@
 		<div style="height: 5em; overflox-y:hidden;" ng-show="summary != undefined || summary != ''" class="project-component">
 			{{summary}}
 		</div>
-		<div class="full-width">
+		<div class="full-width" style="margin-bottom:.5em; bottom:0; position:absolute;">
 			<span ng-show="likes != undefined" class="fa fa-thumbs-o-up card-icon" ng-click="likeClicked()" style="cursor: pointer;"> {{likes}} </span>
 			<span ng-show="views != undefined" class="fa fa-eye card-icon"> {{views}} </span>
 			<span ng-show="comments != undefined" class="fa fa-commenting-o card-icon"> {{comments}} </span>
