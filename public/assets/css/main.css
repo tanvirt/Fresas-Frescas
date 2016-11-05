@@ -582,3 +582,7 @@ html, body, .ng-scope, .container-fluid, .row {
 .extra-chips {
   text-align: center;
 }
+
+.tag-group {
+  margin-top: .1em;
+}

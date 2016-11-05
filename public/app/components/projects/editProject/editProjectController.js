@@ -12,7 +12,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	projectData.$loaded().then(function() {
 		projectData.$bindTo($scope, "currentProject");
 		console.log($scope.currentProject);
-	}
+	});
 
 	var ref = firebase.database().ref();
 	$scope.invalidTitle = false;
@@ -35,7 +35,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 		});
 
 	// App header variables
-	$scope.heading = "Create A Project";
+	$scope.heading = "Edit Project";
 	$scope.subheading = "Share your inspiration.";
 	$scope.headingImage = "../../assets/img/ideal_workplace.jpg";
 

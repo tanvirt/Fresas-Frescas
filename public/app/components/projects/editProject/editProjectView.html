@@ -27,7 +27,7 @@
 							<span class="glyphicon glyphicon-remove icon" ng-click="editingOwners=false"></span>
 						</div>
 					</div>
-            		<div>
+            		<div class="tag-group">
             			<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Members:</div>
             			<div class="chip" ng-repeat="member in project.members">{{member.firstName}} {{member.lastName}} <i ng-click="removeMember(member)" class="close material-icons">close</i></div>
             			<div class="chip" ng-hide="editingMembers" ng-click="editingMembers=true" style="font-weight: bold; font-size: 15px;">+</div>
@@ -37,7 +37,7 @@
 							<span class="glyphicon glyphicon-remove icon" ng-click="editingMembers=false"></span>
 						</div>
 					</div>
-	            	<div>
+	            	<div class="tag-group">
 	            		<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Tags:</div>
 	            		<div class="chip" ng-repeat="tag in project.tags">{{tag}} <i ng-click="removeTag(member)" class="close material-icons">close</i></div>
 	            		<div class="chip" ng-hide="editingTags" ng-click="editingTags=true" style="font-weight: bold; font-size: 15px;">+</div>
@@ -56,8 +56,6 @@
 				<div class="col-xs-12" style="margin-top:1em">
 					<textarea ng-model="project.details" class="form-control" rows="5" id="description" placeholder="Technical Details"></textarea>
 				</div>
-
-
 
             	<!--<div class="project-component">
             		<div>Subscribers</div>
@@ -86,12 +84,12 @@
 				<div class="alert alert-danger col-xs-12" ng-show="invalidTitle">Error: Title is required </div>
 				<div class="alert alert-danger col-xs-12" ng-show="invalidTags">Error: At least one tag is required </div>
 
-            	<div class="btn-group project-component full-width">
-            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
+            	<div class="full-width" style="padding:0 15px">
+            		<button class="btn btn-success col-xs-12 col-sm-6" style="margin-top:.5em" ng-click="addProjectToDatabase()">
             			<span class="glyphicon glyphicon-floppy-disk icon"></span>
             			Save
             		</button>
-            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()">
+            		<button class="btn btn-danger col-xs-12 col-sm-6" style="margin-top:.5em" ng-click="cancel()">
             			<span class="fa fa-ban icon"></span>
             			Cancel
             		</button>
@@ -101,4 +99,5 @@
 			</div>
 		</div>
 	</div>
+	<appfooter></appfooter>
 </div>

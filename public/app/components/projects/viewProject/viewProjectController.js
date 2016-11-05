@@ -250,5 +250,4 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	// addSubscriber();
-
 });
