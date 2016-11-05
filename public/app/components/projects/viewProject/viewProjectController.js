@@ -232,12 +232,12 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		})
 	}
 
-	$scope.updates = [{
+	/*$scope.updates = [{
 		title: "Sample title here",
 		description: "This is a simple description for this update right here.",
 		user: "Kyle Wahl",
 		date: "Wed Nov 02 2016 08:24:21 GMT-0500 (Central Daylight Time)"
-	}];
+	}];*/
 
 	for(var i = 0; i < $scope.updates.length; i++){
 		$scope.updates[i].date = new Date($scope.updates[i].date);

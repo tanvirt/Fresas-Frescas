@@ -101,12 +101,12 @@
 				<div class="alert alert-danger col-xs-12" ng-show="invalidTitle">Error: Title is required </div>
 				<div class="alert alert-danger col-xs-12" ng-show="invalidTags">Error: At least one tag is required </div>
 
-            	<div class="btn-group project-component full-width">
-            		<button class="btn btn-success" id="project-save" ng-click="addProjectToDatabase()">
+            	<div class="full-width">
+            		<button class="btn btn-success col-xs-12 col-sm-6" style="margin-top:.5em" ng-click="addProjectToDatabase()">
             			<span class="glyphicon glyphicon-floppy-disk icon"></span>
             			Save
             		</button>
-            		<button class="btn btn-danger" id="project-cancel-save" ng-click="cancel()">
+            		<button class="btn btn-danger col-xs-12 col-sm-6" style="margin-top:.5em" ng-click="cancel()">
             			<span class="fa fa-ban icon"></span>
             			Cancel
             		</button>
