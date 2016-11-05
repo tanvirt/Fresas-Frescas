@@ -8,7 +8,7 @@ angular.module('main').controller('SignUpController', function($rootScope, $scop
 	$scope.password;
 	$scope.confirmPassword;
 	$scope.position;
-	$scope.skills = [];
+	$scope.skills = ["Technology"];
 	$scope.summary = "";
 	$scope.experience = "";
 	$scope.profilePicture = "";

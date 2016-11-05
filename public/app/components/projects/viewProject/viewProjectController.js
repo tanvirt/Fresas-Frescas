@@ -40,7 +40,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		}
 	})
 
-		// App header variables
+	// App header variables
 	//$scope.heading = "Project Title";
 	$scope.headingImage = "../../assets/img/computer.jpg";
 
