@@ -15,7 +15,7 @@
 			{{summary}}
 		</div>
 		<div class="full-width">
-			<span ng-show="likes != undefined" class="fa fa-thumbs-o-up card-icon"> {{likes}} </span>
+			<span ng-show="likes != undefined" class="fa fa-thumbs-o-up card-icon" ng-click="likeClicked()"> {{likes}} </span>
 			<span ng-show="views != undefined" class="fa fa-eye card-icon"> {{views}} </span>
 			<span ng-show="comments != undefined" class="fa fa-commenting-o card-icon"> {{comments}} </span>
 		</div>

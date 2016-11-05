@@ -12,13 +12,13 @@
             	<!-- Main content starts-->
 				<div>
             		<div class="row" id="profileHeading">
-            			<div class="col-md-8">
+            			<div class="col-md-4 pull-left" ng-hide="currentUser.profilePicture == ''">
+            				<img class="img-responsive" src={{currentUser.profilePicture}}>
+            			</div>
+            			<div class="col-md-8 vertical-center">
             				<h1 id="profileHeader">{{currentUser.firstName}}</h1>
 							<h1 id="profileHeader">{{currentUser.lastName}}</h1>
             				<h3 id="profileSubheader">{{currentUser.position}}</h3>
-            			</div>
-            			<div class="col-md-4 pull-right" ng-hide="currentUser.profilePicture == ''">
-            				<img class="img-responsive" src={{currentUser.profilePicture}}>
             			</div>
             		</div>
 
@@ -26,7 +26,7 @@
             			<div class="row">
             				<h5 class="col-xs-11 pull-left">Summary</h5>
             			</div>
-                              <textarea type="text" id="resizeArea" class="form-control" ng-readonly="!editing" ng-model="currentUser.summary"></textarea>
+                        <textarea type="text"  class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.summary"></textarea>
             		</div>
 
             		<div class="content" id="currentProjectsContent">
@@ -40,7 +40,7 @@
 
             		<div class="content" id="experienceContent">
             			<h5>Experience</h5>
-                              <textarea id="resizeArea" type="text" class="form-control" ng-readonly="!editing" ng-model="currentUser.experience"></textarea>
+                        <textarea type="text" class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.experience"></textarea>
             		</div>
 
             		<div class="content" id="skillsContent">

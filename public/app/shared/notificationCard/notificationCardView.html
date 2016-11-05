@@ -12,14 +12,14 @@
 				{{title}}
 			</div>
 		</span>
-		<div ng-show="text" class="project-component">
+		<div ng-show="text" class="notification-component">
 			{{text}}
 		</div>
-		<div ng-show="interactive" class="project-component">
+		<div ng-show="interactive" class="notification-component">
 			<button type="button" class="btn btn-success btn-md" ng-click="accept()">Accept</button>
             <button ng-click="decline()" class="btn btn-danger" type="submit">Decline</button>
 		</div>
-		<div class="full-width">
+		<div class="full-width text-muted">
 			{{date}}
 		</div>
 	</div>

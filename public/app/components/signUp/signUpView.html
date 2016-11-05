@@ -1,27 +1,26 @@
 <div class="container" id="signUp">
-    <div class="row" >
+    <div class="row" id="signUpWrapper">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
         	<!-- Main content starts -->
         	<div class="col-xs-12 col-sm-8 col-sm-offset-2 ">        	
 				<div id="signUpOpacityBackground" class="jumbotron vertical-center modal-content">
-				<h1 id="signUpTitle">Create A New Account</h1><br>
 					<span id="loginError" ng-model="error">{{error}}</span>
 					<div id="loginElements">
 						<form name="inputBoxes">
 							<label>First Name:</label><input class="form-control input-lg clearForm" type="text" name="firstName" ng-model="firstName" required><br>
 							<label>Last Name:</label><input class="form-control input-lg clearForm" type="text" name="lastName" ng-model="lastName" required><br>
-							<label>Username:</label><input class="form-control input-lg clearForm" type="email" name="username" ng-model="username" placeholder="username@domain.com" required><br>
+							<label>Email:</label><input class="form-control input-lg clearForm" type="email" name="username" ng-model="username" required><br>
 							<label>Password:</label><input class="form-control input-lg clearForm" type="password" name="password" ng-model="password" required><br>
 							<label>Confirm Password:</label><input class="form-control input-lg clearForm" type="password" name="confirmPassword" ng-model="confirmPassword" required><br>
 							<label>Position:</label><input class="form-control input-lg clearForm" type="text" name="position" ng-model="position" required><br>
-							<label>Skills:</label><br>	                      
+<!-- 							<label>Skills:</label><br>	                      
 							<div id=signUpChips>
 	                      		<div class="chips chips-placeholder">+Skill</div><br>
 	                      	</div>
-							<label>Experience:</label><input class="form-control input-lg clearForm" type="text" name="experience" ng-model="experience"><br>
+							<label>Experience:</label><input class="form-control input-lg clearForm" type="text" name="experience" ng-model="experience"><br> -->
 							<label>Summary:</label><textarea class="form-control input-lg clearForm" type="text" name="summary" ng-model="summary"></textarea><br>
-							<label>Profile Picture</label><input class="form-control input-lg clearForm" type="url" name="profilePicture" ng-model="profilePicture" placeholder="http://youreimageurl.com/"><br>
+							<label>Profile Picture (url)</label><input class="form-control input-lg clearForm" type="url" name="profilePicture" ng-model="profilePicture"><br>
 						</form>
 						<button id="loginButton" class="waves-effect waves-teal btn-flat" ng-click="signUp()">Sign Up</button>
 						<button id="signUpButton" class="waves-effect waves-teal btn-flat" ng-click="back()">Back to Log In</button>
