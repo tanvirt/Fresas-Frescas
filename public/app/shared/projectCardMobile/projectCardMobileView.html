@@ -4,14 +4,14 @@
     </div>
     <div class="card-content">
 		<span class="card-title activator grey-text text-darken-4">
-			<div ng-show="summary">
+			<div ng-show="details != undefined && details != ''">
 				<i class="material-icons right">more_vert</i>
 			</div>
 			<div ng-click="goToProject()">
 				{{title}}
 			</div>
 		</span>
-		<div ng-show="summary" class="project-component">
+		<div ng-show="summary != undefined || summary != ''" class="project-component">
 			{{summary}}
 		</div>
 		<div class="full-width">

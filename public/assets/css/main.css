@@ -47,8 +47,6 @@ textarea {
 }
 
 #project-save {
-	width: 47.5%;
-	margin-right: 5%;
 }
 
 #project-cancel-save {
@@ -393,7 +391,7 @@ html, body, .ng-scope, .container-fluid, .row {
 .btn-flat {
   border: none;
   border-radius: 2px;
-  display: inline-block;
+  /*display: inline-block;*/ /*===>this is what messed up the comments textbox and send btn...not sure if used elsewhere so leaving this comment*/
   height: 36px;
   line-height: 36px;
   padding: 0 2rem;
@@ -579,4 +577,8 @@ html, body, .ng-scope, .container-fluid, .row {
 #resizeArea: {
   overflow: auto;
   resize: auto;
+}
+
+.extra-chips {
+  text-align: center;
 }

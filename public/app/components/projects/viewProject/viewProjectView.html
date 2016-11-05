@@ -18,11 +18,11 @@
 					<div class="tab-content">
 						<div id="info" class="tab-pane fade in active">
 							<div class="col-xs-12 col-sm-6">
-								<img src="{{project.photo}}" style="width: 100%; height:14em">
+								<img src="{{currentProject.photo}}" style="width: 100%; height:14em">
 								<div class="extra-chips">
-							    	<div class="chip"><span class="fa fa-thumbs-o-up card-icon"> {{project.likes}} </span></div>
-							    	<div class="chip"><span class="fa fa-eye card-icon"> {{project.views}} </span></div>
-							    	<div class="chip"><span class="fa fa-commenting-o card-icon"> {{project.comments}} </span></div>
+							    	<div class="chip" ng-show="{{currentProject.likes}} != undefined"><span class="fa fa-thumbs-o-up card-icon"> {{currentProject.likes}} </span></div>
+							    	<div class="chip" ng-show="{{currentProject.views}} != undefined"><span class="fa fa-eye card-icon"> {{currentProject.views}} </span></div>
+							    	<div class="chip" ng-show="{{currentProject.comments}} != undefined"><span class="fa fa-commenting-o card-icon"> {{currentProject.commentsNum}} </span></div>
 							    </div>
 							</div>
 
@@ -49,12 +49,16 @@
 
 						    <div class="col-xs-12 col-sm-12">
 						      <div>
-						        <div class="card-panel">
+						        <div class="card-panel" ng-show="{{currentProject.details}} != undefined || {{currentProject.details}} != ''">
 						        	<span class="card-styling-title">Details</span> <br>
-						          <span>{{currentProject.detail}}</span>
+						          <span>{{currentProject.details}}</span>
 						        </div>
 						      </div>
 						    </div>
+						    <div class="col-xs-12">
+						    	<button class="col-xs-12 btn btn-success" id="project-save" ng-click="editProject()">Edit</button>
+						    </div>
+						    
 						</div>
 						<div id="update" class="tab-pane fade">
 						      <div class="row" ng-repeat="update in updates">
@@ -109,7 +113,6 @@
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-success" id="project-save" ng-click="editProject()">Edit</button>
 				<!-- Main content ends -->
 			</div>
 		</div>

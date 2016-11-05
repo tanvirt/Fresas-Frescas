@@ -14,7 +14,20 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	projectData.$loaded().then(function() {
-		projectData.$bindTo($scope, "currentProject");
+		//projectData.$bindTo($scope, "currentProject");
+		var numComments = Object.keys(projectData.comments).length;
+		$scope.currentProject = {
+			$id: projectData.$id,
+			title: projectData.title,
+			details: projectData.details,
+			summary: projectData.summary,
+			photo: projectData.photo,
+			likes: projectData.likes,
+			views: projectData.views,
+			commentsNum: numComments
+		};
+
+
 
 		//get owner and member objects
 		for(var i=0; i < projectData.owners.length; i++) {
