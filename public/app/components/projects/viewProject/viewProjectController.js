@@ -6,6 +6,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		$scope.myProjectId = $stateParams.projectId;
 	}
 
+	$scope.isOwner = true; // TEMPORARY
+
 	$scope.ownerObjs = [];
 	$scope.memberObjs = [];
 	var ref = firebase.database().ref();
@@ -98,7 +100,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 
 	$scope.updateTitle = "";
 	$scope.updateText = "";
-	addUpdate = function() {
+	$scope.addUpdate = function() {
 		var firebaseUser = $scope.authObj.$getAuth();
 		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
 
@@ -131,7 +133,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		}
 	}
 
-	addSubscriber = function() {
+	$scope.addSubscriber = function() {
 		var firebaseUser = $scope.authObj.$getAuth();
 		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
 
