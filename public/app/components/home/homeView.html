@@ -8,56 +8,17 @@
 
             	<!-- Main content starts -->
             	<h2>Featured Project</h2>
-
-            	<!--<horizontal-card
-            		image="featured.imgSrc"
-            		title="featured.title"
-            		summary="featured.summary"
-            		owners="featured.owners"
-            		likes="featured.likes"
-            		views="featured.views">
-            	</horizontal-card>-->
                   <project-card ng-show="!mobile" image="featured.imgSrc" title="featured.title" summary="featured.summary" likes="featured.likes" views="featured.views" comments="featured.comments" details="featured.details" projectid="featured.$id"></project-card>
                   <project-card-mobile ng-show="mobile" ng-show="!mobile" image="featured.imgSrc" title="featured.title" summary="featured.summary" likes="featured.likes" views="featured.views" comments="featured.comments" details="featured.details" projectid="featured.$id"></project-card-mobile>
 
             	<h2>Popular Project</h2>
-            	<!--<horizontal-card
-            		image="popularProject.imgSrc"
-            		title="popularProject.title"
-            		summary="popularProject.summary"
-            		owners="popularProject.owners"
-            		likes="popularProject.likes"
-            		views="popularProject.views">
-            	</horizontal-card>-->
-                  <project-card ng-show="!mobile" image="popularProject.imgSrc" title="popularProject.title" summary="popularProject.summary" likes="popularProject.likes" views="popularProject.views" comments="popularProject.comments" details="popularProject.details" projectid="popularProject.$id"></project-card>
-                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="popularProject.imgSrc" title="popularProject.title" summary="popularProject.summary" likes="popularProject.likes" views="popularProject.views" comments="popularProject.comments" details="popularProject.details" projectid="popularProject.$id"></project-card-mobile>                 
+                  <project-card ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card>
+                  <project-card-mobile ng-show="mobile" ng-show="!mobile" image="popular.imgSrc" title="popular.title" summary="popular.summary" likes="popular.likes" views="popular.views" comments="popular.comments" details="popular.details" projectid="popular.$id"></project-card-mobile>                 
 
             	<h2>Recommended Projects</h2>
-            	<!--<vertical-flip-card ng-repeat="recommended in recommendedProjects"
-            		image="recommended.imgSrc"
-            		title="recommended.title"
-            		summary="recommended.summary"
-            		description="recommended.description"
-            		owners="recommended.owners"
-            		likes="recommended.likes"
-            		views="recommended.views"
-            		link="recommended.link">
-            	</vertical-flip-card>-->
-                  <!--<project-card ng-repeat="recommended in recommendedProjects" ng-show="!mobile" image="recommended.imgSrc" title="recommended.title" summary="recommended.summary" likes="recommended.likes" views="recommended.views" comments="recommended.comments" details="recommended.details"></project-card>-->
                   <project-card-mobile ng-repeat="recommended in recommendedProjects" class="col-xs-12 col-sm-6" image="recommended.imgSrc" title="recommended.title" summary="recommended.summary" likes="recommended.likes" views="recommended.views" comments="recommended.comments" details="recommended.details" projectid="recommended.$id"></project-card-mobile>
 
                   <h2>New Projects</h2>
-                  <!--<vertical-flip-card ng-repeat="newProject in newProjects"
-                        image="newProject.imgSrc"
-                        title="newProject.title"
-                        summary="newProject.summary"
-                        description="newProject.description"
-                        owners="newProject.owners"
-                        likes="newProject.likes"
-                        views="newProject.views"
-                        link="newProject.link">
-                  </vertical-flip-card>-->
-                  <!--<project-card ng-repeat="newProject in newProjects" ng-show="!mobile" image="newProject.imgSrc" title="newProject.title" summary="newProject.summary" likes="newProject.likes" views="newProject.views" comments="newProject.comments" details="newProject.details"></project-card>-->
                   <project-card-mobile ng-repeat="newProject in newProjects" class="col-xs-12 col-sm-6" image="newProject.imgSrc" title="newProject.title" summary="newProject.summary" likes="newProject.likes" views="newProject.views" comments="newProject.comments" details="newProject.details" projectid="newProject.$id"></project-card-mobile>
 
             	<div class="col-xs-12" style="text-align: center">

@@ -86,14 +86,17 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 		// featuredProject.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
 		//console.log(featuredProject.summary);
 		// $scope.featured = featuredProject;
+		var numComments = Object.keys(featuredProject.comments).length;
 		$scope.featured = {
+			$id: featuredProject.$id,
 			title: featuredProject.title,
-			details: featuredProject.summary,
+			details: featuredProject.details,
+			summary: featuredProject.summary,
 			owners: objectsToIds(featuredProject.owners),
 			imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
 			likes: featuredProject.likes,
 			views: featuredProject.views,
-			comments: 24,
+			comments: numComments
 		}
 	}
 
@@ -143,32 +146,31 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 	setPopularProject = function() {
 		var likes = 0;
 		var views = 0;
-		var popular;
+		var popularProject;
 		for(project = 0; project < $scope.numProjects; project++) {
-			//console.log("likes: " + likes + "views: " + views);
-			console.log($scope.projectList[project]);
-			console.log("Project likes: " + $scope.projectList[project].likes + " Project views: " + $scope.projectList[project].views/20)
 			if((likes + views/20) <= ($scope.projectList[project].likes + $scope.projectList[project].views/20)) {
 				likes = $scope.projectList[project].likes;
 				views = $scope.projectList[project].views;
-				popular = $scope.projectList[project];
-				console.log("CHANGES");
+				popularProject = $scope.projectList[project];
 			}
 		}
-		console.log(popular);
-		popular.owners = objectsToIds(popular.owners);
-		popular.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
-		$scope.popularProject = popular;
-		// $scope.popularProject = {
-		// 	title: popular.title,
-		// 	details: popular.summary,
-		// 	owners: objectsToIds(popular.owners),
-		// 	imgSrc: "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg",
-		// 	likes: popular.likes,
-		// 	views: popular.views
-		// }
+		popularProject.owners = objectsToIds(popularProject.owners);
+		popularProject.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
+		var numComments = Object.keys(popularProject.comments).length;
+		$scope.popular = {
+			$id: popularProject.$id,
+			title: popularProject.title,
+			details: popularProject.details,
+			summary: popularProject.summary,
+			owners: objectsToIds(popularProject.owners),
+			imgSrc: popularProject.photo,
+			likes: popularProject.likes,
+			views: popularProject.views,
+			comments: numComments
+		}
 	}
 
+	var newProjects = [];
 	$scope.newProjects = [];
 	setNewProjects = function() {
 		ref.child("projects").orderByChild("creationDate").limitToLast(4).on("child_added", function(snapshot) {
@@ -176,26 +178,27 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 			project.$loaded().then(function() {
 				console.log(project.owners);
 				project.owners = objectsToIds(project.owners);
-				// console.log(project.owners);
 				project.imgSrc = "https://www.thermofisher.com/blog/food/wp-content/uploads/sites/5/2015/08/single_strawberry__isolated_on_a_white_background.jpg";
-				console.log(project.imgSrc);
-				$scope.newProjects.push(project);
-				//console.log(snapshot.val());
-				console.log($scope.newProjects);
-			})
-			// console.log($scope.newProject.length);
-				//$scope.newProjects.push($scope.newProject[i]);
-			//console.log($scope.newProjects);
-			// console.log(snapshot.key);
-			// console.log(projectx);
+				newProjects.push(project);
 
-			// $scope.newProject = (projectx);
-			// $scope.newProjects = [];
-			// $scope.newProjects.push($scope.newProject);
-			//console.log($scope.newProject);
-			// console.log($scope.newProjects.length);
+				for(var i = 0; i < newProjects.length; i++){
+					var numComments = Object.keys(newProjects[i].comments).length;
+					$scope.newProjects.push({
+						$id: newProjects[i].$id,
+						title: newProjects[i].title,
+						details: newProjects[i].details,
+						summary: newProjects[i].summary,
+						owners: objectsToIds(newProjects[i].owners),
+						imgSrc: newProjects[i].photo,
+						likes: newProjects[i].likes,
+						views: newProjects[i].views,
+						comments: numComments
+					});
+				}				
+			})
 		})
-		//console.log(newProjectList);
+
+
 	}
 
 	$scope.recommendedProjects = [{

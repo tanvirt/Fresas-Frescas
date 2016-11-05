@@ -4,20 +4,20 @@
 	</div>
 	<div class="card-content" style="width: 100%;">
 		<span class="card-title activator grey-text text-darken-4">
-			<div ng-show="summary">
+			<div ng-show="details != undefined && details != ''">
 				<i class="material-icons right">more_vert</i>
 			</div>
 			<div ng-click="goToProject()">
 				{{title}}
 			</div>
 		</span>
-		<div ng-show="summary" class="project-component">
+		<div ng-show="summary != undefined && summary != ''" class="project-component">
 			{{summary}}
 		</div>
-		<div ng-show="likes || views || comments" class="full-width">
-			<span ng-show="likes" class="fa fa-thumbs-o-up card-icon"> {{likes}} </span>
-			<span ng-show="views" class="fa fa-eye card-icon"> {{views}} </span>
-			<span ng-show="comments" class="fa fa-commenting-o card-icon"> {{comments}} </span>
+		<div class="full-width">
+			<span ng-show="likes != undefined" class="fa fa-thumbs-o-up card-icon"> {{likes}} </span>
+			<span ng-show="views != undefined" class="fa fa-eye card-icon"> {{views}} </span>
+			<span ng-show="comments != undefined" class="fa fa-commenting-o card-icon"> {{comments}} </span>
 		</div>
 	</div>
 	<div ng-show="title && summary" class="card-reveal">
