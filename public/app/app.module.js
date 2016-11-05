@@ -70,8 +70,8 @@ angular.module('main').run(function($rootScope, $state, $firebaseAuth) {
 		else if(toState.name == "login") {
 			$state.go('login');
 		}
-		else if(toState.name == 'settings') {
-			$state.go('settings');
+		else if(toState.name == 'profile') {
+			$state.go('profile');
 		}
 		else if(toState.name == 'signUp') {
 			$state.go('signUp');

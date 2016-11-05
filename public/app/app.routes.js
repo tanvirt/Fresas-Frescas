@@ -15,7 +15,7 @@ angular.module('main').config(function($urlRouterProvider, $stateProvider, $loca
             controller: 'HomeController'
         })
 
-        .state('settings', {
+        .state('profile', {
             url: '/profile/:userId',
             params: {
                 userId: null
