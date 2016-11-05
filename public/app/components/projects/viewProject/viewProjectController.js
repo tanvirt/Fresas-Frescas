@@ -253,5 +253,9 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		$state.go("editProject", {editProjectId: $scope.myProjectId});
 	}
 
+	$scope.likeClicked = function(){
+            console.log("liked");
+        };
+
 	// addSubscriber();
 });
