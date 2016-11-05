@@ -96,5 +96,4 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
   	$('.chips').on('chip.delete', function(e, chip){
   });
 
-
 });

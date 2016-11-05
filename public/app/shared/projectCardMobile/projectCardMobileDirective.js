@@ -22,6 +22,10 @@ angular.module('main').directive('projectCardMobile', function($state, $statePar
             console.log(scope.projectid);
             $state.go("viewProject", {projectId: scope.projectid});
         };
+
+        scope.likeClicked = function(){
+            console.log("liked");
+        };
     }
     
     return directive;
