@@ -10,8 +10,41 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	projectData.$loaded().then(function() {
-		projectData.$bindTo($scope, "currentProject");
-		console.log($scope.currentProject);
+		var numComments = Object.keys(projectData.comments).length;
+		$scope.currentProject = {
+			$id: projectData.$id,
+			title: projectData.title,
+			details: projectData.details,
+			summary: projectData.summary,
+			photo: projectData.photo,
+			likes: projectData.likes,
+			views: projectData.views,
+			tags: projectData.tags,
+			commentsNum: numComments
+		};
+
+		if(projectData.owners){
+			$scope.currentProject.owners = projectData.owners;
+		}
+		//projectData.$bindTo($scope, "currentProject");
+
+		//get owner and member objects
+		for(var i=0; i < projectData.owners.length; i++) {
+			convertIdToObj(projectData.owners[i], "owner");
+		}
+		for(var i=0; i < projectData.members.length; i++) {
+			convertIdToObj(projectData.members[i], "member");
+		}
+	});
+
+	convertIdToObj = function(id, type) {
+		var personObj = $firebaseObject(ref.child("users").child(id));
+
+		if (type === "owner") {
+			$scope.ownerObjs.push(personObj);
+		} else if (type === "member") {
+			$scope.memberObjs.push(personObj);
+		}
 	}
 
 	var ref = firebase.database().ref();
@@ -35,7 +68,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 		});
 
 	// App header variables
-	$scope.heading = "Create A Project";
+	$scope.heading = "Edit Project";
 	$scope.subheading = "Share your inspiration.";
 	$scope.headingImage = "../../assets/img/ideal_workplace.jpg";
 
@@ -66,50 +99,62 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	$scope.project.views = 0;
 
 	$scope.addProjectToDatabase = function() {
-		console.log($scope.uploader.flow);
+		//console.log($scope.uploader.flow);
 		if (validateData() === false) {
 			return;
 		}
 
 		var firebaseUser = $scope.authObj.$getAuth();
 
-		var ownersList = objectsToIds($scope.project.owners);
+		var ownersList = objectsToIds($scope.currentProject.owners);
 		ownersList.push(firebaseUser.uid);
 
 		try {
 			var projectAddRef = ref.child("projects").push({
 				creationDate: new Date().toString(),
-				title: $scope.project.title,
-				summary: $scope.project.summary,
-				details: $scope.project.details,
-				members: objectsToIds($scope.project.members),
-				owners: ownersList,
-				subscribers: $scope.project.subscribers,
-				assets: $scope.project.assets,
-				likes: $scope.project.likes,
-				views: $scope.project.views,
-				tags: $scope.project.tags,
-				//photo: $scope.uploader.flow.files
-				photo: $scope.project.photo
+				title: $scope.currentProject.title,
+				summary: $scope.currentProject.summary,
+				details: $scope.currentProject.details,
+				likes: $scope.currentProject.likes,
+				views: $scope.currentProject.views,
+				tags: $scope.currentProject.tags,
+				photo: $scope.currentProject.photo
 			});
-			var projectAddObj = $firebaseObject(projectAddRef);
-			var addedID = projectAddObj.$id;
 
-			for (var i=0; i < $scope.project.tags.length; i++) {
-				ref.child("tags").child($scope.project.tags[i]).child("projects").child(addedID).set({
-					project: $scope.project.title
+			if($scope.currentProject.assets){
+				projectAddRef.assets = $scope.currentProject.assets;
+			}
+
+			if(ownersList){
+				projectAddRef.owners = ownersList;
+			}
+
+			if($scope.currentProject.subscribers){
+				projectAddRef.subscribers = $scope.currentProject.subscribers;
+			}
+
+			if($scope.currentProject.members && $scope.currentProject.members.length > 0){
+				$scope.projectAddRef.members = objectsToIds($scope.currentProject.members);
+			}
+
+			var projectAddObj = $firebaseObject(projectAddRef);
+			var addedID = $scope.currentProject.$id;
+
+			for (var i=0; i < $scope.currentProject.tags.length; i++) {
+				ref.child("tags").child($scope.currentProject.tags[i]).child("projects").child(addedID).set({
+					project: $scope.currentProject.title
 				});
 			}
 
 			for(var i=0; i < ownersList.length; i++) {
 				ref.child("users").child(ownersList[i]).child("ownedProjects").child(addedID).set({
-					project: $scope.project.title
+					project: $scope.currentProject.title
 				});
 			}
 
-			for(var i=0; i < $scope.project.members.length; i++) {
-				ref.child("users").child($scope.project.members[i]).child("memberProjects").child(addedID).set({
-					project: $scope.project.title
+			for(var i=0; i < $scope.currentProject.members.length; i++) {
+				ref.child("users").child($scope.currentProject.members[i]).child("memberProjects").child(addedID).set({
+					project: $scope.currentProject.title
 				});
 			}
 		}
@@ -120,25 +165,30 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	};
 
 	objectsToIds = function(objArray) {
-		var idArray = [];
-		for (var i=0; i < objArray.length; i++) {
-			idArray.push(objArray[i].$id);
+		if(objArray){
+			var idArray = [];
+			for (var i=0; i < objArray.length; i++) {
+				idArray.push(objArray[i].$id);
+			}
+
+			return idArray;			
+		} else {
+			return [];
 		}
 
-		return idArray;
 	}
 
 	validateData = function() {
 		console.log("here x1");
-		if($scope.project.photo == ""){
-			$scope.project.photo = "https://community.dynamics.com/cfs-filesystemfile/__key/msdenhancedbloggingcfs/FeaturedImages/227825_5F00_Modern-Workplace.jpg";
+		if($scope.currentProject.photo == ""){
+			$scope.currentProject.photo = "https://community.dynamics.com/cfs-filesystemfile/__key/msdenhancedbloggingcfs/FeaturedImages/227825_5F00_Modern-Workplace.jpg";
 		}
-		if ($scope.project.title === "") {
+		if ($scope.currentProject.title === "") {
 			$scope.invalidTitle = true;
 			$scope.invalidTags = false;
 			return false;
 		}
-		else if ($scope.project.tags.length === 0) {
+		else if ($scope.currentProject.tags.length === 0) {
 			console.log("here x2");
 			$scope.invalidTags = true;
 			$scope.invalidTitle = false;
@@ -161,18 +211,18 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 
 	$scope.removeOwner = function(owner) {
 		//remove from project owners array
-		$scope.project.owners.splice($scope.project.owners.indexOf(owner), 1);
+		$scope.currentProject.owners.splice($scope.currentProject.owners.indexOf(owner), 1);
 		//add to list of available owners
 		$scope.allUsers.push(owner);
 	}
 
 	$scope.removeMember = function(member) {
-		$scope.project.members.splice($scope.project.members.indexOf(member), 1);
+		$scope.currentProject.members.splice($scope.currentProject.members.indexOf(member), 1);
 		$scope.allUsers.push(member);
 	}
 
 	$scope.removeSubscriber = function(subscriber) {
-		$scope.project.subscribers.splice($scope.project.subscribers.indexOf(subscriber), 1);
+		$scope.currentProject.subscribers.splice($scope.currentProject.subscribers.indexOf(subscriber), 1);
 		$scope.allUsers.push(subscriber);
 	}
 
@@ -180,7 +230,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 		//check that owner is valid
 		if($scope.allUsers.indexOf($scope.selectedOwner) >= 0) {
 			//add owner ID to the database
-			$scope.project.owners.push($scope.selectedOwner);
+			$scope.currentProject.owners.push($scope.selectedOwner);
 			//remove from available owners for project
 			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedOwner), 1);
 			$scope.selectedOwner = "";
@@ -192,7 +242,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 
 	$scope.addMember = function() {
 		if ($scope.allUsers.indexOf($scope.selectedMember) >= 0) {
-			$scope.project.members.push($scope.selectedMember);
+			$scope.currentProject.members.push($scope.selectedMember);
 			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedMember), 1);
 			$scope.selectedMember = "";
 		} else {
@@ -203,7 +253,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 
 	$scope.addSubscriber = function() {
 		if ($scope.allUsers.indexOf($scope.selectedSubscriber) >= 0) {
-			$scope.project.subscribers.push($scope.selectedSubscriber);
+			$scope.currentProject.subscribers.push($scope.selectedSubscriber);
 			$scope.allUsers.splice($scope.allUsers.indexOf($scope.selectedSubscriber), 1);
 			$scope.selectedSubscriber = "";
 		} else {
@@ -212,7 +262,7 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	}
 
 	$scope.addTag = function() {
-		$scope.project.tags.push($scope.selectedTag);
+		$scope.currentProject.tags.push($scope.selectedTag);
 	}
 
 	$scope.uploadAsset = function() {

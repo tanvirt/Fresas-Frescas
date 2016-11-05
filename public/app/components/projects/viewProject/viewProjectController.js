@@ -24,10 +24,9 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 			photo: projectData.photo,
 			likes: projectData.likes,
 			views: projectData.views,
+			tags: projectData.tags,
 			commentsNum: numComments
 		};
-
-
 
 		//get owner and member objects
 		for(var i=0; i < projectData.owners.length; i++) {
@@ -250,5 +249,4 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	// addSubscriber();
-
 });
