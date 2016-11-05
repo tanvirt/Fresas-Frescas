@@ -19,10 +19,10 @@
 						<div id="info" class="tab-pane fade in active">
 							<div class="col-xs-12 col-sm-6">
 								<img src="{{currentProject.photo}}" style="width: 100%; height:14em">
-								<div class="extra-chips">
-							    	<div class="chip" ng-show="{{currentProject.likes}} != undefined"><span class="fa fa-thumbs-o-up card-icon"> {{currentProject.likes}} </span></div>
-							    	<div class="chip" ng-show="{{currentProject.views}} != undefined"><span class="fa fa-eye card-icon"> {{currentProject.views}} </span></div>
-							    	<div class="chip" ng-show="{{currentProject.comments}} != undefined"><span class="fa fa-commenting-o card-icon"> {{currentProject.commentsNum}} </span></div>
+								<div>
+							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.likes}} != undefined" ng-click="likeClicked()" style="cursor: pointer;"><span class="fa fa-thumbs-o-up card-icon"> {{currentProject.likes}} </span></div>
+							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.views}} != undefined"><span class="fa fa-eye card-icon"> {{currentProject.views}} </span></div>
+							    	<div class="col-sm-4 text-center" ng-show="{{currentProject.comments}} != undefined"><span class="fa fa-commenting-o card-icon"> {{currentProject.commentsNum}} </span></div>
 							    </div>
 							</div>
 
@@ -35,15 +35,15 @@
 						      </div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip col-xs-12 col-sm-3" style="font-weight: bold">Owners: </div>
+						    	<div class="col-xs-12 col-sm-3" >Owners: </div>
 						    	<div class="chip" ng-repeat="owner in ownerObjs">{{owner.firstName}} {{owner.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Members: </div>
+						    	<div class="col-xs-12 col-sm-3">Members: </div>
 						    	<div class="chip" ng-repeat="member in memberObjs">{{member.firstName}} {{member.lastName}}</div>
 						    </div>
 						    <div class="col-xs-12 col-sm-6 name-chips">
-						    	<div class="chip  col-xs-12 col-sm-3" style="font-weight: bold">Tags: </div>
+						    	<div class="col-xs-12 col-sm-3">Tags: </div>
 						    	<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}}</div>
 						    </div>
 
@@ -56,42 +56,59 @@
 						      </div>
 						    </div>
 						    <div class="col-xs-12">
-						    	<button class="col-xs-12 btn btn-success" id="project-save" ng-click="editProject()">Edit</button>
+						    	<button class="col-xs-4 col-xs-offset-4 btn btn-success" id="project-save" ng-click="editProject()">Edit</button>
 						    </div>
 						    
 						</div>
 						<div id="update" class="tab-pane fade">
-						      <div ng-show="updates.length" class="row" ng-repeat="update in updates">
-						        <div class="col s12 m6">
-						          <div class="card blue-grey darken-1">
-						            <div class="card-content white-text">
-						              <span class="card-title">{{update.title}}</span>
-						              <p>{{update.description}}</p>
-						            </div>
-						            <div class="card-action">
-										<span id="update-user">{{update.user}}</span>
-										{{update.date}}
-						            </div>
-						          </div>
-						        </div>
-						      </div>
-						      <div ng-show="!updates.length">
-					      	      <div class="row col-xs-12">
-							        <div class="col s12 m6">
-							          <div class="card blue-grey darken-1">
-							            <div class="card-content white-text">
-							              <span class="card-title">No Updates!</span>
-							              <p>This project has no updates! To get started go to the info page.</p>
-							            </div>
-							          </div>
-							        </div>
-							      </div>
-						      </div>
+							<h3>Updates</h3>
+							<div ng-show="isOwner || isMember" class="input-group" style="margin-top:2rem">
+								<input ng-model="updateTitle" type="text" style="border:none;" class="input-group form-control custom-control" placeholder="Give your update a title!"></input>
+								<textarea ng-model="updateText" class="form-control custom-control" style="border:none;" rows="3" style="resize:none;" placeholder="Add some details!"></textarea>
+								<span class="input-group-btn btn btn-primary" ng-click="addUpdate()" style="border:none;">
+									<span class="fa fa fa-paper-plane"> Send </span>
+								</span>
+							</div>
+							<br>
+							<div ng-show="updates && updates.length > 0" class="row" ng-repeat="update in updates">
+								<!-- <div class="col s12 m6"> -->
+									<div class="card blue-grey darken-1">
+										<div class="card-content white-text">
+											<span class="card-title">
+												{{update.title}}
+											</span>
+											<p>
+												{{update.description}}
+											</p>
+										</div>
+										<div class="card-action">
+											<span id="update-user">
+												{{update.user}}
+											</span>
+											<div class="text-muted">
+												{{update.date}}
+											</div>
+										</div>
+									</div>
+								<!-- </div> -->
+							</div>
+							<div ng-show="!updates || updates.length <= 0">
+								<div class="card blue-grey darken-1">
+									<div class="card-content white-text">
+										<div class="card-title">
+											No Updates
+										</div>
+										<p>
+											This project has no updates! To get started go to the info page.
+										</p>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div id="comment" class="tab-pane fade">
 							<h3>Comments</h3>
 							<div class="input-group" style="margin-top:2rem">
-								<textarea ng-model="newComment" class="form-control custom-control" style="border:none;" rows="3" style="resize:none;" placeholder="Leave a comment..."></textarea>
+								<textarea ng-model="newComment" class="form-control custom-control" style="border:none;" rows="3" style="resize:none;" placeholder="Leave a comment!"></textarea>
 								<span class="input-group-btn btn btn-primary" ng-click="addComment()" style="border:none;">
 									<span class="fa fa fa-paper-plane"> Send </span>
 								</span>
