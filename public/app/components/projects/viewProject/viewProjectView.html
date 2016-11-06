@@ -46,7 +46,7 @@
 						    	<div class="col-xs-12 col-sm-4">Tags: </div>
 						    	<div class="chip" ng-repeat="tag in currentProject.tags">{{tag}}</div>
 						    </div>
-						    <div class="col-xs-12 col-sm-6 name-chips" style="text-align: center; padding-left: 5em; padding-right: 5em;">
+						    <div class="col-xs-12 col-sm-6 name-chips" style="text-align: center; padding: 0 15px">
 							    <button class="col-xs-12 btn btn-info" style="margin-top: .5em" ng-click="addSubscriber()"><i class="fa fa-plus" aria-hidden="true"></i> Subscribe</button>
 							    <button class="col-xs-12 btn btn-info" style="margin-top: .5em" ng-click="requestMembership()"><i class="fa fa-user" aria-hidden="true"></i> Apply</button>
 						    </div>
@@ -60,7 +60,7 @@
 						      </div>
 						    </div>
 						    <div class="col-xs-12">
-						    	<button class="col-xs-4 col-xs-offset-4 btn btn-success" id="project-save" ng-click="editProject()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+						    	<button class="col-xs-12 btn btn-success" id="project-save" ng-click="editProject()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
 						    </div>
 						    
 						</div>
@@ -87,7 +87,7 @@
 										</div>
 										<div class="card-action">
 											<span id="update-user">
-												{{update.user}}
+												{{update.user.firstName}} {{update.user.lastName}}
 											</span>
 											<div class="text-muted">
 												{{update.date}}
@@ -126,7 +126,7 @@
 								</div>
 								<div ng-repeat="comment in comments" class="collection-item avatar">
 									<br>
-									<img src="../assets/img/splash.jpg" alt="" class="circle">
+									<img src="{{../assets/img/splash.jpg}}" alt="" class="circle">
 									<span style="color:#337ab7; font-weight: bold;">
 										{{comment.user.firstName}} {{comment.user.lastName}}
 									</span>
