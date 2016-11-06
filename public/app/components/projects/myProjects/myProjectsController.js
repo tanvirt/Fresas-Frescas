@@ -6,6 +6,7 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
 	$scope.headingImage = "../../assets/img/black_coffee.jpg";
 
 	// Main content starts
+    $scope.projectsCreated = [];
 	$scope.projectsOwning = [];
 	$scope.projectsWorking = [];
 	$scope.projectsFollowing = [];
@@ -16,9 +17,15 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
 	$scope.authObj.$onAuthStateChanged(function(user) {
         if(user) {
         	var userRef = firebase.database().ref().child("users").child(user.uid)
+            var createdList = $firebaseArray(userRef.child("createdProjects"));
         	var ownedList = $firebaseArray(userRef.child("ownedProjects"));
         	var memberList = $firebaseArray(userRef.child("memberProjects"));
         	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
+            createdList.$loaded().then(function() {
+                angular.forEach(createdList, function(project) {
+                    $scope.projectsCreated.push($firebaseObject(projectRef.child(project.$id)));
+                })
+            })
         	ownedList.$loaded().then(function() {
         		angular.forEach(ownedList, function(project) {
         			$scope.projectsOwning.push($firebaseObject(projectRef.child(project.$id)));
@@ -39,20 +46,6 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
         	console.log("No user logged in, weird error");
         }
     })
-
-	var tempProject = {
-		title: "Welcome Buddy Application",
-		photo: "../../assets/img/splash.jpg",
-		summary: "Connect new hires with experienced employees.",
-		details: "Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase. Integrates AngularJS and Firebase.",
-		likes: "123",
-		views: "456",
-		comments: "7"
-	};
-
-	$scope.projectsOwning.push(tempProject);
-	$scope.projectsWorking.push(tempProject);
-	$scope.projectsFollowing.push(tempProject);
 
     $scope.mobile = Mobile.isPhone();
 });

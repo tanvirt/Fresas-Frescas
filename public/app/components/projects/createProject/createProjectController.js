@@ -63,13 +63,10 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		var firebaseUser = $scope.authObj.$getAuth();
 
 		var ownersList = objectsToIds($scope.project.owners);
-		if (ownersList == null) {
-			ownersList.push("");
-		}
-		if ($scope.project.members == null) {
-			$scope.project.members.push("");
-		}
-		$scope.project.subscribers.push("");
+		ownersList.push("sOfCOLh80tMCNgAhziKrsXqeSBv2");
+		var membersList = objectsToIds($scope.project.members);
+		membersList.push("sOfCOLh80tMCNgAhziKrsXqeSBv2");
+		$scope.project.subscribers.push("sOfCOLh80tMCNgAhziKrsXqeSBv2");
 
 		try {
 			var projectAddRef = ref.child("projects").push({
@@ -78,20 +75,23 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 				creator: firebaseUser.uid,
 				summary: $scope.project.summary,
 				details: $scope.project.details,
-				members: objectsToIds($scope.project.members),
+				members: membersList,
 				owners: ownersList,
 				subscribers: $scope.project.subscribers,
 				assets: $scope.project.assets,
 				likes: $scope.project.likes,
 				views: $scope.project.views,
 				tags: $scope.project.tags,
-				//photo: $scope.uploader.flow.files
 				photo: $scope.project.photo
 			});
 			var projectAddObj = $firebaseObject(projectAddRef);
 			var addedID = projectAddObj.$id;
 
 			ref.child("users").child(firebaseUser.uid).child("createdProjects").child(addedID).set({
+				project: $scope.project.title
+			});
+
+			ref.child("users").child("sOfCOLh80tMCNgAhziKrsXqeSBv2").child("subscribedProjects").child(addedID).set({
 				project: $scope.project.title
 			});
 
