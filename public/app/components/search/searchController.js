@@ -1,5 +1,5 @@
 angular.module('main').controller('SearchController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
-	
+
 	// App header variables
 	$scope.heading = "Looking For Something?";
 	$scope.subheading = "We got your back.";
@@ -16,7 +16,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 
 	$scope.displayedList = {};
 
-	searchProjects = function() {
+	$scope.searchProjects = function() {
 		var projectList = $firebaseArray(ref.child("projects"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
@@ -42,7 +42,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 		
 	}
 
-	searchTagsProjects = function() {
+	$scope.searchTagsProjects = function() {
 		var tagList = $firebaseArray(ref.child("tags"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
@@ -68,7 +68,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 		})
 	}
 
-	searchTagUsers = function() {
+	$scope.searchTagUsers = function() {
 		var tagList = $firebaseArray(ref.child("tags"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
@@ -94,7 +94,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 		})
 	}
 
-	searchUserByName = function() {
+	$scope.searchUserByName = function() {
 		var userList = $firebaseArray(ref.child("users"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
