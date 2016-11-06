@@ -141,7 +141,10 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 
 		try {
 			currentUser.$loaded().then(function() {
-				currProjectRef.child("subscribers").child(currentUser.$id);
+				currProjectRef.child("subscribers").child(currentUser.$id).set({
+					firstName: currentUser.firstName,
+					lastName: currentUser.lastName
+				});
 				ref.child("users").child(firebaseUser.uid).child("subscribedProjects").child($scope.myProjectId).set({
 					project: $scope.currentProject.title
 				});
