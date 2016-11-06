@@ -87,7 +87,7 @@
 										</div>
 										<div class="card-action">
 											<span id="update-user">
-												{{update.user}}
+												{{update.user.firstName}} {{update.user.lastName}}
 											</span>
 											<div class="text-muted">
 												{{update.date}}
@@ -126,7 +126,7 @@
 								</div>
 								<div ng-repeat="comment in comments" class="collection-item avatar">
 									<br>
-									<img src="../assets/img/splash.jpg" alt="" class="circle">
+									<img src="{{../assets/img/splash.jpg}}" alt="" class="circle">
 									<span style="color:#337ab7; font-weight: bold;">
 										{{comment.user.firstName}} {{comment.user.lastName}}
 									</span>
