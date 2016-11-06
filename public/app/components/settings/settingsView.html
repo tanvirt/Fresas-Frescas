@@ -16,9 +16,9 @@
             				<img class="img-responsive" src={{currentUser.profilePicture}}>
             			</div>
             			<div class="col-md-8 vertical-center">
-            				<h1 id="profileHeader">{{currentUser.firstName}}</h1>
-							<h1 id="profileHeader">{{currentUser.lastName}}</h1>
-            				<h3 id="profileSubheader">{{currentUser.position}}</h3>
+            				<h1 id="profileHeader">{{currentUser.firstName}} {{currentUser.lastName}}</h1>
+							<!-- <h1 id="profileHeader">{{currentUser.lastName}}</h1> -->
+            				<div id="profileSubheader" class="text-muted">{{currentUser.position}}</div>
             			</div>
             		</div>
 
