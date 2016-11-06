@@ -13,32 +13,32 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	var ref = firebase.database().ref();
 	var currProjectRef = ref.child("projects").child($scope.myProjectId);
 	var currentProject = {};
-	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+	$scope.projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
-	projectData.$loaded().then(function() {
+	$scope.projectData.$loaded().then(function() {
 		//projectData.$bindTo($scope, "currentProject");
 		var numComments = 0;
-		if(projectData.comments){
-			numComments = Object.keys(projectData.comments).length;
+		if($scope.projectData.comments){
+			numComments = Object.keys($scope.projectData.comments).length;
 		}
 		$scope.currentProject = {
-			$id: projectData.$id,
-			title: projectData.title,
-			details: projectData.details,
-			summary: projectData.summary,
-			photo: projectData.photo,
-			likes: projectData.likes,
-			views: projectData.views,
-			tags: projectData.tags,
+			$id: $scope.projectData.$id,
+			title: $scope.projectData.title,
+			details: $scope.projectData.details,
+			summary: $scope.projectData.summary,
+			photo: $scope.projectData.photo,
+			likes: $scope.projectData.likes,
+			views: $scope.projectData.views,
+			tags: $scope.projectData.tags,
 			commentsNum: numComments
 		};
 
 		//get owner and member objects
-		for(var i=0; i < projectData.owners.length; i++) {
-			convertIdToObj(projectData.owners[i], "owner");
+		for(var i=0; i < $scope.projectData.owners.length; i++) {
+			convertIdToObj($scope.projectData.owners[i], "owner");
 		}
-		for(var i=0; i < projectData.members.length; i++) {
-			convertIdToObj(projectData.members[i], "member");
+		for(var i=0; i < $scope.projectData.members.length; i++) {
+			convertIdToObj($scope.projectData.members[i], "member");
 		}
 	})
 
@@ -141,8 +141,44 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 
 		try {
 			currentUser.$loaded().then(function() {
-				currProjectRef.child("subscribers").child(currentUser.$id)
+				currProjectRef.child("subscribers").child(currentUser.$id);
+				ref.child("users").child(firebaseUser.uid).child("subscribedProjects").child($scope.myProjectId).set({
+					project: $scope.currentProject.title
+				});
 			})
+		}
+		catch(error) {
+			console.log('Error adding comment to DB: ', error);
+		}
+	}
+
+	$scope.requestMembership = function() {
+		var firebaseUser = $scope.authObj.$getAuth();
+		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
+		var creatorID = $scope.projectData.creator;
+
+		var dateStamp = new Date();
+		dateStamp = dateStamp.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
+
+		try {
+			currentUser.$loaded().then(function() {
+				currProjectRef.child("pendingMembership").child(currentUser.$id).set({
+					firstName: currentUser.firstName,
+					lastName: currentUser.lastName
+				})
+				var notificationText = "The user " + currentUser.firstName + " " + currentUser.lastName + " requests access to your project "
+							+ $scope.projectData.title;
+				ref.child("users").child(creatorID).child("notifications").push({
+					projectID: $scope.projectData.$id,
+					projectTitle: $scope.projectData.title,
+					requesterId: currentUser.$id,
+					title: "New Membership Request",
+					text: notificationText,
+					date: dateStamp,
+					type: "interactive"
+				})
+			})
+
 		}
 		catch(error) {
 			console.log('Error adding comment to DB: ', error);
