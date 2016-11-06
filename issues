@@ -1,0 +1,51 @@
+space at top of login should be removed (or replaced with logo/name)
+
+sign up and login do not look similar
+
+(imo) skills and experience should be removed from sign up
+
+(imo) signup placeholders do not look good (I would just use centered placeholders instead of labels)
+
+other errors on signup page do not display messages, just stay still. perhaps also scroll up upon error or display error right above problem input box
+
+Fix 404 page
+
+(imo) the like/comments/views under a pic should be attached in a horizontal bar
+
+(imo) when listing the owners/members/tags, the headings should look different than the items
+
+edit button on view project page should only exist for owners and members
+
+edit button on view project page needs better styling
+
+no items displaying on search bar
+
+(imo) we should show at least 10 items on the search page, with a load more option
+
+finish notifcation front end (accepting, rejecting, viewing, removing)
+
+(imo) project card directives need unification
+
+remove navbar buttons or replace them with usable links
+
+no existing color theme
+
+(imo) rename the settings folder to profile
+
+mock real projects and people
+
+write better headings and subheadings
+
+fix order of navbar items as needed
+
+with no internet, the site shows blank spots for features 
+
+do not prefill image url on create project
+
+default items need updating, img src, summary, details
+
+profile page needs placeholder for current projects
+
+need subscriber button on view project
+
+need request membership on view project

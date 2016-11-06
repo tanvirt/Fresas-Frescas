@@ -9,31 +9,37 @@
 
             	<!-- Main content starts-->
             	<div class="input-group">
-		            <input type="text" class="form-control text-input" ng-init="filter = 'projects'" placeholder="Search {{filter}}...">
+		            <input type="text" class="form-control text-input" ng-init="filter = 'projects'" placeholder="Search {{filter}}..." style="border:none;">
 		            <div class="input-group-btn">
-		            	<button class="btn btn-default">
+		            	<button class="btn btn-default" style="height: 100%;">
 		              		<span class="fa fa-search icon"></span>
 		            	</button>
 		            </div>
 		            <div class="input-group-btn">
-		            	<button class="btn btn-default" ng-init="showFilters = false" ng-click="showFilters = !showFilters">
+		            	<button class="btn btn-default" ng-init="showFilters = false" ng-click="showFilters = !showFilters" style="height: 100%;">
 		              		<span class="fa fa-sort-desc icon" ng-show="!showFilters"></span>
 		              		<span class="fa fa-sort-asc icon" ng-show="showFilters"></span>
 		            	</button>
 		            </div>
+            	</div>
+            	<div>
+            		
             	</div>
             	<div ng-show="showFilters">
 	            	<div>
 	            		<button class="btn full-width">Filter By</button>
 	            	</div>
 	            	<div>
-	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'projects'">Project</button>
+	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'project'">Project</button>
 	            	</div>
 	            	<div>
-	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'users'">User</button>
+	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'user'">User</button>
 	            	</div>
 	            	<div>
-	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'tags'">Tag</button>
+	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'project tags'">Project Tag</button>
+	            	</div>
+	            	<div>
+	            		<button class="btn btn-default full-width" ng-click="showFilters = false; filter = 'user tag'">User Tag</button>
 	            	</div>
             	</div>
 				<!-- Main content ends -->
