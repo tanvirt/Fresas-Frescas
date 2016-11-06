@@ -103,22 +103,21 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 	$scope.project.views = 0;
 
 	$scope.addProjectToDatabase = function() {
-		//console.log($scope.uploader.flow);
-		if (validateData() === false) {
-			return;
-		}
 
 		var firebaseUser = $scope.authObj.$getAuth();
 
-		var ownersList = objectsToIds($scope.currentProject.owners);
-		ownersList.push(firebaseUser.uid);
-
 		try {
-			var projectAddRef = ref.child("projects").push({
-				creationDate: new Date().toString(),
+			var projectAddRef = ref.child("projects").child($scope.myProjectId).set({
+				comments: $scope.currentProject.comments,
+				creationDate: $scope.currentProject.creationDate,
 				title: $scope.currentProject.title,
+				creator: $scope.currentProject.creator,
 				summary: $scope.currentProject.summary,
 				details: $scope.currentProject.details,
+				owners: $scope.currentProject.owners,
+				members: $scope.currentProject.members,
+				subscribers: $scope.currentProject.subscribers,
+				assets: $scope.currentProject.assets,
 				likes: $scope.currentProject.likes,
 				views: $scope.currentProject.views,
 				tags: $scope.currentProject.tags,
