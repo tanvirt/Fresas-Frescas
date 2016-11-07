@@ -17,6 +17,8 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	$scope.projectData.$loaded().then(function() {
 		//projectData.$bindTo($scope, "currentProject");
+		$scope.projectData.views = $scope.projectData.views + 1;
+		$scope.projectData.$save();
 		var numComments = 0;
 		if($scope.projectData.comments){
 			numComments = Object.keys($scope.projectData.comments).length;
@@ -47,6 +49,9 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	$scope.headingImage = "../../assets/img/computer.jpg";
 
 	convertIdToObj = function(id, type) {
+		if (id == "sOfCOLh80tMCNgAhziKrsXqeSBv2") {
+			return;
+		}
 		var personObj = $firebaseObject(ref.child("users").child(id));
 
 		if (type === "owner") {
@@ -308,8 +313,15 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	$scope.likeClicked = function(){
-            console.log("liked");
-        };
+		var likesObject = $firebaseObject(currProjectRef.child("likes"));
+		likesObject.$loaded().then(function() {
+			console.log(likesObject);
+			likesObject.$value = likesObject.$value + 1;
+			likesObject.$save();
+			$scope.currentProject.likes = likesObject.$value;
+			console.log(likesObject);
+		})
+    }
 
 	// addSubscriber();
 });
