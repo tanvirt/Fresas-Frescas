@@ -116,6 +116,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
 		$scope.userSearchResults = {};
+		$scope.displayedList = {};
 
 		userList.$loaded().then(function() {
 			angular.forEach(userList, function(user) {

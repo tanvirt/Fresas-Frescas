@@ -44,8 +44,8 @@
                 	<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments" details="project.details" projectid="project.$id"></project-card-mobile>
             	</div>
             	<div ng-show="filter == 'user' || filter == 'user tag'" ng-repeat="(id, user) in displayedList">
-            		<project-card ng-show="!mobile" image="user.profilePicture" title="user.firstName + ' ' + user.lastName" summary="user.summary" details="user.experience"></project-card>
-                	<project-card-mobile ng-show="mobile" image="user.profilePicture" title="user.firstName user.lastName" summary="user.summary" details="user.experience"></project-card-mobile>
+            		<project-card ng-show="!mobile && user.firstName != 'Admin'" image="user.profilePicture" title="user.firstName + ' ' + user.lastName" summary="user.summary" details="user.experience"></project-card>
+                	<project-card-mobile ng-show="mobile && user.firstName != 'Admin'" image="user.profilePicture" title="user.firstName + ' ' + user.lastName" summary="user.summary" details="user.experience"></project-card-mobile>
             	</div>
 				<!-- Main content ends -->
 
