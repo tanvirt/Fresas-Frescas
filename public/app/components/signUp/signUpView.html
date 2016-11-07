@@ -3,7 +3,8 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
         	<!-- Main content starts -->
-        	<div class="col-xs-12 col-sm-8 col-sm-offset-2 ">        	
+        	<div id="app-title" style="width:100%; margin:auto; display: inline-block; text-align:center; margin: 3rem 0rem 3rem 0rem;">Peer Projects Lab</div>
+        	<div class="col-xs-12 col-sm-8 col-sm-offset-2" style="margin-bottom: 15rem;">        	
 				<div id="signUpOpacityBackground" class="jumbotron vertical-center modal-content">
 					<span id="loginError" ng-model="error">{{error}}</span>
 					<div id="loginElements">
@@ -20,7 +21,7 @@
 	                      	</div>
 							<label>Experience:</label><input class="form-control input-lg clearForm" type="text" name="experience" ng-model="experience"><br> -->
 							<label>Summary:</label><textarea class="form-control input-lg clearForm" type="text" name="summary" ng-model="summary"></textarea><br>
-							<label>Profile Picture (url)</label><input class="form-control input-lg clearForm" type="url" name="profilePicture" ng-model="profilePicture"><br>
+							<label>Profile Picture (URL)</label><input class="form-control input-lg clearForm" type="url" name="profilePicture" ng-model="profilePicture"><br>
 						</form>
 						<button id="loginButton" class="waves-effect waves-teal btn-flat" ng-click="signUp()">Sign Up</button>
 						<button id="signUpButton" class="waves-effect waves-teal btn-flat" ng-click="back()">Back to Log In</button>
