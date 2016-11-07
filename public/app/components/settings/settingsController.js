@@ -1,8 +1,9 @@
 angular.module('main').controller('SettingsController', function($rootScope, $scope, $state, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams) {
-
 	if ($stateParams.userId === null) {
+		$scope.isRedirect = false;
 		$scope.userId = null;
 	} else {
+		$scope.isRedirect = true;
 		$scope.userId = $stateParams.userId;
 	}
 	// App header variables
@@ -28,8 +29,10 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 
 	$scope.authObj.$onAuthStateChanged(function(user) {
 		if(user) {
-			var userId = user.uid;
-			var userData = $firebaseObject(ref.child("users").child(userId));
+			if ($scope.userId === null) {
+				$scope.userId = user.uid;
+			}
+			var userData = $firebaseObject(ref.child("users").child($scope.userId));
 			userData.$loaded().then(function() {
 				console.log(userData);
 				userData.$bindTo($scope, "currentUser");
@@ -85,14 +88,14 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			$scope.currentUser.projects.splice(index, 1)
 		}
 	}
-	
+
   	$('.chips').material_chip();
   	$('.chips-placeholder').material_chip({
     	placeholder: 'Enter a tag',
     	secondaryPlaceholder: '+Skill',
   	});
 
-	
+
    	$('.chips').on('chip.add', function(e, chip){
     	$scope.addSkill(chip.tag);
   	});

@@ -56,7 +56,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 			})
 			$scope.displayedList = $scope.projectSearchResults;
 		})
-		
+
 	}
 
 	$scope.searchTagsProjects = function() {
@@ -128,6 +128,10 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 			})
 		})
 		$scope.displayedList = $scope.userSearchResults;
+	}
+
+	$scope.viewDetails = function() {
+		console.log("this is a test");
 	}
 
 });

@@ -327,7 +327,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 				})
 			})
 		})
-		
+
 	}
 
 	for(var i = 0; i < $scope.updates.length; i++){
@@ -350,6 +350,11 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 			console.log(likesObject);
 		})
     }
+
+	$scope.viewUser = function(user) {
+		var theId = user[0].$id;
+		$state.go("profile", {userId: theId});
+	}
 
 	// addSubscriber();
 });
