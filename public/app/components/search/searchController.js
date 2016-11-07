@@ -6,7 +6,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 	$scope.headingImage = "../../assets/img/world.jpg";
 
 	// Main content starts
-	$scope.searchText = "a";
+	$scope.searchText = "";
 	var ref = firebase.database().ref();
 
 	$scope.projectSearchResults = {};
@@ -15,8 +15,23 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 	$scope.tagSearchMapUserResults = {};
 
 	$scope.displayedList = {};
+	$scope.filter = "project";
+
+	$scope.search = function() {
+		console.log("search");
+		if ($scope.filter == "project") {
+			$scope.searchProjects();
+		} else if ($scope.filter == "user") {
+			$scope.searchUserByName();
+		} else if ($scope.filter == "project tags") {
+			$scope.searchTagsProjects();
+		} else if ($scope.filter == "user tag") {
+			$scope.searchTagUsers();
+		}
+	}
 
 	$scope.searchProjects = function() {
+		console.log("search projects");
 		var projectList = $firebaseArray(ref.child("projects"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 

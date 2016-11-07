@@ -9,8 +9,8 @@
 
             	<!-- Main content starts-->
             	<div class="input-group">
-		            <input type="text" class="form-control text-input" ng-init="filter = 'projects'" placeholder="Search {{filter}}..." style="border:none;">
-		            <div class="input-group-btn">
+		            <input ng-model="searchText" type="text" class="form-control text-input" ng-init="filter = 'projects'" placeholder="Search {{filter}}..." style="border:none;">
+		            <div class="input-group-btn" ng-click="search()">
 		            	<button class="btn btn-default" style="height: 100%;">
 		              		<span class="fa fa-search icon"></span>
 		            	</button>
@@ -22,8 +22,8 @@
 		            	</button>
 		            </div>
             	</div>
-            	<div>
-            		
+            	<div ng-repeat="(id, item) in displayedList">
+            		{{item.title}}
             	</div>
             	<div ng-show="showFilters">
 	            	<div>
