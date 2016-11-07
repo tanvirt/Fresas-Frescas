@@ -108,7 +108,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 
 		var dateStamp = new Date();
 		dateStamp = dateStamp.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
-
+		console.log("adding update");
 		try {
 			currentUser.$loaded().then(function() {
 				currProjectRef.child("updates").push({
@@ -119,7 +119,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 					},
 					title: $scope.updateTitle,
 					description: $scope.updateText,
-					date: date
+					date: dateStamp
 				})
 				$scope.updateTitle = "";
 				$scope.updateText = "";
@@ -189,7 +189,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	sendCommentNotification = function(user, dateAdd) {
-		var notificationText = "The Project " + $scope.projectObject.title + " has a new comment.";
+		var notificationText = "The Project " + $scope.currentProject.title + " has a new comment.";
 		var notificationTitle = "New Comment";
 		projectOwners = $firebaseArray(currProjectRef.child("owners"));
 		projectMembers = $firebaseArray(currProjectRef.child("members"));
@@ -225,62 +225,66 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	sendUpdateNotification = function(user, dateAdd) {
-		var notificationText = "The Project " + $scope.projectObject.title + " has a new update.";
+		var notificationText = "The Project " + $scope.projectData.title + " has a new update.";
 		var notificationTitle = "New Update";
 		projectOwners = $firebaseArray(currProjectRef.child("owners"));
 		projectMembers = $firebaseArray(currProjectRef.child("members"));
 		projectSubscribers = $firebaseArray(currProjectRef.child("subscribers"));
-
-		projectOwners.$loaded().then(function() {
-			angular.forEach(projectOwners, function(owner) {
-				if (owner.$value != user.$id) {
-					ref.child("users").child(owner.$value).child("notifications").push({
-						projectID: $scope.projectObject.$id,
-						projectTitle: $scope.projectObject.title,
-						title: notificationTitle,
-						text: notificationText,
-						date: dateAdd,
-						type: "non-interactive"
-					})
-				}
+		var currentProject = $firebaseObject(currProjectRef);
+		currentProject.$loaded().then(function() {
+			ref.child("users").child(currentProject.creator).child("notifications").push({
+				projectID: currentProject.$id,
+				projectTitle: currentProject.title,
+				title: notificationTitle,
+				text: notificationText,
+				date: dateAdd,
+				type: "non-interactive"
+			})
+			projectOwners.$loaded().then(function() {
+				angular.forEach(projectOwners, function(owner) {
+					if (owner.$value != user.$id) {
+						ref.child("users").child(owner.$value).child("notifications").push({
+							projectID: currentProject.$id,
+							projectTitle: currentProject.title,
+							title: notificationTitle,
+							text: notificationText,
+							date: dateAdd,
+							type: "non-interactive"
+						})
+					}
+				})
+			})
+			projectMembers.$loaded().then(function() {
+				angular.forEach(projectMembers, function(member) {
+					if (member.$value != user.$id) {
+						ref.child("users").child(member.$value).child("notifications").push({
+							projectID: currentProject.$id,
+							projectTitle: currentProject.title,
+							title: notificationTitle,
+							text: notificationText,
+							date: dateAdd,
+							type: "non-interactive"
+						})
+					}
+				})
+			})
+			projectSubscribers.$loaded().then(function() {
+				angular.forEach(projectSubscribers, function(subscriber) {
+					if (subscriber.$value != user.$id) {
+						ref.child("users").child(subscriber.$value).child("notifications").push({
+							projectID: currentProject.$id,
+							projectTitle: currentProject.title,
+							title: notificationTitle,
+							text: notificationText,
+							date: dateAdd,
+							type: "non-interactive"
+						})
+					}
+				})
 			})
 		})
-		projectMembers.$loaded().then(function() {
-			angular.forEach(projectMembers, function(member) {
-				if (member.$value != user.$id) {
-					ref.child("users").child(member.$value).child("notifications").push({
-						projectID: $scope.projectObject.$id,
-						projectTitle: $scope.projectObject.title,
-						title: notificationTitle,
-						text: notificationText,
-						date: dateAdd,
-						type: "non-interactive"
-					})
-				}
-			})
-		})
-		projectSubscribers.$loaded().then(function() {
-			angular.forEach(projectSubscribers, function(subscriber) {
-				if (subscriber.$value != user.$id) {
-					ref.child("users").child(subscriber.$value).child("notifications").push({
-						projectID: $scope.projectObject.$id,
-						projectTitle: $scope.projectObject.title,
-						title: notificationTitle,
-						text: notificationText,
-						date: dateAdd,
-						type: "non-interactive"
-					})
-				}
-			})
-		})
+		
 	}
-
-	/*$scope.updates = [{
-		title: "Sample title here",
-		description: "This is a simple description for this update right here.",
-		user: "Kyle Wahl",
-		date: "Wed Nov 02 2016 08:24:21 GMT-0500 (Central Daylight Time)"
-	}];*/
 
 	for(var i = 0; i < $scope.updates.length; i++){
 		$scope.updates[i].date = new Date($scope.updates[i].date);
