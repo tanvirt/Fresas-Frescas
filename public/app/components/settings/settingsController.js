@@ -6,7 +6,7 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 		$scope.userId = $stateParams.userId;
 	}
 	// App header variables
-	$scope.heading = "Profile";
+	$scope.heading = "VIEW YOUR PROFILE";
 	$scope.subheading = "You. Are. Awesome.";
 	$scope.headingImage = "../../assets/img/profile.jpg";
 

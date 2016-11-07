@@ -2,7 +2,7 @@
 angular.module('main').controller('NotificationsController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
-	$scope.heading = "View My Notifications";
+	$scope.heading = "VIEW YOUR NOTIFICATIONS";
 	$scope.subheading = "Keep yourself up-to-date.";
 	$scope.headingImage = "../../assets/img/binary.jpg";
 

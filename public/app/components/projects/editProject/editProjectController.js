@@ -72,8 +72,8 @@ angular.module('main').controller('EditProjectController', function($rootScope, 
 		});
 
 	// App header variables
-	$scope.heading = "Edit Project";
-	$scope.subheading = "Share your inspiration.";
+	$scope.heading = "EDIT MY PROJECT";
+	$scope.subheading = "Redefine possible.";
 	$scope.headingImage = "../../assets/img/ideal_workplace.jpg";
 
 	//Firebase auth users

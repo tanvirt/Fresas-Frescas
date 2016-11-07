@@ -10,7 +10,7 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 
 	// App header variables
 	$scope.heading = "BUILD SOMETHING AMAZING";
-	$scope.subheading = "Create meaningful and lasting relationships.";
+	$scope.subheading = "Create meaningful and lasting projects.";
 	$scope.headingImage = "../../assets/img/video_start.png";
 
 	var ref = firebase.database().ref();

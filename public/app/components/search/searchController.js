@@ -1,8 +1,8 @@
 angular.module('main').controller('SearchController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
-	$scope.heading = "Looking For Something?";
-	$scope.subheading = "We got your back.";
+	$scope.heading = "FIND SOMETHING NEW";
+	$scope.subheading = "There is a whole world out there.";
 	$scope.headingImage = "../../assets/img/world.jpg";
 
 	// Main content starts
@@ -23,7 +23,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 			$scope.searchProjects();
 		} else if ($scope.filter == "user") {
 			$scope.searchUserByName();
-		} else if ($scope.filter == "project tags") {
+		} else if ($scope.filter == "project tag") {
 			$scope.searchTagsProjects();
 		} else if ($scope.filter == "user tag") {
 			$scope.searchTagUsers();

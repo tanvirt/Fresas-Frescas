@@ -24,7 +24,7 @@ angular.module('main').controller('CreateProjectController', function($rootScope
 		});
 
 	// App header variables
-	$scope.heading = "Create A Project";
+	$scope.heading = "CREATE A PROJECT";
 	$scope.subheading = "Share your inspiration.";
 	$scope.headingImage = "../../assets/img/ideal_workplace.jpg";
 
