@@ -203,7 +203,7 @@ angular.module('main').controller('HomeController', function($rootScope, $scope,
 					comments: numComments
 				});*/
 				$scope.newProjects.push(project);
-				$scope.recommendedProjects.push(project);
+				$scope.recommendedProjects.unshift(project);
 				/*for(var i = 0; i < newProjects.length; i++){
 					var numComments = 0;
 					if(newProjects[i].comments){
