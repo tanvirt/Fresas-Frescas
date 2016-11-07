@@ -7,6 +7,17 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	}
 
 	$scope.isOwner = true; // TEMPORARY
+	var userId = "";
+	$scope.authObj.$onAuthStateChanged(function(user) {
+		if(user) {
+			userId = user.uid;
+		} else {
+			console.log("error, who are you?");
+		}
+	})
+
+	$scope.amSubscribed = "Subscribe";
+	$scope.amMember = "Apply";
 
 	$scope.ownerObjs = [];
 	$scope.memberObjs = [];
@@ -16,7 +27,22 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	$scope.projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	$scope.projectData.$loaded().then(function() {
-		//projectData.$bindTo($scope, "currentProject");
+		//am I already a subscriber?
+		for (var i=0; i < $scope.projectData.subscribers.length; i++){
+			if ($scope.projectData.subscribers[i] === userId) {
+				$scope.amSubscribed=  "Subscribed";
+			}
+		}
+
+		//am I already a member?
+		if ($scope.amSubscribed === false) {
+			for (var i=0; i < $scope.projectData.members.length; i++) {
+				if ($scope.projectData.members[i] === userId) {
+					$scope.amMember = "Already Member";
+				}
+			}
+		}
+
 		$scope.projectData.views = $scope.projectData.views + 1;
 		$scope.projectData.$save();
 		var numComments = 0;
@@ -155,6 +181,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 					project: $scope.currentProject.title
 				});
 			})
+			$scope.amSubscribed = "Subscribed";
 		}
 		catch(error) {
 			console.log('Error adding comment to DB: ', error);
@@ -188,6 +215,7 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 				})
 			})
 
+			$scope.amMember = "Applied!";
 		}
 		catch(error) {
 			console.log('Error adding comment to DB: ', error);
