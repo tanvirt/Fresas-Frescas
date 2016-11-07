@@ -17,6 +17,8 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 	$scope.displayedList = {};
 	$scope.filter = "project";
 
+	$scope.mobile = Mobile.isPhone();
+
 	$scope.search = function() {
 		console.log("search");
 		if ($scope.filter == "project") {
