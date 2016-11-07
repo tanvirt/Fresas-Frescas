@@ -1,6 +1,20 @@
 <div>
 	<navbar></navbar>
-	<appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader>
+	<!-- <appheader heading="heading" subheading="subheading" heading-image="headingImage"></appheader> -->
+      <header class="video-section intro-header" ng-style="{'background-image': 'url(' + headingImage + ')'}">
+            <a ng-show="!headingImage || headingImage == ''" id="video-header" class="player" data-property="{videoURL:'https://www.youtube.com/watch?v=WVPRkcczXCY',containment:'.video-section', quality:'highres', autoPlay:true, mute:true, opacity:1, showControls: false,startAt:132,stopAt:160}"></a>
+            <div class="container">
+                  <div class="row">
+                        <div class="col-lg-10 col-lg-offset-1">
+                              <div class="page-heading">
+                                    <span class="subheading">{{subheading}}</span>
+                                    <br ng-show="subheading">
+                                    <h1>{{heading}}</h1>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </header>
 
 	<div class="container">
         <div class="row">

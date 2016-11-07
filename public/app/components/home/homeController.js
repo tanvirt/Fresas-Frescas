@@ -1,12 +1,13 @@
 angular.module('main').controller('HomeController', function($rootScope, $scope, $firebaseArray, $firebaseAuth, $state, $firebaseObject) {
-	
-	var video = new Video('https://www.youtube.com/watch?v=WVPRkcczXCY', 132, 160);
-	VideoPlayer.play([video], function(event) {
-		var currentTime = event.time;
-		$scope.headingImage = "";
-		$scope.$digest();
-		console.log("video started");
-	});
+	jQuery(document).ready(function($) {
+        $(".player").mb_YTPlayer();
+        jQuery('#video-header').on("YTPStart",function(e){
+		   var currentTime = e.time;
+		   $scope.headingImage = "";
+		   $scope.$digest();
+		   console.log("video started");
+		});
+    });
 
 	// App header variables
 	$scope.heading = "BUILD SOMETHING AMAZING";
