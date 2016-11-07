@@ -1,8 +1,8 @@
 angular.module('main').controller('MyProjectsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
 
 	// App header variables
-	$scope.heading = "My Projects";
-	$scope.subheading = "Work hard, play hard.";
+	$scope.heading = "VIEW MY PROJECTS";
+	$scope.subheading = "Work hard. Play hard.";
 	$scope.headingImage = "../../assets/img/black_coffee.jpg";
 
 	// Main content starts
