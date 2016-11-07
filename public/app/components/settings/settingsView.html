@@ -18,40 +18,56 @@
         				<h1>{{currentUser.firstName}} {{currentUser.lastName}}</h1>
         				<div class="text-muted">{{currentUser.position}}</div>
         			</div> -->
-        			<div id="profileHeading">
-            			<div class="col-sm-4 col-xs-12" ng-hide="currentUser.profilePicture == ''">
-            				<img class="img-responsive" src={{currentUser.profilePicture}}>
-            			</div>
-            			<div class="col-sm-8 col-xs-12 vertical-center">
-            				<h1 id="profileHeader">{{currentUser.firstName}} {{currentUser.lastName}}</h1>
-            				<div>{{currentUser.position}}</div>
-            			</div>
-            		</div>
-
-            		<div style="background: white;">
-	            		<div class="content project-component" id="summaryContent" style="margin-left:1rem; margin-right:1rem;">
-	            			<div class="row">
-	            				<h5 class="col-xs-11 pull-left" style="margin-top:4rem;">Summary</h5>
+        			<div style="background: white;">
+	        			<div class="large-component" id="profileHeading" style="padding-top:5%;">
+	            			<div class="col-sm-4 col-xs-12" ng-hide="currentUser.profilePicture == ''">
+	            				<img class="img-responsive" src={{currentUser.profilePicture}}>
 	            			</div>
-	                        <textarea placeholder="Click edit to input your summary" type="text"  class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.summary"></textarea>
+	            			<div class="col-sm-8 col-xs-12 vertical-center">
+	            				<h1 id="profileHeader">
+	            					{{currentUser.firstName}} {{currentUser.lastName}}
+	            				</h1>
+	            				<div>
+	            					{{currentUser.position}}
+	            				</div>
+	            			</div>
 	            		</div>
 
-	            		<div class="content project-component" id="currentProjectsContent" style="margin-left:1rem; margin-right:1rem;">
-	            			<h5>Current Projects</h5>
+            		
+	            		<div class="content large-component" id="summaryContent">
+	            			<div class="row">
+	            				<h3 class="col-xs-11 pull-left" style="margin-top:4rem;">Summary</h3>
+	            			</div>
+	                        <textarea ng-show="editing" placeholder="Click edit to input your summary" type="text" class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.summary"></textarea>
+	                        <div ng-show="!editing">
+	                        	{{currentUser.summary}}
+	                        </div>
+	            		</div>
+
+	            		<div class="content large-component" id="currentProjectsContent">
+	            			<h3>Current Projects</h3>
+	            			<div ng-show="!currentUser.projects || currentUser.projects.length <= 0">
+	            				Find yourself a project:
+	            				<div class="chip" style="cursor:pointer" ng-click="goToSearch()">
+	            					Search
+	            				</div>
+	            			</div>
 	            			<div ng-repeat="project in currentUser.projects" class="chip">
 		                      	<!-- <img src="project.image"> -->
 		                      	{{project.title}}
 		                    </div>
-		                    <div ng-if="currentUser.projects.length == 0">No current projects</div>
 	            		</div>
 
-	            		<div class="content project-component" id="experienceContent" style="margin-left:1rem; margin-right:1rem;">
-	            			<h5>Experience</h5>
-	                        <textarea placeholder="Click edit to input your experience" type="text" class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.experience"></textarea>
+	            		<div class="content large-component" id="experienceContent">
+	            			<h3>Experience</h3>
+	                        <textarea ng-show="editing" placeholder="Click edit to input your experience" type="text" class="form-control profileText" ng-readonly="!editing" ng-model="currentUser.experience"></textarea>
+	                        <div ng-show="!editing">
+	                        	{{currentUser.experience}}
+	                        </div>
 	            		</div>
 
-	            		<div class="content project-component" id="skillsContent" style="margin-left:1rem; margin-right:1rem;">
-	                        <h5>Skills</h5>
+	            		<div class="content large-component" id="skillsContent" style="padding-bottom:5%;">
+	                        <h3>Skills</h3>
 		                      <div>
 		                      	<div ng-repeat="skill in currentUser.skills" class="chip">
 		                      		{{skill}}
@@ -61,12 +77,21 @@
 		                      </div>
 	            		</div>
 	            	</div>
-	            	<div class="offset4 span4 text-center" id="editButton">
+	            	<!-- <div class="offset4 span4 text-center" id="editButton">
                         <button type="button" class="btn btn-info btn-md" ng-click="editPressed()">{{editMessage}}</button>
                         <button ng-click="signOut()" class="btn btn-danger" type="submit">Sign Out</button>
-            		</div>
+            		</div> -->
 
-
+            		<div class="full-width">
+	            		<button class="btn btn-info col-xs-12 col-sm-6" style="margin-top:2rem" ng-click="editPressed()">
+	            			<span class="fa fa-pencil icon"></span>
+	            			{{editMessage}}
+	            		</button>
+	            		<button class="btn btn-danger col-xs-12 col-sm-6" style="margin-top:2rem" ng-click="signOut()">
+	            			<span class="fa fa-sign-out icon"></span>
+	            			Sign Out
+	            		</button>
+	            	</div>
 
             		<!-- Modal
 					<div id="myModal" class="modal fade" role="dialog">

@@ -5,34 +5,50 @@
 	<!-- Main content in each page should be wrapped by the following 3 div elements -->
 	<div class="container">
         <div class="row">
-            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
             	<!-- Main content starts-->
             	<div>
-            		<div ng-show="projectsCreated && projectsCreated.length > 0" class="project-component">
-	            		<div>Creator</div>
-	            		<div ng-repeat="project in projectsCreated">
+            		<div class="project-component">
+	            		<div style="margin-left:2rem; margin-bottom:1rem;">Creator</div>
+	            		<div>
+            				<project-card ng-show="!mobile && projectsCreated.length <= 0" summary="'Go to the Create Project page and share your inspiration!'"></project-card>
+            				<project-card-mobile ng-show="mobile && projectsCreated.length <= 0" summary="'Go to the Create Project page and share your inspiration!'"></project-card-mobile>
+            			</div>
+	            		<div ng-show="projectsCreated && projectsCreated.length > 0" ng-repeat="project in projectsCreated">
             				<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
             				<project-card-mobile ng-show="mobile" ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="Object.keys(project.comments).length" details="project.details" projectid="project.$id"></project-card-mobile>
             			</div>
 	            	</div>
-            		<div ng-show="projectsOwning && projectsOwning.length > 0" class="project-component">
-	            		<div>Owner</div>
-	            		<div ng-repeat="project in projectsOwning">
+            		<div class="project-component">
+	            		<div style="margin-left:2rem; margin-bottom:1rem;">Owner</div>
+	            		<div>
+            				<project-card ng-show="!mobile && projectsOwning.length <= 0" summary="'Talk to other project owners and promote your project member status!'"></project-card>
+            				<project-card-mobile ng-show="mobile && projectsOwning.length <= 0" summary="'Talk to other project owners and promote your project member status!'"></project-card-mobile>
+            			</div>
+	            		<div ng-show="projectsOwning && projectsOwning.length > 0" ng-repeat="project in projectsOwning">
             				<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
             				<project-card-mobile ng-show="mobile" ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="Object.keys(project.comments).length" details="project.details" projectid="project.$id"></project-card-mobile>
             			</div>
 	            	</div>
-	            	<div ng-show="projectsWorking && projectsWorking.length > 0" class="project-component">
-	            		<div>Member</div>
-	            		<div ng-repeat="project in projectsWorking">
+	            	<div class="project-component">
+	            		<div style="margin-left:2rem; margin-bottom:1rem;">Member</div>
+	            		<div>
+            				<project-card ng-show="!mobile && projectsWorking.length <= 0" summary="'Browse the Home and Search pages and apply to become a member of a project!'"></project-card>
+            				<project-card-mobile ng-show="mobile && projectsWorking.length <= 0" summary="'Browse the Home and Search pages and apply to become a member of a project!'"></project-card-mobile>
+            			</div>
+	            		<div ng-show="projectsWorking && projectsWorking.length > 0" ng-repeat="project in projectsWorking">
 	            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
 	            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="Object.keys(project.comments).length" details="project.details" projectid="project.$id"></project-card-mobile>
             			</div>
 	            	</div>
-	            	<div ng-show="projectsFollowing && projectsFollowing.length > 0" class="project-component">
-	            		<div>Following</div>
-	            		<div ng-repeat="project in projectsFollowing">
+	            	<div class="project-component">
+	            		<div style="margin-left:2rem; margin-bottom:1rem;">Following</div>
+	            		<div>
+            				<project-card ng-show="!mobile && projectsFollowing.length <= 0" summary="'Follow a project you find interesting and receive updates!'"></project-card>
+            				<project-card-mobile ng-show="mobile && projectsFollowing.length <= 0" summary="'Follow a project you find interesting and receive updates!'"></project-card-mobile>
+            			</div>
+	            		<div ng-show="projectsFollowing && projectsFollowing.length > 0" ng-repeat="project in projectsFollowing">
 	            			<project-card ng-show="!mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="project.comments.length" details="project.details" projectid="project.$id"></project-card>
 	            			<project-card-mobile ng-show="mobile" image="project.photo" title="project.title" summary="project.summary" likes="project.likes" views="project.views" comments="Object.keys(project.comments).length" details="project.details" projectid="project.$id"></project-card-mobile>
             			</div>

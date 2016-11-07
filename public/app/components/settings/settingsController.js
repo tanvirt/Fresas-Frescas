@@ -1,4 +1,4 @@
-angular.module('main').controller('SettingsController', function($rootScope, $scope, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams) {
+angular.module('main').controller('SettingsController', function($rootScope, $scope, $state, $firebaseAuth, $firebaseArray, $firebaseObject, $stateParams) {
 
 	if ($stateParams.userId === null) {
 		$scope.userId = null;
@@ -38,6 +38,10 @@ angular.module('main').controller('SettingsController', function($rootScope, $sc
 			console.log("error, who are you?");
 		}
 	})
+
+	$scope.goToSearch = function() {
+		$state.go("search");
+	}
 
 	$scope.signOut = function() {
 		$scope.authObj.$signOut();

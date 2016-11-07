@@ -76,6 +76,12 @@ color:orange;
 	top: 0.25rem;
 }
 
+.large-component {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
 .project-component {
 	margin-top: 5%;
 	margin-bottom: 5%;
@@ -587,9 +593,11 @@ html, body, .ng-scope, .container-fluid, .row {
 }
 
 #profileHeading{
-  background-color: white;
-  display: flex;
-  align-items: center;
+  /*background-color: white;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  margin:auto;
+  display: inline-block;
 }
 
 #profileHeader{
@@ -603,7 +611,9 @@ html, body, .ng-scope, .container-fluid, .row {
 .profileText{
   overflow: auto;
   height: 150px !important;
-  background-color: rgb(225,225,225);
+  background-color: white;
+  font-family: 'Lora', 'Times New Roman', serif;
+  font-size: 20px;
 }
 
 .extra-chips {
