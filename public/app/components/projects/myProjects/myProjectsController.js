@@ -20,7 +20,7 @@ angular.module('main').controller('MyProjectsController', function($rootScope, $
             var createdList = $firebaseArray(userRef.child("createdProjects"));
         	var ownedList = $firebaseArray(userRef.child("ownedProjects"));
         	var memberList = $firebaseArray(userRef.child("memberProjects"));
-        	var subscriberList = $firebaseArray(userRef.child("subscriberProjects"));
+        	var subscriberList = $firebaseArray(userRef.child("subscribedProjects"));
             createdList.$loaded().then(function() {
                 angular.forEach(createdList, function(project) {
                     $scope.projectsCreated.push($firebaseObject(projectRef.child(project.$id)));
