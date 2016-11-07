@@ -2,7 +2,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 
 	// App header variables
 	$scope.heading = "FIND SOMETHING NEW";
-	$scope.subheading = "There is a whole world out there.";
+	$scope.subheading = "Expand your horizons.";
 	$scope.headingImage = "../../assets/img/world.jpg";
 
 	// Main content starts

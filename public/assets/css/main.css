@@ -7,14 +7,14 @@ textarea {
 }
 
 #app-title {
-  font-size:7rem;
-font-family: 'Buenard', serif;
-font-weight:bold;
+font-size:7rem;
+font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-weight:800;
 text-transform: uppercase;
 text-shadow: 1px 1px 1px #000;
 -webkit-text-shadow: 1px 1px 1px #000;
 -moz-text-shadow: 1px 1px 1px #000;
-color:orange;
+color:white;
 }
 
 #login{
@@ -23,7 +23,7 @@ color:orange;
 	position: fixed;
 	z-index: 0;
 	background-position: center center;
-	background-image: url("../img/login.jpg");
+	background-image: url("../img/login_2.jpg");
  	background-size: cover;
  	overflow: auto;
 
@@ -35,7 +35,7 @@ color:orange;
 	position: fixed;
 	z-index: 0;
 	background-position: center center;
-	background-image: url("../img/login.jpg");
+	background-image: url("../img/login_2.jpg");
  	background-size: cover;
  	overflow:auto;
 }
