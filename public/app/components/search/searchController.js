@@ -55,6 +55,15 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 				$scope.projectSearchResults[projectList[index].$id] = $firebaseObject(ref.child("projects").child(projectList[index].$id));
 			})
 			$scope.displayedList = $scope.projectSearchResults;
+			for(var proj in $scope.displayedList){
+				var numComments = 0;
+				if(proj.comments){
+					numComments = Object.keys(proj.comments).length;
+				}
+				proj.numComments = numComments;
+			}
+			console.log("displayedList");
+			console.log($scope.displayedList);
 		})
 
 	}
