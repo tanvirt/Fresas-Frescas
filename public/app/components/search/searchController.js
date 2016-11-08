@@ -1,4 +1,4 @@
-angular.module('main').controller('SearchController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject) {
+angular.module('main').controller('SearchController', function($scope, $firebaseAuth, $firebaseArray, $firebaseObject, $state, $stateParams) {
 
 	// App header variables
 	$scope.heading = "FIND SOMETHING NEW";
@@ -6,6 +6,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 	$scope.headingImage = "../../assets/img/world.jpg";
 
 	// Main content starts
+	$scope.userSearch = false;
 	$scope.searchText = "";
 	var ref = firebase.database().ref();
 
@@ -121,6 +122,7 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 	}
 
 	$scope.searchUserByName = function() {
+		$scope.userSearch = true;
 		var userList = $firebaseArray(ref.child("users"));
 		$scope.searchText = ($scope.searchText).toLowerCase();
 
@@ -139,8 +141,9 @@ angular.module('main').controller('SearchController', function($scope, $firebase
 		$scope.displayedList = $scope.userSearchResults;
 	}
 
-	$scope.viewDetails = function() {
-		console.log("this is a test");
+	$scope.viewUser = function(user) {
+		var theId = user[Object.keys(user)[0]].$id;
+		$state.go("profile", {userId: theId});
 	}
 
 });

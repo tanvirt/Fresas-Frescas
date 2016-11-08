@@ -11,7 +11,6 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	var userId = "";
 	$scope.authObj.$onAuthStateChanged(function(user) {
 		if(user) {
-			console.log("when does this happen then?");
 			userId = user.uid;
 		} else {
 			console.log("error, who are you?");
