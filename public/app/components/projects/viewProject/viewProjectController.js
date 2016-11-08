@@ -6,10 +6,12 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 		$scope.myProjectId = $stateParams.projectId;
 	}
 
+	$scope.canEdit = false;
 	$scope.isOwner = true; // TEMPORARY
 	var userId = "";
 	$scope.authObj.$onAuthStateChanged(function(user) {
 		if(user) {
+			console.log("when does this happen then?");
 			userId = user.uid;
 		} else {
 			console.log("error, who are you?");
@@ -24,9 +26,13 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	var ref = firebase.database().ref();
 	var currProjectRef = ref.child("projects").child($scope.myProjectId);
 	var currentProject = {};
+	var creatorID = "";
 	$scope.projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
+
 //	var projectData = $firebaseObject(ref.child("projects").child($scope.myProjectId));
 	$scope.projectData.$loaded().then(function() {
+		creatorID = $scope.projectData.creator;
+
 		//am I already a subscriber?
 		for (var i=0; i < $scope.projectData.subscribers.length; i++){
 			if ($scope.projectData.subscribers[i] === userId) {
@@ -61,9 +67,17 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 			commentsNum: numComments
 		};
 
+		if (creatorID === userId) {
+			$scope.canEdit = true;
+		}
+
 		//get owner and member objects
 		for(var i=0; i < $scope.projectData.owners.length; i++) {
 			convertIdToObj($scope.projectData.owners[i], "owner");
+			//iterating anyway, throw a check in here
+			if ($scope.projectData.owners[i] === userId) {
+				$scope.canEdit = true;
+			}
 		}
 		for(var i=0; i < $scope.projectData.members.length; i++) {
 			convertIdToObj($scope.projectData.members[i], "member");
@@ -191,7 +205,6 @@ angular.module('main').controller('ViewProjectController', function($rootScope, 
 	$scope.requestMembership = function() {
 		var firebaseUser = $scope.authObj.$getAuth();
 		var currentUser = $firebaseObject(ref.child("users").child(firebaseUser.uid));
-		var creatorID = $scope.projectData.creator;
 
 		var dateStamp = new Date();
 		dateStamp = dateStamp.toLocaleString([], {hour: '2-digit', minute: '2-digit', month: '2-digit', day: '2-digit', year: '2-digit'});
