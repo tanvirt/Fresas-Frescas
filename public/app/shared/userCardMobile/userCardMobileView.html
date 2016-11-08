@@ -1,0 +1,32 @@
+<div class="card">
+  	<div class="waves-effect waves-block waves-light" style="position: relative; text-align: center;">
+      <img class="activator" src="{{image}}" style="max-height: 20em;">
+    </div>
+    <div class="card-content">
+		<span class="card-title activator grey-text text-darken-4">
+			<div ng-show="details != undefined && details != ''">
+				<i class="material-icons right">more_vert</i>
+			</div>
+			<div>
+				{{title}}
+			</div>
+		</span>
+		<div ng-show="summary != undefined || summary != ''" class="project-component">
+			{{summary}}
+		</div>
+    </div>
+    <div ng-show="title && summary" class="card-reveal">
+		<span class="card-title grey-text text-darken-4">
+			<div>
+				<i class="material-icons right">close</i>
+			</div>
+			<div>
+				{{title}}
+			</div>
+		</span>
+		<br>
+		<div>
+			{{details}}
+		</div>
+    </div>
+</div>
